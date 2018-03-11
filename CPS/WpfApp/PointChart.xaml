@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="760.657">
+        Title="MainWindow" Height="350" Width="850">
     <Window.DataContext>
         <local:PointChartViewModel/>
     </Window.DataContext>
     <Grid Margin="0,0,3.4,-0.2">
-        <oxy:Plot Title="{Binding Title}" Margin="0,10,235,0">
+        <oxy:Plot Title="{Binding Title}" Margin="22,10,331,19">
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding Points}" Color="Transparent" 
                 MarkerFill="SteelBlue" 
@@ -35,7 +35,17 @@
         <TextBlock HorizontalAlignment="Left" Margin="675,83,0,0" TextWrapping="Wrap" Text="{Binding _t1}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="675,104,0,0" TextWrapping="Wrap" Text="{Binding _d}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="675,125,0,0" TextWrapping="Wrap" Text="{Binding _f}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="523,146,0,0" TextWrapping="Wrap" Text="Prawdopodobieństwo" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="523,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="p"/><Run Text="rawdopodobieństwo"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="675,146,0,0" TextWrapping="Wrap" Text="{Binding _p}" VerticalAlignment="Top" Width="16" RenderTransformOrigin="3.094,0.404"/>
+        <TextBlock HorizontalAlignment="Left" Margin="270,295,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="-10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.54,-0.169">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform X="-12.882" Y="8.505"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform><Run Text="a"/><Run Text="mplituda"/></TextBlock>
     </Grid>
 </Window>
