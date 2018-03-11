@@ -30,6 +30,38 @@ namespace CPS
             this._T = T;
             this._kw = kw;
             this._f = f;
+
+            // co by okres sie dziwnie nie konczyl
+            if(_T != 0)
+            {
+                int calosci = (int)(_d / _T);
+                _d = _T * calosci;
+            }
+            
+        }
+      
+        public void SzumJednostajny()
+        {
+            Random rand = new Random();
+            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            {
+                Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(Math.Sqrt(12.0 * _A) * (((rand.Next() % 101) - 50.0) / 100.0) + 0, 2)));
+            }
+        }
+
+        public void SzumGaussowski()
+        {
+            Random rand = new Random();
+            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            {
+                int n = 10;
+                double x = 0.0;
+                for (int j = 0; j < n; j++)
+                {
+                    x += Math.Sqrt(12.0 * 1) * (((rand.Next() % 101) - 50.0) / 100.0) + 0;
+                }
+                Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(x * Math.Sqrt(_A / (double)n) + 0, 2)));
+            }
         }
 
         public void SygnalSinusoidalny()

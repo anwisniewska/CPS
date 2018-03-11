@@ -37,7 +37,23 @@ namespace CPS
         }
 
         private void Button_Click_szumjedno(object sender, RoutedEventArgs e)
-        { 
+        {
+            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f));
+            LineChart lc = new LineChart();
+            ss.SzumJednostajny();
+            ss.CalculateInfo();
+            lc.DataContext = ss.MakeChart("Szum jednostajny");
+            lc.Show();
+        }
+
+        private void Button_Click_szumgaus(object sender, RoutedEventArgs e)
+        {
+            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f));
+            LineChart lc = new LineChart();
+            ss.SzumGaussowski();
+            ss.CalculateInfo();
+            lc.DataContext = ss.MakeChart("Szum gaussowski");
+            lc.Show();
         }
 
         private void Button_Click_sygsin(object sender, RoutedEventArgs e)
