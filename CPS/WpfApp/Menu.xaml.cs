@@ -29,6 +29,7 @@ namespace CPS
         public double _ns { get; set; }
         public double _f { get; set; }
         public double _p { get; set; }
+        public int _his { get; set; }
 
         public Menu()
         {
@@ -38,52 +39,72 @@ namespace CPS
 
         private void Button_Click_szumjedno(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
+            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
             LineChart lc = new LineChart();
             ss.SzumJednostajny();
             ss.CalculateInfo();
             lc.DataContext = ss.MakeChart("Szum jednostajny");
             lc.Show();
+
+            Histogram his = new Histogram();
+            his.DataContext = ss.MakeHistogram();
+            his.Show();
         }
 
         private void Button_Click_szumgaus(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
+            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
             LineChart lc = new LineChart();
             ss.SzumGaussowski();
             ss.CalculateInfo();
             lc.DataContext = ss.MakeChart("Szum gaussowski");
             lc.Show();
+
+            Histogram his = new Histogram();
+            his.DataContext = ss.MakeHistogram();
+            his.Show();
         }
 
         private void Button_Click_sygsin(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
+            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
             LineChart lc = new LineChart();
             ss.SygnalSinusoidalny();
             ss.CalculateInfo();
             lc.DataContext = ss.MakeChart("Sygnał sinusoidalny");
             lc.Show();
+
+            Histogram his = new Histogram();
+            his.DataContext = ss.MakeHistogram();
+            his.Show();
         }
 
         private void Button_Click_sygsinjed(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
+            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
             LineChart lc = new LineChart();
             sswj.SygnalSinusoidalnyWyprostowanyJednopolowkowo();
             sswj.CalculateInfo();
             lc.DataContext = sswj.MakeChart("Sygnał sinusoidalny wyprostowany jednopołówkowo");
             lc.Show();
+
+            Histogram his = new Histogram();
+            his.DataContext = sswj.MakeHistogram();
+            his.Show();
         }
 
         private void Button_Click_sygsindwu(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
+            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
             LineChart lc = new LineChart();
             sswj.SygnalSinusoidalnyWyprostowanyDwupolowkowo();
             sswj.CalculateInfo();
             lc.DataContext = sswj.MakeChart("Sygnał sinusoidalny wyprostowany dwupołówkowo");
             lc.Show();
+
+            Histogram his = new Histogram();
+            his.DataContext = sswj.MakeHistogram();
+            his.Show();
         }
 
         private void Button_Click_imp(object sender, RoutedEventArgs e)
@@ -104,26 +125,35 @@ namespace CPS
             sswj.CalculateInfo();
             pc.DataContext = sswj.MakeChart("Szum impulsowy");
             pc.Show();
+
         }
 
         private void Button_Click_skok(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
+            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
             LineChart lc = new LineChart();
             sswj.Skok();
             sswj.CalculateInfo();
             lc.DataContext = sswj.MakeChart("Skok jednostkowy");
             lc.Show();
+
+            Histogram his = new Histogram();
+            his.DataContext = sswj.MakeHistogram();
+            his.Show();
         }
 
         private void Button_Click_sygpro(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
+            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
             LineChart lc = new LineChart();
             sswj.SygnalProstokatny();
             sswj.CalculateInfo();
             lc.DataContext = sswj.MakeChart("Sygnał prostokątny");
             lc.Show();
+
+            Histogram his = new Histogram();
+            his.DataContext = sswj.MakeHistogram();
+            his.Show();
         }
     }
 }

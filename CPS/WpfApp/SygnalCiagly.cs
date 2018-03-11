@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace CPS
         public double _kw { get; set; }
         public double _f { get; set; }
         public double _ns { get; set; }
+        public int _his { get; set; }
         public IList<DataPoint> Points = new List<DataPoint>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
@@ -23,7 +25,7 @@ namespace CPS
         public double _Wariancja { get; set; }
         public double _MocSrednia { get; set; }
 
-        public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns)
+        public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns, int his)
         {
             this._A = A;
             this._t1 = t1;
@@ -32,9 +34,10 @@ namespace CPS
             this._kw = kw;
             this._f = f;
             this._ns = ns;
+            this._his = his;
 
             // co by okres sie dziwnie nie konczyl
-            if(_T != 0)
+            if (_T != 0)
             {
                 int calosci = (int)(_d / _T);
                 _d = _T * calosci;
@@ -167,6 +170,39 @@ namespace CPS
             vm._Wariancja = Math.Round(_Wariancja, 2);
             vm._Skuteczna = Math.Round(_Skuteczna, 2);
             return vm;
+        }
+
+        public HistogramViewModel MakeHistogram()
+        {
+            HistogramViewModel h = new HistogramViewModel();
+            Collection<Item> Items = new Collection<Item>();
+            double maxA = 0;
+            double minA = 0;
+            foreach(var point in Points)
+            {
+                if (maxA < point.Y) maxA = point.Y;
+                if (minA > point.Y) minA = point.Y;
+            }
+            double diff = maxA - minA;
+            double blok = diff / _his;
+            for(int i = 0; i < _his; i++)
+            {
+                int ile = 0;
+                double min = minA + (i * blok);
+                double max = minA + ((i+1) * blok);
+                foreach (var point in Points)
+                {
+                
+                    if (point.Y >= min && point.Y < max)
+                    {
+                        ile++;
+                    }
+                }
+                Items.Add(new Item { Label = min.ToString() + " / " +max.ToString(), Value = ile });
+            }
+            h.Items = Items;
+            h.Make();
+            return h;
         }
     }
 }

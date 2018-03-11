@@ -44,6 +44,8 @@
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="137.4,71,0,0" TextWrapping="Wrap" Text="Częstotliwość próbkowania" VerticalAlignment="Top" RenderTransformOrigin="0.274,-3.75" Height="16" Width="144"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="137.4,99,0,0" TextWrapping="Wrap" Text="Prawdopodobieństwo" VerticalAlignment="Top" RenderTransformOrigin="-0.613,-1.375"/>
         <TextBox Text="{Binding _p}" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="11.4,98,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding _his}" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10.4,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="137.4,127,0,0" TextWrapping="Wrap" Text="Histogram" VerticalAlignment="Top" Width="111"/>
 
     </Grid>
 </Window>

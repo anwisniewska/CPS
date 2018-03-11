@@ -10,6 +10,6 @@
         <local:HistogramViewModel/>
     </Window.DataContext>
     <Grid>
-        <oxy:PlotView Model="{Binding Model1}"/>
+        <oxy:PlotView Model="{Binding Model}"/>
     </Grid>
 </Window>
