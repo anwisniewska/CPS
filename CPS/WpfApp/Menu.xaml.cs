@@ -38,7 +38,7 @@ namespace CPS
 
         private void Button_Click_szumjedno(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f));
+            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
             LineChart lc = new LineChart();
             ss.SzumJednostajny();
             ss.CalculateInfo();
@@ -48,7 +48,7 @@ namespace CPS
 
         private void Button_Click_szumgaus(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f));
+            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
             LineChart lc = new LineChart();
             ss.SzumGaussowski();
             ss.CalculateInfo();
@@ -58,7 +58,7 @@ namespace CPS
 
         private void Button_Click_sygsin(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f));
+            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
             LineChart lc = new LineChart();
             ss.SygnalSinusoidalny();
             ss.CalculateInfo();
@@ -68,7 +68,7 @@ namespace CPS
 
         private void Button_Click_sygsinjed(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f));
+            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
             LineChart lc = new LineChart();
             sswj.SygnalSinusoidalnyWyprostowanyJednopolowkowo();
             sswj.CalculateInfo();
@@ -78,7 +78,7 @@ namespace CPS
 
         private void Button_Click_sygsindwu(object sender, RoutedEventArgs e)
         {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f));
+            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
             LineChart lc = new LineChart();
             sswj.SygnalSinusoidalnyWyprostowanyDwupolowkowo();
             sswj.CalculateInfo();
@@ -104,6 +104,26 @@ namespace CPS
             sswj.CalculateInfo();
             pc.DataContext = sswj.MakeChart("Szum impulsowy");
             pc.Show();
+        }
+
+        private void Button_Click_skok(object sender, RoutedEventArgs e)
+        {
+            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
+            LineChart lc = new LineChart();
+            sswj.Skok();
+            sswj.CalculateInfo();
+            lc.DataContext = sswj.MakeChart("Skok jednostkowy");
+            lc.Show();
+        }
+
+        private void Button_Click_sygpro(object sender, RoutedEventArgs e)
+        {
+            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns));
+            LineChart lc = new LineChart();
+            sswj.SygnalProstokatny();
+            sswj.CalculateInfo();
+            lc.DataContext = sswj.MakeChart("Sygnał prostokątny");
+            lc.Show();
         }
     }
 }

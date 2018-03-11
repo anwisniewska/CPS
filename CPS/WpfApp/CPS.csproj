@@ -60,12 +60,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Histogram.xaml.cs">
+      <DependentUpon>Histogram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HistogramViewModel.cs" />
     <Compile Include="PointChartViewModel.cs" />
     <Compile Include="PointChart.xaml.cs">
       <DependentUpon>PointChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="SygnalCiagly.cs" />
     <Compile Include="SygnalDyskretny.cs" />
+    <Page Include="Histogram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PointChart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

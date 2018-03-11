@@ -15,6 +15,7 @@ namespace CPS
         public double _T { get; set; }
         public double _kw { get; set; }
         public double _f { get; set; }
+        public double _ns { get; set; }
         public IList<DataPoint> Points = new List<DataPoint>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
@@ -22,7 +23,7 @@ namespace CPS
         public double _Wariancja { get; set; }
         public double _MocSrednia { get; set; }
 
-        public SygnalCiagly(double A, double t1, double d, double T, double kw, double f)
+        public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns)
         {
             this._A = A;
             this._t1 = t1;
@@ -30,6 +31,7 @@ namespace CPS
             this._T = T;
             this._kw = kw;
             this._f = f;
+            this._ns = ns;
 
             // co by okres sie dziwnie nie konczyl
             if(_T != 0)
@@ -85,6 +87,31 @@ namespace CPS
             for (double i = _t1; i <= _t1 + _d; i += 1/_f)
             {
                 Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1))), 2)));
+            }
+        }
+
+        public void Skok()
+        {
+            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            {
+                if(i < _ns)
+                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
+                if (i == _ns)
+                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(0.5*_A, 2)));
+                if (i > _ns)
+                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+            }
+        }
+
+        public void SygnalProstokatny()
+        {
+            int k = 0;
+            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            { 
+                if(i >= k*_T + i && i < _kw*_T + k*_T + i)
+                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                if(i >= _kw * _T + k * _T + i && i < _T + k*_T + i)
+                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
             }
         }
 
