@@ -198,7 +198,7 @@ namespace CPS
                         ile++;
                     }
                 }
-                Items.Add(new Item { Label = min.ToString() + " / " +max.ToString(), Value = ile });
+                Items.Add(new Item { Label = Math.Round(min,2).ToString() + " / " +Math.Round(max,2).ToString(), Value = ile });
             }
             h.Items = Items;
             h.Make();
