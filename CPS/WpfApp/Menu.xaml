@@ -1,0 +1,49 @@
+﻿<Window x:Class="CPS.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CPS"
+        mc:Ignorable="d"
+        Title="Menu" Height="476.2" Width="755.2">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="181*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="153*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Text="{Binding _A}" HorizontalAlignment="Left" Height="23" Margin="12,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding _t1}" HorizontalAlignment="Left" Height="23" Margin="12,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding _d}" HorizontalAlignment="Left" Height="23" Margin="12,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding _T}" HorizontalAlignment="Left" Height="23" Margin="12,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding _kw}" HorizontalAlignment="Left" Height="23" Margin="12,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Szum o rozkładzie jednostajnym" HorizontalAlignment="Left" Margin="12,214,0,0" VerticalAlignment="Top" Width="298" Click="Button_Click_szumjedno" Height="19"/>
+        <TextBlock HorizontalAlignment="Left" Margin="137,21,0,0" TextWrapping="Wrap" Text="Amplituda" VerticalAlignment="Top" Height="16" Width="55"/>
+        <TextBlock HorizontalAlignment="Left" Margin="138,49,0,0" TextWrapping="Wrap" Text="Czas początkowy" VerticalAlignment="Top" Height="16" Width="190"/>
+        <TextBlock HorizontalAlignment="Left" Margin="137,78,0,0" TextWrapping="Wrap" Text="Czas trwania" VerticalAlignment="Top" Height="15" Width="152"/>
+        <TextBlock HorizontalAlignment="Left" Margin="137,105,0,0" TextWrapping="Wrap" Text="Okres podstawowy" VerticalAlignment="Top" Height="16" Width="101"/>
+        <TextBlock HorizontalAlignment="Left" Margin="137,133,0,0" TextWrapping="Wrap" Text="Współczynnik wypełnienia" VerticalAlignment="Top" Height="16" Width="225"/>
+        <Button Content="Szum gaussowski" HorizontalAlignment="Left" Margin="12,238,0,0" VerticalAlignment="Top" Width="298" Height="20"/>
+        <Button Content="Sygnał sinusoidalny" HorizontalAlignment="Left" Margin="12,262,0,0" VerticalAlignment="Top" Width="298" Click="Button_Click_sygsin" Height="20"/>
+        <Button Content="Sygnał sinusoidalny wyprostowany jednopołówkowo" HorizontalAlignment="Left" Margin="12,286,0,0" VerticalAlignment="Top" Width="298" Click="Button_Click_sygsinjed" Height="20"/>
+        <Button Content="Sygnał sinusoidalny wyprostowany dwupołówkowo" HorizontalAlignment="Left" Margin="12,310,0,0" VerticalAlignment="Top" Width="298" Click="Button_Click_sygsindwu" Height="20"/>
+        <Button Content="Sygnał prostokątny" HorizontalAlignment="Left" Margin="12,334,0,0" VerticalAlignment="Top" Width="298" Height="20"/>
+        <Button Content="Sygnał prostokątny symetryczny" HorizontalAlignment="Left" Margin="12,358,0,0" VerticalAlignment="Top" Width="298" Height="20"/>
+        <Button Content="Sygnał trójkątny" HorizontalAlignment="Left" Margin="12,382,0,0" VerticalAlignment="Top" Width="298" Height="20"/>
+        <Button Content="Skok jednostkowy" HorizontalAlignment="Left" Margin="12,406,0,0" VerticalAlignment="Top" Width="298" Height="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="12,184,0,0" TextWrapping="Wrap" Text="Sygnały ciągłe" VerticalAlignment="Top" Width="120" Height="16"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="11.4,184,0,0" TextWrapping="Wrap" Text="Sygnały dyskretne" VerticalAlignment="Top" Height="16" Width="96"/>
+        <Button Content="Impuls jednostkowy" Grid.Column="2" HorizontalAlignment="Left" Margin="11.4,214,-19,0" VerticalAlignment="Top" Width="314" Grid.ColumnSpan="2" Height="19" Click="Button_Click_imp"/>
+        <Button Content="Szum impulsowy" Grid.Column="2" HorizontalAlignment="Left" Margin="11.4,239,-19,0" VerticalAlignment="Top" Width="314" Grid.ColumnSpan="2" Height="19" Click="Button_Click_szumimp"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="137.4,21,0,0" TextWrapping="Wrap" Text="numer pierwszej próbki" VerticalAlignment="Top" RenderTransformOrigin="-0.276,0.677" Height="16" Width="124"/>
+        <TextBox Text="{Binding _n1}" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="12.4,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding _ns}" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="12.4,42,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding _f}" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="12.4,70,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="137.4,43,0,0" TextWrapping="Wrap" Text="numer próbki ze skokiem" VerticalAlignment="Top" Height="16" Width="135"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="137.4,71,0,0" TextWrapping="Wrap" Text="Częstotliwość próbkowania" VerticalAlignment="Top" RenderTransformOrigin="0.274,-3.75" Height="16" Width="144"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="137.4,99,0,0" TextWrapping="Wrap" Text="Prawdopodobieństwo" VerticalAlignment="Top" RenderTransformOrigin="-0.613,-1.375"/>
+        <TextBox Text="{Binding _p}" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="11.4,98,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>

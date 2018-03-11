@@ -1,0 +1,41 @@
+﻿<Window x:Class="CPS.LineChart"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:oxy="http://oxyplot.org/wpf"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CPS"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="760.657">
+    <Window.DataContext>
+        <local:LineChartViewModel/>
+    </Window.DataContext>
+    <Grid Margin="0,0,3.4,-0.2">
+        <oxy:Plot Title="{Binding Title}" Margin="0,10,235,0">
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding Points}"/>
+            </oxy:Plot.Series>
+        </oxy:Plot>
+        <TextBlock HorizontalAlignment="Left" Margin="523,197,0,0" TextWrapping="Wrap" Text="wartość średnia" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="523,219,0,0" TextWrapping="Wrap" Text="wartość bezwzględna" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="523,240,0,0" TextWrapping="Wrap" Text="wartość skuteczna" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="523,261,0,0" TextWrapping="Wrap" Text="wariancja" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="523,282,0,0" TextWrapping="Wrap" Text="moc średnia" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,197,0,0" TextWrapping="Wrap" Text="{Binding _Srednia}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,219,0,0" TextWrapping="Wrap" Text="{Binding _SredniaBez}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,240,0,0" TextWrapping="Wrap" Text="{Binding _Skuteczna}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,261,0,0" TextWrapping="Wrap" Text="{Binding _Wariancja}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,282,0,0" TextWrapping="Wrap" Text="{Binding _MocSrednia}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="522,146,0,0" TextWrapping="Wrap" Text="współczynnik wypełnienia" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="521,125,0,0" TextWrapping="Wrap" Text="okres podstawowy" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="521,104,0,0" TextWrapping="Wrap" Text="czas trwania" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="522,83,0,0" TextWrapping="Wrap" Text="czas początkowy" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="522,62,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,62,0,0" TextWrapping="Wrap" Text="{Binding _A}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,83,0,0" TextWrapping="Wrap" Text="{Binding _t1}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,104,0,0" TextWrapping="Wrap" Text="{Binding _d}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,125,0,0" TextWrapping="Wrap" Text="{Binding _T}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,146,0,0" TextWrapping="Wrap" Text="{Binding _kw}" VerticalAlignment="Top" RenderTransformOrigin="0.495,-0.017"/>
+        <TextBlock HorizontalAlignment="Left" Margin="522,166,0,0" TextWrapping="Wrap" Text="częstotliwość próbkowania" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="675,166,0,0" TextWrapping="Wrap" Text="{Binding _f}" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
