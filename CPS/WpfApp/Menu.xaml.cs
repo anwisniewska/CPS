@@ -155,5 +155,19 @@ namespace CPS
             his.DataContext = sswj.MakeHistogram();
             his.Show();
         }
+
+        private void Button_Click_sygprosym(object sender, RoutedEventArgs e)
+        {
+            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
+            LineChart lc = new LineChart();
+            sswj.SygnalProstokatnySymetryczny();
+            sswj.CalculateInfo();
+            lc.DataContext = sswj.MakeChart("Sygnał prostokątny symetryczny");
+            lc.Show();
+
+            Histogram his = new Histogram();
+            his.DataContext = sswj.MakeHistogram();
+            his.Show();
+        }
     }
 }

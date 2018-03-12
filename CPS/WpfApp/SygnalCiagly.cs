@@ -108,13 +108,43 @@ namespace CPS
 
         public void SygnalProstokatny()
         {
-            int k = 0;
+            int iloscOkresow = (int)(_d / _T);
+            int ktory = 1;
+            double wypelnienie = _T * _kw;
             for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
-            { 
-                if(i >= k*_T + i && i < _kw*_T + k*_T + i)
+            {
+                double koniecOkresu = _t1 + (ktory * _T);
+                if (i < koniecOkresu - (_T - wypelnienie))
+                {
                     Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
-                if(i >= _kw * _T + k * _T + i && i < _T + k*_T + i)
+                }
+                if (i >= koniecOkresu - (_T - wypelnienie))
+                {
                     Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
+                }
+                if (i == koniecOkresu)
+                    ktory++;
+            }
+        }
+
+        public void SygnalProstokatnySymetryczny()
+        {
+            int iloscOkresow = (int)(_d / _T);
+            int ktory = 1;
+            double wypelnienie = _T * _kw;
+            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            {
+                double koniecOkresu = _t1 + (ktory * _T);
+                if (i < koniecOkresu - (_T - wypelnienie))
+                {
+                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                }
+                if (i >= koniecOkresu - (_T - wypelnienie))
+                {
+                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                }
+                if (i == koniecOkresu)
+                    ktory++;
             }
         }
 
