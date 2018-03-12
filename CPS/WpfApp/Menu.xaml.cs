@@ -46,9 +46,13 @@ namespace CPS
             lc.DataContext = ss.MakeChart("Szum jednostajny");
             lc.Show();
 
-            Histogram his = new Histogram();
-            his.DataContext = ss.MakeHistogram();
-            his.Show();
+            if(_his > 0)
+            {
+                Histogram his = new Histogram();
+                his.DataContext = ss.MakeHistogram();
+                his.Show();
+            }
+          
         }
 
         private void Button_Click_szumgaus(object sender, RoutedEventArgs e)
@@ -60,9 +64,12 @@ namespace CPS
             lc.DataContext = ss.MakeChart("Szum gaussowski");
             lc.Show();
 
-            Histogram his = new Histogram();
-            his.DataContext = ss.MakeHistogram();
-            his.Show();
+            if (_his > 0)
+            {
+                Histogram his = new Histogram();
+                his.DataContext = ss.MakeHistogram();
+                his.Show();
+            }
         }
 
         private void Button_Click_sygsin(object sender, RoutedEventArgs e)
@@ -74,9 +81,12 @@ namespace CPS
             lc.DataContext = ss.MakeChart("Sygnał sinusoidalny");
             lc.Show();
 
-            Histogram his = new Histogram();
-            his.DataContext = ss.MakeHistogram();
-            his.Show();
+            if (_his > 0)
+            {
+                Histogram his = new Histogram();
+                his.DataContext = ss.MakeHistogram();
+                his.Show();
+            }
         }
 
         private void Button_Click_sygsinjed(object sender, RoutedEventArgs e)
@@ -88,9 +98,12 @@ namespace CPS
             lc.DataContext = sswj.MakeChart("Sygnał sinusoidalny wyprostowany jednopołówkowo");
             lc.Show();
 
-            Histogram his = new Histogram();
-            his.DataContext = sswj.MakeHistogram();
-            his.Show();
+            if (_his > 0)
+            {
+                Histogram his = new Histogram();
+                his.DataContext = sswj.MakeHistogram();
+                his.Show();
+            }
         }
 
         private void Button_Click_sygsindwu(object sender, RoutedEventArgs e)
@@ -102,9 +115,12 @@ namespace CPS
             lc.DataContext = sswj.MakeChart("Sygnał sinusoidalny wyprostowany dwupołówkowo");
             lc.Show();
 
-            Histogram his = new Histogram();
-            his.DataContext = sswj.MakeHistogram();
-            his.Show();
+            if (_his > 0)
+            {
+                Histogram his = new Histogram();
+                his.DataContext = sswj.MakeHistogram();
+                his.Show();
+            });
         }
 
         private void Button_Click_imp(object sender, RoutedEventArgs e)
@@ -137,9 +153,12 @@ namespace CPS
             lc.DataContext = sswj.MakeChart("Skok jednostkowy");
             lc.Show();
 
-            Histogram his = new Histogram();
-            his.DataContext = sswj.MakeHistogram();
-            his.Show();
+            if (_his > 0)
+            {
+                Histogram his = new Histogram();
+                his.DataContext = sswj.MakeHistogram();
+                his.Show();
+            }
         }
 
         private void Button_Click_sygpro(object sender, RoutedEventArgs e)
@@ -151,9 +170,12 @@ namespace CPS
             lc.DataContext = sswj.MakeChart("Sygnał prostokątny");
             lc.Show();
 
-            Histogram his = new Histogram();
-            his.DataContext = sswj.MakeHistogram();
-            his.Show();
+            if (_his > 0)
+            {
+                Histogram his = new Histogram();
+                his.DataContext = sswj.MakeHistogram();
+                his.Show();
+            }
         }
 
         private void Button_Click_sygprosym(object sender, RoutedEventArgs e)
@@ -165,9 +187,29 @@ namespace CPS
             lc.DataContext = sswj.MakeChart("Sygnał prostokątny symetryczny");
             lc.Show();
 
-            Histogram his = new Histogram();
-            his.DataContext = sswj.MakeHistogram();
-            his.Show();
+            if (_his > 0)
+            {
+                Histogram his = new Histogram();
+                his.DataContext = sswj.MakeHistogram();
+                his.Show();
+            }
+        }
+
+        private void Button_Click_sygtroj(object sender, RoutedEventArgs e)
+        {
+            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
+            LineChart lc = new LineChart();
+            sswj.SygnalTrojkatny();
+            sswj.CalculateInfo();
+            lc.DataContext = sswj.MakeChart("Sygnał trójkątny");
+            lc.Show();
+
+            if (_his > 0)
+            {
+                Histogram his = new Histogram();
+                his.DataContext = sswj.MakeHistogram();
+                his.Show();
+            }
         }
     }
 }

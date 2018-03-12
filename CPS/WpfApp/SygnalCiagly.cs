@@ -146,6 +146,30 @@ namespace CPS
             }
         }
 
+        public void SygnalTrojkatny()
+        {
+            int ktory = 1;
+            double wypelnienie = _T * _kw;
+            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            {
+                double poczatekOkresu = _t1 + ((ktory-1) * _T);
+                double koniecOkresu = _t1 + (ktory * _T);
+                double szczyt = koniecOkresu - (_T - wypelnienie);
+                if (i < szczyt) // zbocze rosnace
+                {
+                    double wartosc = (((_A) / (szczyt - poczatekOkresu)) * i) + ((-_A * poczatekOkresu) / (szczyt - poczatekOkresu));
+                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(wartosc, 2)));
+                }
+                if (i >= szczyt) // zbocze malejace
+                {
+                    double wartosc = (((-_A) / (koniecOkresu - szczyt)) * i) + ((_A * koniecOkresu) / (koniecOkresu - szczyt));
+                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(wartosc, 2)));
+                }
+                if (i >= koniecOkresu)
+                    ktory++;
+            }
+        }
+
         public void CalculateInfo()
         {
             // srednia

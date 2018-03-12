@@ -30,7 +30,7 @@
         <Button Content="Sygnał sinusoidalny wyprostowany dwupołówkowo" HorizontalAlignment="Left" Margin="12,310,0,0" VerticalAlignment="Top" Width="298" Click="Button_Click_sygsindwu" Height="20"/>
         <Button Content="Sygnał prostokątny" HorizontalAlignment="Left" Margin="12,334,0,0" VerticalAlignment="Top" Width="298" Height="20" Click="Button_Click_sygpro"/>
         <Button Content="Sygnał prostokątny symetryczny" HorizontalAlignment="Left" Margin="12,358,0,0" VerticalAlignment="Top" Width="298" Height="20" Click="Button_Click_sygprosym"/>
-        <Button Content="Sygnał trójkątny" HorizontalAlignment="Left" Margin="12,382,0,0" VerticalAlignment="Top" Width="298" Height="20"/>
+        <Button Content="Sygnał trójkątny" HorizontalAlignment="Left" Margin="12,382,0,0" VerticalAlignment="Top" Width="298" Height="20" Click="Button_Click_sygtroj"/>
         <Button Content="Skok jednostkowy" HorizontalAlignment="Left" Margin="12,406,0,0" VerticalAlignment="Top" Width="298" Height="20" Click="Button_Click_skok"/>
         <TextBlock HorizontalAlignment="Left" Margin="12,184,0,0" TextWrapping="Wrap" Text="Sygnały ciągłe" VerticalAlignment="Top" Width="120" Height="16"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="11.4,184,0,0" TextWrapping="Wrap" Text="Sygnały dyskretne" VerticalAlignment="Top" Height="16" Width="96"/>
