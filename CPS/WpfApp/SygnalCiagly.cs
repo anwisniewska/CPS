@@ -108,7 +108,6 @@ namespace CPS
 
         public void SygnalProstokatny()
         {
-            int iloscOkresow = (int)(_d / _T);
             int ktory = 1;
             double wypelnienie = _T * _kw;
             for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
@@ -129,7 +128,6 @@ namespace CPS
 
         public void SygnalProstokatnySymetryczny()
         {
-            int iloscOkresow = (int)(_d / _T);
             int ktory = 1;
             double wypelnienie = _T * _kw;
             for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
@@ -143,7 +141,7 @@ namespace CPS
                 {
                     Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
                 }
-                if (i == koniecOkresu)
+                if (i >= koniecOkresu)
                     ktory++;
             }
         }
@@ -223,7 +221,7 @@ namespace CPS
                 foreach (var point in Points)
                 {
                 
-                    if (point.Y >= min && point.Y < max)
+                    if (point.Y >= min && point.Y <= max)
                     {
                         ile++;
                     }

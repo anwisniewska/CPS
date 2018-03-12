@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="Histogram" Height="300" Width="300">
+        Title="Histogram" Height="392" Width="660">
     <Window.DataContext>
         <local:HistogramViewModel/>
     </Window.DataContext>
