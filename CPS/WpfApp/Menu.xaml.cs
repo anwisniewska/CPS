@@ -120,7 +120,7 @@ namespace CPS
                 Histogram his = new Histogram();
                 his.DataContext = sswj.MakeHistogram();
                 his.Show();
-            });
+            };
         }
 
         private void Button_Click_imp(object sender, RoutedEventArgs e)
