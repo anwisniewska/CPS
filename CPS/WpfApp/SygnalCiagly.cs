@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using OxyPlot;
 
 namespace CPS
 {
+    [Serializable]
     class SygnalCiagly
     {
         public double _A { get; set; }
@@ -18,7 +22,9 @@ namespace CPS
         public double _f { get; set; }
         public double _ns { get; set; }
         public int _his { get; set; }
+        [NonSerialized]
         public IList<DataPoint> Points = new List<DataPoint>();
+        public ICollection<Point> TimeAndAmplitude = new Collection<Point>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
         public double _Skuteczna { get; set; }
@@ -207,6 +213,10 @@ namespace CPS
 
         public LineChartViewModel MakeChart(string title)
         {
+            foreach(var point in Points)
+            {
+                TimeAndAmplitude.Add(new Point(point.X, point.Y));
+            }
             LineChartViewModel vm = new LineChartViewModel();
             vm.Title = title;
             vm.Points = Points;
@@ -256,5 +266,6 @@ namespace CPS
             h.Make();
             return h;
         }
+
     }
 }

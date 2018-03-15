@@ -52,7 +52,11 @@ namespace CPS
                 his.DataContext = ss.MakeHistogram();
                 his.Show();
             }
-          
+
+            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+            {
+                WriteRead.WriteToFile(ss, "Szum jednostajny");
+            }
         }
 
         private void Button_Click_szumgaus(object sender, RoutedEventArgs e)
@@ -69,6 +73,11 @@ namespace CPS
                 Histogram his = new Histogram();
                 his.DataContext = ss.MakeHistogram();
                 his.Show();
+            }
+
+            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+            {
+                WriteRead.WriteToFile(ss, "Szum gaussowski");
             }
         }
 
@@ -87,6 +96,11 @@ namespace CPS
                 his.DataContext = ss.MakeHistogram();
                 his.Show();
             }
+
+            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+            {
+                WriteRead.WriteToFile(ss, "Sygnał sinusoidalny");
+            }
         }
 
         private void Button_Click_sygsinjed(object sender, RoutedEventArgs e)
@@ -103,6 +117,11 @@ namespace CPS
                 Histogram his = new Histogram();
                 his.DataContext = sswj.MakeHistogram();
                 his.Show();
+            }
+
+            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+            {
+                WriteRead.WriteToFile(sswj, "Sygnał sinusoidalny wyprostowany jednopołówkowo");
             }
         }
 
@@ -121,6 +140,11 @@ namespace CPS
                 his.DataContext = sswj.MakeHistogram();
                 his.Show();
             };
+
+            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+            {
+                WriteRead.WriteToFile(sswj, "Sygnał sinusoidalny wyprostowany dwupołówkowo");
+            }
         }
 
         private void Button_Click_imp(object sender, RoutedEventArgs e)
@@ -131,6 +155,7 @@ namespace CPS
             sswj.CalculateInfo();
             pc.DataContext = sswj.MakeChart("Impuls jednostkowy");
             pc.Show();
+
         }
 
         private void Button_Click_szumimp(object sender, RoutedEventArgs e)
@@ -159,6 +184,11 @@ namespace CPS
                 his.DataContext = sswj.MakeHistogram();
                 his.Show();
             }
+
+            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+            {
+                WriteRead.WriteToFile(sswj, "Skok jednostkowy");
+            }
         }
 
         private void Button_Click_sygpro(object sender, RoutedEventArgs e)
@@ -175,6 +205,11 @@ namespace CPS
                 Histogram his = new Histogram();
                 his.DataContext = sswj.MakeHistogram();
                 his.Show();
+            }
+
+            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+            {
+                WriteRead.WriteToFile(sswj, "Sygnał prostokątny");
             }
         }
 
@@ -193,6 +228,11 @@ namespace CPS
                 his.DataContext = sswj.MakeHistogram();
                 his.Show();
             }
+
+            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+            {
+                WriteRead.WriteToFile(sswj, "Sygnał prostokątny symetryczny");
+            }
         }
 
         private void Button_Click_sygtroj(object sender, RoutedEventArgs e)
@@ -210,6 +250,12 @@ namespace CPS
                 his.DataContext = sswj.MakeHistogram();
                 his.Show();
             }
+
+            if(checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+            {
+                WriteRead.WriteToFile(sswj, "Sygnał trójkątny");
+            }
         }
+
     }
 }
