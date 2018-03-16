@@ -305,19 +305,51 @@ namespace CPS
             {
                 MessageBox.Show("Nie wybrano sygnałów", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            if(_sygX._t1 != _sygY._t1 || _sygX._d != _sygY._d || _sygX._f != _sygY._f)
-            {
-                MessageBox.Show("Nie można wykonać operacji na tych dwóch sygnałach", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
             else
             {
-                SygnalCiagly wynik = Operations.Add(_sygX, _sygY);
-                LineChart lc = new LineChart();
-                lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
-                lc.Show();
+                if (_sygX._t1 != _sygY._t1 || _sygX._d != _sygY._d || _sygX._f != _sygY._f)
+                {
+                    MessageBox.Show("Nie można wykonać operacji na tych dwóch sygnałach", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Information);
+                    _sygX = null;
+                    _sygY = null;
+                }
+                else
+                {
+                    if (operation.Text == "+")
+                    {
+                        SygnalCiagly wynik = Operations.Add(_sygX, _sygY);
+                        LineChart lc = new LineChart();
+                        lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
+                        lc.Show();
+                        WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
+                    }
+                    if (operation.Text == "-")
+                    {
+                        SygnalCiagly wynik = Operations.Subtract(_sygX, _sygY);
+                        LineChart lc = new LineChart();
+                        lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
+                        lc.Show();
+                        WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
+                    }
+                    if (operation.Text == "*")
+                    {
+                        SygnalCiagly wynik = Operations.Muliply(_sygX, _sygY);
+                        LineChart lc = new LineChart();
+                        lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
+                        lc.Show();
+                        WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
+                    }
+                    if (operation.Text == "/")
+                    {
+                        SygnalCiagly wynik = Operations.Divide(_sygX, _sygY);
+                        LineChart lc = new LineChart();
+                        lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
+                        lc.Show();
+                        WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
+                    }
+                }
+                
             }
-            _sygX = null;
-            _sygY = null;
         }
     }
 }
