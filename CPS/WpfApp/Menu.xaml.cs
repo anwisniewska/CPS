@@ -262,12 +262,13 @@ namespace CPS
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog.Filter = "Binary|*.bin";
             if (openFileDialog.ShowDialog() == true)
             {
                 SygnalCiagly s = WriteRead.ReadFromFile(openFileDialog.FileName);
                 LineChart lc = new LineChart();
                 string nazwa = openFileDialog.FileName;
-                nazwa = nazwa.Substring(nazwa.LastIndexOf(".") + 1);
+                nazwa = nazwa.Substring(nazwa.IndexOf(".") + 1);
                 nazwa = nazwa.Substring(0, nazwa.IndexOf("-"));
                 lc.DataContext = s.MakeChart(nazwa);
                 lc.Show();
