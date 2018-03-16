@@ -31,6 +31,8 @@ namespace CPS
         public double _f { get; set; }
         public double _p { get; set; }
         public int _his { get; set; }
+        private SygnalCiagly _sygX = null;
+        private SygnalCiagly _sygY = null;
 
         public Menu()
         {
@@ -274,5 +276,49 @@ namespace CPS
                 lc.Show();
             }
         }
+
+        private void Button_Click_X(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog.Filter = "Binary|*.bin";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                _sygX = WriteRead.ReadFromFile(openFileDialog.FileName);
+            }
+        }
+
+        private void Button_Click_Y(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog.Filter = "Binary|*.bin";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                _sygY = WriteRead.ReadFromFile(openFileDialog.FileName);
+            }
+        }
+
+        private void Button_Click_wynik(object sender, RoutedEventArgs e)
+        {
+            if(_sygX == null || _sygY == null)
+            {
+                MessageBox.Show("Nie wybrano sygnałów", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            if(_sygX._t1 != _sygY._t1 || _sygX._d != _sygY._d || _sygX._f != _sygY._f)
+            {
+                MessageBox.Show("Nie można wykonać operacji na tych dwóch sygnałach", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                SygnalCiagly wynik = Operations.Add(_sygX, _sygY);
+                LineChart lc = new LineChart();
+                lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
+                lc.Show();
+            }
+            _sygX = null;
+            _sygY = null;
+        }
     }
 }
+

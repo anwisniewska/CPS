@@ -48,6 +48,15 @@
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="137.4,127,0,0" TextWrapping="Wrap" Text="Histogram" VerticalAlignment="Top" Width="111"/>
         <CheckBox Name="checkboxzapisz" Content="zapisz" Grid.Column="2" HorizontalAlignment="Left" Margin="10.4,294,0,0" VerticalAlignment="Top" />
         <Button Content="Odtwórz sygnał" Grid.Column="2" HorizontalAlignment="Left" Margin="10.4,314,0,0" VerticalAlignment="Top" Width="104" Click="Button_Click_odtw"/>
+        <Button Content="x" Grid.Column="2" HorizontalAlignment="Left" Margin="11.4,383,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_X"/>
+        <ComboBox Grid.Column="2" HorizontalAlignment="Left" Margin="91.4,383,0,0" VerticalAlignment="Top" Width="76" Height="19">
+            <ComboBoxItem IsSelected="True">+</ComboBoxItem>
+            <ComboBoxItem>-</ComboBoxItem>
+            <ComboBoxItem>*</ComboBoxItem>
+            <ComboBoxItem>/</ComboBoxItem>
+        </ComboBox>
+        <Button Content="y" Grid.Column="2" HorizontalAlignment="Left" Margin="172.4,383,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_Y"/>
+        <Button Content="wynik" Grid.Column="2" HorizontalAlignment="Left" Margin="258.4,383,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_wynik"/>
 
     </Grid>
 </Window>
