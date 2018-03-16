@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -257,5 +258,20 @@ namespace CPS
             }
         }
 
+        private void Button_Click_odtw(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            if (openFileDialog.ShowDialog() == true)
+            {
+                SygnalCiagly s = WriteRead.ReadFromFile(openFileDialog.FileName);
+                LineChart lc = new LineChart();
+                string nazwa = openFileDialog.FileName;
+                nazwa = nazwa.Substring(nazwa.LastIndexOf(".") + 1);
+                nazwa = nazwa.Substring(0, nazwa.IndexOf("-"));
+                lc.DataContext = s.MakeChart(nazwa);
+                lc.Show();
+            }
+        }
     }
 }

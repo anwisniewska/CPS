@@ -64,6 +64,7 @@
       <DependentUpon>Histogram.xaml</DependentUpon>
     </Compile>
     <Compile Include="HistogramViewModel.cs" />
+    <Compile Include="Operations.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PointChartViewModel.cs" />
     <Compile Include="PointChart.xaml.cs">

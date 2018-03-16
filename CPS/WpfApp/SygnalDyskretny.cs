@@ -16,7 +16,7 @@ namespace CPS
         public double _ns { get; set; }
         public double _f { get; set; }
         public double _p { get; set; }
-        public IList<DataPoint> Points = new List<DataPoint>();
+        public IList<OxyPlot.DataPoint> Points = new List<OxyPlot.DataPoint>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
         public double _Skuteczna { get; set; }
@@ -42,7 +42,7 @@ namespace CPS
                 double wart;
                 if (iter == _ns) wart = _A;
                 else wart = 0;
-                Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(wart, 2)));
+                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(wart, 2)));
                 iter++;
             }
         }
@@ -57,7 +57,7 @@ namespace CPS
                 rand = r.NextDouble();
                 if (rand < _p) wart = _A;
                 else wart = 0;
-                Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(wart, 2)));
+                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(wart, 2)));
             }
         }
 

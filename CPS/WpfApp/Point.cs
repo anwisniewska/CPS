@@ -15,7 +15,7 @@ namespace CPS
         public Point(double x, double y)
         {
             X = x;
-            Y = Y;
+            Y = y;
         }
     }
 }

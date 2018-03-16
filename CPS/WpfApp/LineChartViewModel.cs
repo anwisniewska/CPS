@@ -32,6 +32,6 @@ namespace CPS
 
         public string Title { get; set; }
 
-        public IList<DataPoint> Points { get; set; }
+        public IList<OxyPlot.DataPoint> Points { get; set; }
     }
 }

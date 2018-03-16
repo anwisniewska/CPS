@@ -23,7 +23,7 @@ namespace CPS
         public double _ns { get; set; }
         public int _his { get; set; }
         [NonSerialized]
-        public IList<DataPoint> Points = new List<DataPoint>();
+        public IList<OxyPlot.DataPoint> Points = new List<OxyPlot.DataPoint>();
         public ICollection<Point> TimeAndAmplitude = new Collection<Point>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
@@ -56,7 +56,7 @@ namespace CPS
             Random rand = new Random();
             for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
             {
-                Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(Math.Sqrt(12.0 * _A) * (((rand.Next() % 101) - 50.0) / 100.0) + 0, 2)));
+                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(Math.Sqrt(12.0 * _A) * (((rand.Next() % 101) - 50.0) / 100.0) + 0, 2)));
             }
         }
 
@@ -71,7 +71,7 @@ namespace CPS
                 {
                     x += Math.Sqrt(12.0 * 1) * (((rand.Next() % 101) - 50.0) / 100.0) + 0;
                 }
-                Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(x * Math.Sqrt(_A / (double)n) + 0, 2)));
+                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(x * Math.Sqrt(_A / (double)n) + 0, 2)));
             }
         }
 
@@ -79,7 +79,7 @@ namespace CPS
         {
             for (double i=_t1; i<=_t1+_d; i+=1/_f)
             {
-                Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Sin(((2 * Math.PI) / _T) * (i - _t1)), 2)));
+                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Sin(((2 * Math.PI) / _T) * (i - _t1)), 2)));
             }
         }
 
@@ -87,7 +87,7 @@ namespace CPS
         {
             for (double i = _t1; i <= _t1 + _d; i += 1/_f)
             {
-                Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(0.5*_A * (Math.Sin(((2 * Math.PI) / _T) * (i - _t1)) + Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1)))), 2)));
+                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.5* _A * (Math.Sin(((2 * Math.PI) / _T) * (i - _t1)) + Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1)))), 2)));
             }
         }
 
@@ -95,7 +95,7 @@ namespace CPS
         {
             for (double i = _t1; i <= _t1 + _d; i += 1/_f)
             {
-                Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1))), 2)));
+                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1))), 2)));
             }
         }
 
@@ -104,11 +104,11 @@ namespace CPS
             for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
             {
                 if(i < _ns)
-                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
                 if (i == _ns)
-                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(0.5*_A, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.5* _A, 2)));
                 if (i > _ns)
-                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
             }
         }
 
@@ -121,11 +121,11 @@ namespace CPS
                 double koniecOkresu = _t1 + (ktory * _T);
                 if (i < koniecOkresu - (_T - wypelnienie))
                 {
-                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
                 }
                 if (i >= koniecOkresu - (_T - wypelnienie))
                 {
-                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
                 }
                 if (i == koniecOkresu)
                     ktory++;
@@ -141,11 +141,11 @@ namespace CPS
                 double koniecOkresu = _t1 + (ktory * _T);
                 if (i < koniecOkresu - (_T - wypelnienie))
                 {
-                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
                 }
                 if (i >= koniecOkresu - (_T - wypelnienie))
                 {
-                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
                 }
                 if (i >= koniecOkresu)
                     ktory++;
@@ -164,12 +164,12 @@ namespace CPS
                 if (i < szczyt) // zbocze rosnace
                 {
                     double wartosc = (((_A) / (szczyt - poczatekOkresu)) * i) + ((-_A * poczatekOkresu) / (szczyt - poczatekOkresu));
-                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(wartosc, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(wartosc, 2)));
                 }
                 if (i >= szczyt) // zbocze malejace
                 {
                     double wartosc = (((-_A) / (koniecOkresu - szczyt)) * i) + ((_A * koniecOkresu) / (koniecOkresu - szczyt));
-                    Points.Add(new DataPoint(Math.Round(i, 2), Math.Round(wartosc, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(wartosc, 2)));
                 }
                 if (i >= koniecOkresu)
                     ktory++;
@@ -209,14 +209,29 @@ namespace CPS
             _Wariancja = mnoznik + suma;
             // wartosc skuteczna
             _Skuteczna = Math.Sqrt(_MocSrednia);
+
+            
+        }
+
+        public void FromPointsToTimeAndAmplitude()
+        {
+            foreach (var point in Points)
+            {
+                TimeAndAmplitude.Add(new Point(point.X, point.Y));
+            }
+        }
+
+        public void FromTimeAndAmplitudeToPoints()
+        {
+            Points = new List<OxyPlot.DataPoint>();
+            foreach (var point in TimeAndAmplitude)
+            {
+                Points.Add(new DataPoint(point.X, point.Y));
+            }
         }
 
         public LineChartViewModel MakeChart(string title)
         {
-            foreach(var point in Points)
-            {
-                TimeAndAmplitude.Add(new Point(point.X, point.Y));
-            }
             LineChartViewModel vm = new LineChartViewModel();
             vm.Title = title;
             vm.Points = Points;
