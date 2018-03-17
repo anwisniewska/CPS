@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,6 @@ namespace CPS
         public double _d { get; set; }
         public double _T { get; set; }
         public double _kw { get; set; }
-        public double _n1 { get; set; }
         public double _ns { get; set; }
         public double _f { get; set; }
         public double _p { get; set; }
@@ -38,226 +38,14 @@ namespace CPS
         {
             InitializeComponent();
             DataContext = this;
-        }
-
-        private void Button_Click_szumjedno(object sender, RoutedEventArgs e)
-        {
-            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
-            LineChart lc = new LineChart();
-            ss.SzumJednostajny();
-            ss.CalculateInfo();
-            lc.DataContext = ss.MakeChart("Szum jednostajny");
-            lc.Show();
-
-            if(_his > 0)
-            {
-                Histogram his = new Histogram();
-                his.DataContext = ss.MakeHistogram();
-                his.Show();
-            }
-
-            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
-            {
-                WriteRead.WriteToFile(ss, "Szum jednostajny");
-            }
-        }
-
-        private void Button_Click_szumgaus(object sender, RoutedEventArgs e)
-        {
-            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
-            LineChart lc = new LineChart();
-            ss.SzumGaussowski();
-            ss.CalculateInfo();
-            lc.DataContext = ss.MakeChart("Szum gaussowski");
-            lc.Show();
-
-            if (_his > 0)
-            {
-                Histogram his = new Histogram();
-                his.DataContext = ss.MakeHistogram();
-                his.Show();
-            }
-
-            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
-            {
-                WriteRead.WriteToFile(ss, "Szum gaussowski");
-            }
-        }
-
-        private void Button_Click_sygsin(object sender, RoutedEventArgs e)
-        {
-            SygnalCiagly ss = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
-            LineChart lc = new LineChart();
-            ss.SygnalSinusoidalny();
-            ss.CalculateInfo();
-            lc.DataContext = ss.MakeChart("Sygnał sinusoidalny");
-            lc.Show();
-
-            if (_his > 0)
-            {
-                Histogram his = new Histogram();
-                his.DataContext = ss.MakeHistogram();
-                his.Show();
-            }
-
-            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
-            {
-                WriteRead.WriteToFile(ss, "Sygnał sinusoidalny");
-            }
-        }
-
-        private void Button_Click_sygsinjed(object sender, RoutedEventArgs e)
-        {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
-            LineChart lc = new LineChart();
-            sswj.SygnalSinusoidalnyWyprostowanyJednopolowkowo();
-            sswj.CalculateInfo();
-            lc.DataContext = sswj.MakeChart("Sygnał sinusoidalny wyprostowany jednopołówkowo");
-            lc.Show();
-
-            if (_his > 0)
-            {
-                Histogram his = new Histogram();
-                his.DataContext = sswj.MakeHistogram();
-                his.Show();
-            }
-
-            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
-            {
-                WriteRead.WriteToFile(sswj, "Sygnał sinusoidalny wyprostowany jednopołówkowo");
-            }
-        }
-
-        private void Button_Click_sygsindwu(object sender, RoutedEventArgs e)
-        {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
-            LineChart lc = new LineChart();
-            sswj.SygnalSinusoidalnyWyprostowanyDwupolowkowo();
-            sswj.CalculateInfo();
-            lc.DataContext = sswj.MakeChart("Sygnał sinusoidalny wyprostowany dwupołówkowo");
-            lc.Show();
-
-            if (_his > 0)
-            {
-                Histogram his = new Histogram();
-                his.DataContext = sswj.MakeHistogram();
-                his.Show();
-            };
-
-            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
-            {
-                WriteRead.WriteToFile(sswj, "Sygnał sinusoidalny wyprostowany dwupołówkowo");
-            }
-        }
-
-        private void Button_Click_imp(object sender, RoutedEventArgs e)
-        {
-            SygnalDyskretny sswj = new SygnalDyskretny(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_n1), Convert.ToDouble(_ns), Convert.ToDouble(_f), Convert.ToDouble(_p));
-            PointChart pc = new PointChart();
-            sswj.ImpulsJednostkowy();
-            sswj.CalculateInfo();
-            pc.DataContext = sswj.MakeChart("Impuls jednostkowy");
-            pc.Show();
-
-        }
-
-        private void Button_Click_szumimp(object sender, RoutedEventArgs e)
-        {
-            SygnalDyskretny sswj = new SygnalDyskretny(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_n1), Convert.ToDouble(_ns), Convert.ToDouble(_f), Convert.ToDouble(_p));
-            PointChart pc = new PointChart();
-            sswj.SzumImpulsowy();
-            sswj.CalculateInfo();
-            pc.DataContext = sswj.MakeChart("Szum impulsowy");
-            pc.Show();
-
-        }
-
-        private void Button_Click_skok(object sender, RoutedEventArgs e)
-        {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
-            LineChart lc = new LineChart();
-            sswj.Skok();
-            sswj.CalculateInfo();
-            lc.DataContext = sswj.MakeChart("Skok jednostkowy");
-            lc.Show();
-
-            if (_his > 0)
-            {
-                Histogram his = new Histogram();
-                his.DataContext = sswj.MakeHistogram();
-                his.Show();
-            }
-
-            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
-            {
-                WriteRead.WriteToFile(sswj, "Skok jednostkowy");
-            }
-        }
-
-        private void Button_Click_sygpro(object sender, RoutedEventArgs e)
-        {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
-            LineChart lc = new LineChart();
-            sswj.SygnalProstokatny();
-            sswj.CalculateInfo();
-            lc.DataContext = sswj.MakeChart("Sygnał prostokątny");
-            lc.Show();
-
-            if (_his > 0)
-            {
-                Histogram his = new Histogram();
-                his.DataContext = sswj.MakeHistogram();
-                his.Show();
-            }
-
-            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
-            {
-                WriteRead.WriteToFile(sswj, "Sygnał prostokątny");
-            }
-        }
-
-        private void Button_Click_sygprosym(object sender, RoutedEventArgs e)
-        {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
-            LineChart lc = new LineChart();
-            sswj.SygnalProstokatnySymetryczny();
-            sswj.CalculateInfo();
-            lc.DataContext = sswj.MakeChart("Sygnał prostokątny symetryczny");
-            lc.Show();
-
-            if (_his > 0)
-            {
-                Histogram his = new Histogram();
-                his.DataContext = sswj.MakeHistogram();
-                his.Show();
-            }
-
-            if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
-            {
-                WriteRead.WriteToFile(sswj, "Sygnał prostokątny symetryczny");
-            }
-        }
-
-        private void Button_Click_sygtroj(object sender, RoutedEventArgs e)
-        {
-            SygnalCiagly sswj = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
-            LineChart lc = new LineChart();
-            sswj.SygnalTrojkatny();
-            sswj.CalculateInfo();
-            lc.DataContext = sswj.MakeChart("Sygnał trójkątny");
-            lc.Show();
-
-            if (_his > 0)
-            {
-                Histogram his = new Histogram();
-                his.DataContext = sswj.MakeHistogram();
-                his.Show();
-            }
-
-            if(checkboxzapisz.IsChecked.GetValueOrDefault() == true)
-            {
-                WriteRead.WriteToFile(sswj, "Sygnał trójkątny");
-            }
+            Twart.Visibility = Visibility.Hidden;
+            kwwart.Visibility = Visibility.Hidden;
+            nswart.Visibility = Visibility.Hidden;
+            pwart.Visibility = Visibility.Hidden;
+            Tnazwa.Visibility = Visibility.Hidden;
+            kwnazwa.Visibility = Visibility.Hidden;
+            nsnazwa.Visibility = Visibility.Hidden;
+            pnazwa.Visibility = Visibility.Hidden;
         }
 
         private void Button_Click_odtw(object sender, RoutedEventArgs e)
@@ -349,6 +137,125 @@ namespace CPS
                     }
                 }
                 
+            }
+        }
+
+        private void Button_Click_stworz(object sender, RoutedEventArgs e)
+        {
+            SygnalCiagly sc = null;
+            SygnalDyskretny sd = null;
+            if (signal.Text == "Szum impulsowy" || signal.Text == "Impuls jednostkowy")
+                sd = new SygnalDyskretny(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_ns), Convert.ToDouble(_f), Convert.ToDouble(_p), Convert.ToInt32(_his));
+            else
+                sc = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
+
+            LineChart lc = new LineChart();
+
+            if (signal.Text == "Szum o rozkładzie jednostajnym") sc.SzumJednostajny();
+            if (signal.Text == "Szum gaussowski") sc.SzumGaussowski();
+            if (signal.Text == "Sygnał sinusoidalny") sc.SygnalSinusoidalny();
+            if (signal.Text == "Sygnał sinusoidalny wyprostowany jednopołówkowo") sc.SygnalSinusoidalnyWyprostowanyJednopolowkowo();
+            if (signal.Text == "Sygnał sinusoidalny wyprostowany dwupołówkowo") sc.SygnalSinusoidalnyWyprostowanyDwupolowkowo();
+            if (signal.Text == "Sygnał prostokątny") sc.SygnalProstokatny();
+            if (signal.Text == "Sygnał prostokątny symetryczny") sc.SygnalProstokatnySymetryczny();
+            if (signal.Text == "Sygnał trójkątny") sc.SygnalTrojkatny();
+            if (signal.Text == "Skok jednostkowy") sc.Skok();
+            if (signal.Text == "Impuls jednostkowy") sd.ImpulsJednostkowy();
+            if (signal.Text == "Szum impulsowy") sd.SzumImpulsowy();
+
+            if (sc != null)
+            {
+                sc.CalculateInfo();
+                lc.DataContext = sc.MakeChart(signal.Text);
+                lc.Show();
+
+                if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+                {
+                    WriteRead.WriteToFile(sc, signal.Text);
+                }
+            }
+            if (sd != null)
+            {
+                sd.CalculateInfo();
+                lc.DataContext = sd.MakeChart(signal.Text);
+                lc.Show();
+            }
+
+            if (_his > 0)
+            {
+                Histogram his = new Histogram();
+                if (sc != null)
+                    his.DataContext = sc.MakeHistogram();
+                if (sd != null)
+                    his.DataContext = sd.MakeHistogram();
+                his.Show();
+            }
+
+        }
+
+        private void signal_DropDownClosed(object sender, EventArgs e)
+        {
+            if (!IsInitialized) return;
+            if (signal.Text == "Szum o rozkładzie jednostajnym" ||
+                signal.Text == "Szum gaussowski")
+            {
+                Twart.Visibility = Visibility.Hidden;
+                kwwart.Visibility = Visibility.Hidden;
+                nswart.Visibility = Visibility.Hidden;
+                pwart.Visibility = Visibility.Hidden;
+                Tnazwa.Visibility = Visibility.Hidden;
+                kwnazwa.Visibility = Visibility.Hidden;
+                nsnazwa.Visibility = Visibility.Hidden;
+                pnazwa.Visibility = Visibility.Hidden;
+            }
+            if (signal.Text == "Sygnał sinusoidalny" ||
+                signal.Text == "Sygnał sinusoidalny wyprostowany jednopołówkowo" ||
+                signal.Text == "Sygnał sinusoidalny wyprostowany dwupołówkowo")
+            {
+                Twart.Visibility = Visibility.Visible;
+                kwwart.Visibility = Visibility.Hidden;
+                nswart.Visibility = Visibility.Hidden;
+                pwart.Visibility = Visibility.Hidden;
+                Tnazwa.Visibility = Visibility.Visible;
+                kwnazwa.Visibility = Visibility.Hidden;
+                nsnazwa.Visibility = Visibility.Hidden;
+                pnazwa.Visibility = Visibility.Hidden;
+            }
+            if (signal.Text == "Sygnał prostokątny" ||
+                signal.Text == "Sygnał prostokątny symetryczny" ||
+                signal.Text == "Sygnał trójkątny")
+            {
+                Twart.Visibility = Visibility.Visible;
+                kwwart.Visibility = Visibility.Visible;
+                nswart.Visibility = Visibility.Hidden;
+                pwart.Visibility = Visibility.Hidden;
+                Tnazwa.Visibility = Visibility.Visible;
+                kwnazwa.Visibility = Visibility.Visible;
+                nsnazwa.Visibility = Visibility.Hidden;
+                pnazwa.Visibility = Visibility.Hidden;
+            }
+            if (signal.Text == "Skok jednostkowy" ||
+                signal.Text == "Impuls jednostkowy")
+            {
+                Twart.Visibility = Visibility.Hidden;
+                kwwart.Visibility = Visibility.Hidden;
+                nswart.Visibility = Visibility.Visible;
+                pwart.Visibility = Visibility.Hidden;
+                Tnazwa.Visibility = Visibility.Hidden;
+                kwnazwa.Visibility = Visibility.Hidden;
+                nsnazwa.Visibility = Visibility.Visible;
+                pnazwa.Visibility = Visibility.Hidden;
+            }
+            if (signal.Text == "Szum impulsowy")
+            {
+                Twart.Visibility = Visibility.Hidden;
+                kwwart.Visibility = Visibility.Hidden;
+                nswart.Visibility = Visibility.Hidden;
+                pwart.Visibility = Visibility.Visible;
+                Tnazwa.Visibility = Visibility.Hidden;
+                kwnazwa.Visibility = Visibility.Hidden;
+                nsnazwa.Visibility = Visibility.Hidden;
+                pnazwa.Visibility = Visibility.Visible;
             }
         }
     }

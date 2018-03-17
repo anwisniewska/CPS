@@ -31,5 +31,25 @@ namespace CPS
             stream.Close();
             return obj;
         }
+
+        public static void WriteToFile(SygnalDyskretny syg, string name)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(i + "." + name + "- t1-" + syg._t1 + " d-" + syg._d + " f-" + syg._f + ".bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            syg.FromPointsToTimeAndAmplitude();
+            formatter.Serialize(stream, syg);
+            stream.Close();
+            i++;
+        }
+
+        public static SygnalDyskretny ReadFromFileDys(string name)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(name, FileMode.Open, FileAccess.Read, FileShare.Read);
+            SygnalDyskretny obj = (SygnalDyskretny)formatter.Deserialize(stream);
+            obj.FromTimeAndAmplitudeToPoints();
+            stream.Close();
+            return obj;
+        }
     }
 }

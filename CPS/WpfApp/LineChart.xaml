@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="Wykres" Height="350" Width="850">
+        Title="Wykres" Height="350" Width="765.2">
     <Window.DataContext>
         <local:LineChartViewModel/>
     </Window.DataContext>
     <Grid Margin="0,0,3.4,-0.2">
-        <oxy:Plot Title="{Binding Title}" Margin="18,10,348.8,16">
+        <oxy:Plot Title="{Binding Title}" Margin="18,10,239,16">
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding Points}"/>
             </oxy:Plot.Series>
