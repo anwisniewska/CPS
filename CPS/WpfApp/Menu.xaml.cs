@@ -150,6 +150,7 @@ namespace CPS
                 sc = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his));
 
             LineChart lc = new LineChart();
+            PointChart pc = new PointChart();
 
             if (signal.Text == "Szum o rozkładzie jednostajnym") sc.SzumJednostajny();
             if (signal.Text == "Szum gaussowski") sc.SzumGaussowski();
@@ -177,8 +178,8 @@ namespace CPS
             if (sd != null)
             {
                 sd.CalculateInfo();
-                lc.DataContext = sd.MakeChart(signal.Text);
-                lc.Show();
+                pc.DataContext = sd.MakeChart(signal.Text);
+                pc.Show();
             }
 
             if (_his > 0)
