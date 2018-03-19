@@ -145,7 +145,7 @@ namespace CPS
                 }
                 if (i >= koniecOkresu - (_T - wypelnienie))
                 {
-                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(-_A, 2)));
                 }
                 if (i >= koniecOkresu)
                     ktory++;
