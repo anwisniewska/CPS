@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="850">
+        Title="Wykres" Height="350" Width="850">
     <Window.DataContext>
         <local:PointChartViewModel/>
     </Window.DataContext>
