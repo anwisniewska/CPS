@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="Wykres" Height="350" Width="765.2">
+        Title="Wykres" Height="896.369" Width="765.2">
     <Window.DataContext>
         <local:LineChartViewModel/>
     </Window.DataContext>
     <Grid Margin="0,0,3.4,-0.2">
-        <oxy:Plot Title="{Binding Title}" Margin="18,10,239,16">
+        <oxy:Plot Title="{Binding Title}" Margin="18,10,239,555.6">
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding Points}"/>
             </oxy:Plot.Series>
@@ -39,6 +39,20 @@
         <TextBlock HorizontalAlignment="Left" Margin="675,166,0,0" TextWrapping="Wrap" Text="{Binding _f}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="260,295,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="-12,154,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <oxy:Plot Title="{Binding Title2}" Margin="18,335,239,231.6">
+            <oxy:LineSeries ItemsSource="{Binding Points2}"/>
+        </oxy:Plot>
+        <TextBlock HorizontalAlignment="Left" Margin="260,622,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="-8,454,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

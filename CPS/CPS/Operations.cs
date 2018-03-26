@@ -18,7 +18,7 @@ namespace CPS
             }
             SygnalCiagly wynik = new SygnalCiagly(0,0,0,0,0,0,0,0);
             wynik.TimeAndAmplitude = newPoints;
-            wynik.FromTimeAndAmplitudeToPoints();
+            wynik.FromTimeAndAmplitudeToPoints(wynik.Points, wynik.TimeAndAmplitude);
             wynik.CalculateInfo();
             return wynik;
         }
@@ -32,7 +32,7 @@ namespace CPS
             }
             SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
             wynik.TimeAndAmplitude = newPoints;
-            wynik.FromTimeAndAmplitudeToPoints();
+            wynik.FromTimeAndAmplitudeToPoints(wynik.Points, wynik.TimeAndAmplitude);
             wynik.CalculateInfo();
             return wynik;
         }
@@ -46,7 +46,7 @@ namespace CPS
             }
             SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
             wynik.TimeAndAmplitude = newPoints;
-            wynik.FromTimeAndAmplitudeToPoints();
+            wynik.FromTimeAndAmplitudeToPoints(wynik.Points, wynik.TimeAndAmplitude);
             wynik.CalculateInfo();
             return wynik;
         }
@@ -63,7 +63,7 @@ namespace CPS
             }
             SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
             wynik.TimeAndAmplitude = newPoints;
-            wynik.FromTimeAndAmplitudeToPoints();
+            wynik.FromTimeAndAmplitudeToPoints(wynik.Points, wynik.TimeAndAmplitude);
             wynik.CalculateInfo();
             return wynik;
         }

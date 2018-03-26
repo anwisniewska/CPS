@@ -16,7 +16,7 @@ namespace CPS
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(i + "." + name + "- t1-" + syg._t1 + " d-" + syg._d + " f-" + syg._f + ".bin", FileMode.Create, FileAccess.Write, FileShare.None);
-            syg.FromPointsToTimeAndAmplitude();
+            syg.FromPointsToTimeAndAmplitude(syg.Points, syg.TimeAndAmplitude);
             formatter.Serialize(stream, syg);
             stream.Close();
             i++;
@@ -27,7 +27,7 @@ namespace CPS
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(name, FileMode.Open, FileAccess.Read, FileShare.Read);
             SygnalCiagly obj = (SygnalCiagly)formatter.Deserialize(stream);
-            obj.FromTimeAndAmplitudeToPoints();
+            obj.FromTimeAndAmplitudeToPoints(obj.Points, obj.TimeAndAmplitude);
             stream.Close();
             return obj;
         }

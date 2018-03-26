@@ -25,6 +25,9 @@ namespace CPS
         [NonSerialized]
         public IList<OxyPlot.DataPoint> Points = new List<OxyPlot.DataPoint>();
         public ICollection<Point> TimeAndAmplitude = new Collection<Point>();
+        [NonSerialized]
+        public IList<OxyPlot.DataPoint> Points2 = new List<OxyPlot.DataPoint>();
+        public ICollection<Point> TimeAndAmplitude2 = new Collection<Point>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
         public double _Skuteczna { get; set; }
@@ -48,6 +51,7 @@ namespace CPS
                 int calosci = (int)(_d / _T);
                 _d = _T * calosci;
             }
+
             
         }
       
@@ -213,7 +217,7 @@ namespace CPS
             
         }
 
-        public void FromPointsToTimeAndAmplitude()
+        public void FromPointsToTimeAndAmplitude(IList<OxyPlot.DataPoint> Points, ICollection<Point> TimeAndAmplitude)
         {
             foreach (var point in Points)
             {
@@ -221,13 +225,18 @@ namespace CPS
             }
         }
 
-        public void FromTimeAndAmplitudeToPoints()
+        public void FromTimeAndAmplitudeToPoints(IList<OxyPlot.DataPoint> Points, ICollection<Point> TimeAndAmplitude)
         {
             Points = new List<OxyPlot.DataPoint>();
             foreach (var point in TimeAndAmplitude)
             {
                 Points.Add(new DataPoint(point.X, point.Y));
             }
+        }
+
+        public void Dyskryminacja()
+        {
+            bool i_cierpienie;
         }
 
         public LineChartViewModel MakeChart(string title)
