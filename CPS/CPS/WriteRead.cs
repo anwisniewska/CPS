@@ -15,8 +15,9 @@ namespace CPS
         public static void WriteToFile(SygnalCiagly syg, string name)
         {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(i + "." + name + "- t1-" + syg._t1 + " d-" + syg._d + " f-" + syg._f + ".bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream(i + "." + name + "- t1-" + syg._t1 + " d-" + syg._d + " f-" + syg._fciagly + ".bin", FileMode.Create, FileAccess.Write, FileShare.None);
             syg.FromPointsToTimeAndAmplitude(syg.Points, syg.TimeAndAmplitude);
+            syg.FromPointsToTimeAndAmplitude(syg.Points2, syg.TimeAndAmplitude2);
             formatter.Serialize(stream, syg);
             stream.Close();
             i++;
@@ -28,6 +29,7 @@ namespace CPS
             Stream stream = new FileStream(name, FileMode.Open, FileAccess.Read, FileShare.Read);
             SygnalCiagly obj = (SygnalCiagly)formatter.Deserialize(stream);
             obj.FromTimeAndAmplitudeToPoints(obj.Points, obj.TimeAndAmplitude);
+            obj.FromPointsToTimeAndAmplitude(obj.Points2, obj.TimeAndAmplitude2);
             stream.Close();
             return obj;
         }

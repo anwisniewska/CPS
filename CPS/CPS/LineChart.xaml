@@ -5,38 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="Wykres" Height="896.369" Width="765.2">
+        Title="Wykres" Height="685.169" Width="765.2">
     <Window.DataContext>
         <local:LineChartViewModel/>
     </Window.DataContext>
     <Grid Margin="0,0,3.4,-0.2">
-        <oxy:Plot Title="{Binding Title}" Margin="18,10,239,555.6">
+        <oxy:Plot Title="{Binding Title}" Margin="18,10,239,344.4">
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding Points}"/>
             </oxy:Plot.Series>
         </oxy:Plot>
-        <TextBlock HorizontalAlignment="Left" Margin="523,197,0,0" TextWrapping="Wrap" Text="wartość średnia" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="523,219,0,0" TextWrapping="Wrap" Text="wartość bezwzględna" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="523,240,0,0" TextWrapping="Wrap" Text="wartość skuteczna" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="523,261,0,0" TextWrapping="Wrap" Text="wariancja" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="523,282,0,0" TextWrapping="Wrap" Text="moc średnia" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,197,0,0" TextWrapping="Wrap" Text="{Binding _Srednia}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,219,0,0" TextWrapping="Wrap" Text="{Binding _SredniaBez}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,240,0,0" TextWrapping="Wrap" Text="{Binding _Skuteczna}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,261,0,0" TextWrapping="Wrap" Text="{Binding _Wariancja}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,282,0,0" TextWrapping="Wrap" Text="{Binding _MocSrednia}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="522,146,0,0" TextWrapping="Wrap" Text="współczynnik wypełnienia" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="521,125,0,0" TextWrapping="Wrap" Text="okres podstawowy" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="521,104,0,0" TextWrapping="Wrap" Text="czas trwania" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="522,83,0,0" TextWrapping="Wrap" Text="czas początkowy" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="522,62,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,62,0,0" TextWrapping="Wrap" Text="{Binding _A}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,83,0,0" TextWrapping="Wrap" Text="{Binding _t1}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,104,0,0" TextWrapping="Wrap" Text="{Binding _d}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,125,0,0" TextWrapping="Wrap" Text="{Binding _T}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,146,0,0" TextWrapping="Wrap" Text="{Binding _kw}" VerticalAlignment="Top" RenderTransformOrigin="0.495,-0.017"/>
-        <TextBlock HorizontalAlignment="Left" Margin="522,166,0,0" TextWrapping="Wrap" Text="częstotliwość próbkowania" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,166,0,0" TextWrapping="Wrap" Text="{Binding _f}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="529,119,0,0" TextWrapping="Wrap" Text="wartość średnia" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="529,142,0,0" TextWrapping="Wrap" Text="wartość bezwzględna" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="529,162,0,0" TextWrapping="Wrap" Text="wartość skuteczna" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="529,183,0,0" TextWrapping="Wrap" Text="wariancja" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="529,204,0,0" TextWrapping="Wrap" Text="moc średnia" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="681,119,0,0" TextWrapping="Wrap" Text="{Binding _Srednia}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="681,142,0,0" TextWrapping="Wrap" Text="{Binding _SredniaBez}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="681,162,0,0" TextWrapping="Wrap" Text="{Binding _Skuteczna}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="681,183,0,0" TextWrapping="Wrap" Text="{Binding _Wariancja}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="681,204,0,0" TextWrapping="Wrap" Text="{Binding _MocSrednia}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="260,295,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="-12,154,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
@@ -48,8 +36,12 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <oxy:Plot Title="{Binding Title2}" Margin="18,335,239,231.6">
-            <oxy:LineSeries ItemsSource="{Binding Points2}"/>
+        <oxy:Plot Margin="18,335,239,17.4">
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding Points2}" Color="Transparent" 
+                MarkerFill="SteelBlue" 
+                MarkerType="Circle" />
+            </oxy:Plot.Series>
         </oxy:Plot>
         <TextBlock HorizontalAlignment="Left" Margin="260,622,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="-8,454,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">

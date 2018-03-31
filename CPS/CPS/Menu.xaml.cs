@@ -95,7 +95,7 @@ namespace CPS
             }
             else
             {
-                if (_sygX._t1 != _sygY._t1 || _sygX._d != _sygY._d || _sygX._f != _sygY._f)
+                if (_sygX._t1 != _sygY._t1 || _sygX._d != _sygY._d || _sygX._fciagly != _sygY._fciagly)
                 {
                     MessageBox.Show("Nie można wykonać operacji na tych dwóch sygnałach", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Information);
                     _sygX = null;
@@ -167,6 +167,10 @@ namespace CPS
             if (sc != null)
             {
                 sc.CalculateInfo();
+                if (kwantyzacja.Text == "Kwantyzacja z obcięciem")
+                    sc.KwantyzacjaZObcieciem();
+                else
+                    sc.KwantyzacjaZZaokragleniem();
                 lc.DataContext = sc.MakeChart(signal.Text);
                 lc.Show();
 
