@@ -29,7 +29,7 @@ namespace CPS
             Stream stream = new FileStream(name, FileMode.Open, FileAccess.Read, FileShare.Read);
             SygnalCiagly obj = (SygnalCiagly)formatter.Deserialize(stream);
             obj.FromTimeAndAmplitudeToPoints(obj.Points, obj.TimeAndAmplitude);
-            obj.FromPointsToTimeAndAmplitude(obj.Points2, obj.TimeAndAmplitude2);
+            obj.FromTimeAndAmplitudeToPoints(obj.Points2, obj.TimeAndAmplitude2);
             stream.Close();
             return obj;
         }
