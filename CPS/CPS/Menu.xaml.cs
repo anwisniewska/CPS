@@ -167,6 +167,7 @@ namespace CPS
             if (sc != null)
             {
                 sc.CalculateInfo();
+                sc.Dyskryminacja();
                 lc.DataContext = sc.MakeChart(signal.Text);
                 lc.Show();
 
