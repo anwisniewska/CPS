@@ -27,16 +27,6 @@
         <TextBlock HorizontalAlignment="Left" Margin="674,228,0,0" TextWrapping="Wrap" Text="{Binding _Skuteczna}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="674,249,0,0" TextWrapping="Wrap" Text="{Binding _Wariancja}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="674,270,0,0" TextWrapping="Wrap" Text="{Binding _MocSrednia}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="521,125,0,0" TextWrapping="Wrap" Text="częstotliwość" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="521,104,0,0" TextWrapping="Wrap" Text="czas trwania" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="522,83,0,0" TextWrapping="Wrap" Text="czas początkowy" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="522,62,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,62,0,0" TextWrapping="Wrap" Text="{Binding _A}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,83,0,0" TextWrapping="Wrap" Text="{Binding _t1}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,104,0,0" TextWrapping="Wrap" Text="{Binding _d}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,125,0,0" TextWrapping="Wrap" Text="{Binding _f}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="523,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="p"/><Run Text="rawdopodobieństwo"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="675,146,0,0" TextWrapping="Wrap" Text="{Binding _p}" VerticalAlignment="Top" Width="16" RenderTransformOrigin="3.094,0.404"/>
         <TextBlock HorizontalAlignment="Left" Margin="270,295,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="-10,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.54,-0.169">
             <TextBlock.RenderTransform>

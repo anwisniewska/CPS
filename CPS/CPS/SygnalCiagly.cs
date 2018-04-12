@@ -54,7 +54,7 @@ namespace CPS
         public void SzumJednostajny()
         {
             Random rand = new Random();
-            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
                 Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(Math.Sqrt(12.0 * _A) * (((rand.Next() % 101) - 50.0) / 100.0) + 0, 2)));
             }
@@ -63,7 +63,7 @@ namespace CPS
         public void SzumGaussowski()
         {
             Random rand = new Random();
-            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
                 int n = 10;
                 double x = 0.0;
@@ -77,7 +77,7 @@ namespace CPS
 
         public void SygnalSinusoidalny()
         {
-            for (double i=_t1; i<=_t1+_d; i+=1/_f)
+            for (double i=_t1; i<=_t1+_d; i+=1/ (_f * 10))
             {
                 Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Sin(((2 * Math.PI) / _T) * (i - _t1)), 2)));
             }
@@ -85,7 +85,7 @@ namespace CPS
 
         public void SygnalSinusoidalnyWyprostowanyJednopolowkowo()
         {
-            for (double i = _t1; i <= _t1 + _d; i += 1/_f)
+            for (double i = _t1; i <= _t1 + _d; i += 1/ (_f * 10))
             {
                 Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.5* _A * (Math.Sin(((2 * Math.PI) / _T) * (i - _t1)) + Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1)))), 2)));
             }
@@ -93,7 +93,7 @@ namespace CPS
 
         public void SygnalSinusoidalnyWyprostowanyDwupolowkowo()
         {
-            for (double i = _t1; i <= _t1 + _d; i += 1/_f)
+            for (double i = _t1; i <= _t1 + _d; i += 1/ (_f * 10))
             {
                 Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1))), 2)));
             }
@@ -101,7 +101,7 @@ namespace CPS
 
         public void Skok()
         {
-            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
                 if(i < _ns)
                     Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
@@ -116,7 +116,7 @@ namespace CPS
         {
             int ktory = 1;
             double wypelnienie = _T * _kw;
-            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
                 double koniecOkresu = _t1 + (ktory * _T);
                 if (i < koniecOkresu - (_T - wypelnienie))
@@ -136,7 +136,7 @@ namespace CPS
         {
             int ktory = 1;
             double wypelnienie = _T * _kw;
-            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
                 double koniecOkresu = _t1 + (ktory * _T);
                 if (i < koniecOkresu - (_T - wypelnienie))
@@ -156,7 +156,7 @@ namespace CPS
         {
             int ktory = 1;
             double wypelnienie = _T * _kw;
-            for (double i = _t1; i <= _t1 + _d; i += 1 / _f)
+            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
                 double poczatekOkresu = _t1 + ((ktory-1) * _T);
                 double koniecOkresu = _t1 + (ktory * _T);

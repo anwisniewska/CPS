@@ -25,18 +25,6 @@
         <TextBlock HorizontalAlignment="Left" Margin="675,240,0,0" TextWrapping="Wrap" Text="{Binding _Skuteczna}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="675,261,0,0" TextWrapping="Wrap" Text="{Binding _Wariancja}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="675,282,0,0" TextWrapping="Wrap" Text="{Binding _MocSrednia}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="522,146,0,0" TextWrapping="Wrap" Text="współczynnik wypełnienia" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="521,125,0,0" TextWrapping="Wrap" Text="okres podstawowy" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="521,104,0,0" TextWrapping="Wrap" Text="czas trwania" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="522,83,0,0" TextWrapping="Wrap" Text="czas początkowy" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="522,62,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,62,0,0" TextWrapping="Wrap" Text="{Binding _A}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,83,0,0" TextWrapping="Wrap" Text="{Binding _t1}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,104,0,0" TextWrapping="Wrap" Text="{Binding _d}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,125,0,0" TextWrapping="Wrap" Text="{Binding _T}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,146,0,0" TextWrapping="Wrap" Text="{Binding _kw}" VerticalAlignment="Top" RenderTransformOrigin="0.495,-0.017"/>
-        <TextBlock HorizontalAlignment="Left" Margin="522,166,0,0" TextWrapping="Wrap" Text="częstotliwość próbkowania" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="675,166,0,0" TextWrapping="Wrap" Text="{Binding _f}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="260,295,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="-12,154,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
