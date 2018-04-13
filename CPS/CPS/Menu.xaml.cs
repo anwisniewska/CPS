@@ -60,6 +60,7 @@ namespace CPS
                 string nazwa = openFileDialog.FileName;
                 nazwa = nazwa.Substring(nazwa.IndexOf(".") + 1);
                 nazwa = nazwa.Substring(0, nazwa.IndexOf("-"));
+                KwantyzacjaWybor(s);
                 lc.DataContext = s.MakeChart(nazwa);
                 lc.Show();
             }
@@ -107,6 +108,7 @@ namespace CPS
                     {
                         SygnalCiagly wynik = Operations.Add(_sygX, _sygY);
                         LineChart lc = new LineChart();
+                        KwantyzacjaWybor(wynik);
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -115,6 +117,7 @@ namespace CPS
                     {
                         SygnalCiagly wynik = Operations.Subtract(_sygX, _sygY);
                         LineChart lc = new LineChart();
+                        KwantyzacjaWybor(wynik);
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -123,6 +126,7 @@ namespace CPS
                     {
                         SygnalCiagly wynik = Operations.Muliply(_sygX, _sygY);
                         LineChart lc = new LineChart();
+                        KwantyzacjaWybor(wynik);
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -131,6 +135,7 @@ namespace CPS
                     {
                         SygnalCiagly wynik = Operations.Divide(_sygX, _sygY);
                         LineChart lc = new LineChart();
+                        KwantyzacjaWybor(wynik);
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -168,6 +173,7 @@ namespace CPS
             {
                 sc.CalculateInfo();
                 sc.Dyskryminacja();
+                KwantyzacjaWybor(sc);
                 lc.DataContext = sc.MakeChart(signal.Text);
                 lc.Show();
 
@@ -259,6 +265,14 @@ namespace CPS
                 nsnazwa.Visibility = Visibility.Hidden;
                 pnazwa.Visibility = Visibility.Visible;
             }
+        }
+
+        private void KwantyzacjaWybor(SygnalCiagly sc)
+        {
+            if (kwantyzacja.Text == "Kwantyzacja z obciecięm")
+                sc.KwantyzacjaZObcieciem();
+            else
+                sc.KwantyzacjaZZaokragleniem();
         }
     }
 }

@@ -73,6 +73,30 @@
                     <TextBlock HorizontalAlignment="Left" Margin="264,335,0,-0.6" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top" Grid.Column="1"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Kwantyzacja z odtworzeniem" Height="21" Margin="-2.4,-2,-2,0" VerticalAlignment="Top">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="236*"/>
+                    </Grid.ColumnDefinitions>
+                    <oxy:Plot Title="{Binding Title}" Margin="14,18,230,10.2" Grid.Column="1">
+                        <oxy:LineSeries ItemsSource="{Binding PointsDysOdt}" Color="Transparent" 
+                            MarkerFill="SteelBlue" 
+                            MarkerType="Circle" />
+                    </oxy:Plot>
+                    <TextBlock HorizontalAlignment="Left" Margin="8,161,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="264,335,0,-0.6" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>
