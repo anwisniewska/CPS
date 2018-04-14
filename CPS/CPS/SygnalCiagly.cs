@@ -309,6 +309,38 @@ namespace CPS
             PointsDysOdt = PointsDysOdtCiag;
         }
 
+        public void PierwszyRzad()
+        {
+            IList<OxyPlot.DataPoint> PointsDysOdtCiag = new List<OxyPlot.DataPoint>();
+            int ile = (Points.Count - 1) / (PointsDysOdt.Count - 1);
+            int iter = 0;
+            int ileJuzDodane = 0;
+            foreach (var point in Points)
+            {
+                if(iter == PointsDysOdt.Count-1)
+                {
+                    PointsDysOdtCiag.Add(new DataPoint(point.X, PointsDysOdt.ElementAt(iter).Y));
+                }
+                else
+                {
+                    double xa = PointsDysOdt.ElementAt(iter).X;
+                    double xb = PointsDysOdt.ElementAt(iter + 1).X;
+                    double ya = PointsDysOdt.ElementAt(iter).Y;
+                    double yb = PointsDysOdt.ElementAt(iter + 1).Y;
+                    PointsDysOdtCiag.Add(new DataPoint(point.X, (((yb - ya) / (xb - xa)) * point.X) + (((ya * xb) - (yb * xa)) / (xb - xa))));
+                }
+               
+                ileJuzDodane++;
+                if (ileJuzDodane == 10)
+                {
+                    iter++;
+                    ileJuzDodane = 0;
+                }
+
+            }
+            PointsDysOdt = PointsDysOdtCiag;
+        }
+
         public LineChartViewModel MakeChart(string title)
         {
             LineChartViewModel vm = new LineChartViewModel();

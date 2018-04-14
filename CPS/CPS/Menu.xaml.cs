@@ -285,6 +285,8 @@ namespace CPS
         {
             if (odtwarzanie.Text == "Ekstrapolacja zerowego rzędu")
                 sc.ZerowyRzad();
+            else
+                sc.PierwszyRzad();
         }
     }
 }
