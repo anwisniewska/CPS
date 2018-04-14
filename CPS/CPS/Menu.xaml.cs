@@ -60,8 +60,10 @@ namespace CPS
                 string nazwa = openFileDialog.FileName;
                 nazwa = nazwa.Substring(nazwa.IndexOf(".") + 1);
                 nazwa = nazwa.Substring(0, nazwa.IndexOf("-"));
+                s.CalculateInfo();
                 KwantyzacjaWybor(s);
                 Odtwarzanie(s);
+                s.CalculateErrors();
                 lc.DataContext = s.MakeChart(nazwa);
                 lc.Show();
             }
@@ -111,6 +113,7 @@ namespace CPS
                         LineChart lc = new LineChart();
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
+                        wynik.CalculateErrors();
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -121,6 +124,7 @@ namespace CPS
                         LineChart lc = new LineChart();
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
+                        wynik.CalculateErrors();
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -131,6 +135,7 @@ namespace CPS
                         LineChart lc = new LineChart();
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
+                        wynik.CalculateErrors();
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -141,6 +146,7 @@ namespace CPS
                         LineChart lc = new LineChart();
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
+                        wynik.CalculateErrors();
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -180,6 +186,7 @@ namespace CPS
                 sc.Dyskryminacja();
                 KwantyzacjaWybor(sc);
                 Odtwarzanie(sc);
+                sc.CalculateErrors();
                 lc.DataContext = sc.MakeChart(signal.Text);
                 lc.Show();
 

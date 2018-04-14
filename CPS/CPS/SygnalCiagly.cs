@@ -359,7 +359,7 @@ namespace CPS
                 roznica = roznica * roznica;
                 suma = suma + roznica;
             }
-            _MSE = (1/Points.Count) * suma;
+            _MSE = (1/(double)Points.Count) * suma;
             //stosune sygnal - szum snr
             double x2 = 0;
             double sumaKwadratow = 0;
@@ -401,11 +401,17 @@ namespace CPS
             vm._d = _d;
             vm._kw = _kw;
             vm._f = _f;
+ 
             vm._Srednia = Math.Round(_Srednia, 2);
             vm._SredniaBez = Math.Round(_SredniaBez, 2);
             vm._MocSrednia = Math.Round(_MocSrednia, 2);
             vm._Wariancja = Math.Round(_Wariancja, 2);
             vm._Skuteczna = Math.Round(_Skuteczna, 2);
+
+            vm._MSE = Math.Round(_MSE, 2);
+            vm._SNR = Math.Round(_SNR, 2);
+            vm._PSNR = Math.Round(_PSNR, 2);
+            vm._MD = Math.Round(_MD, 2);
             return vm;
         }
 

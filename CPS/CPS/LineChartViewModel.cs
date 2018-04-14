@@ -25,6 +25,12 @@ namespace CPS
         public double _Wariancja { get; set; }
         public double _MocSrednia { get; set; }
 
+        public double _MSE { get; set; }
+        public double _SNR { get; set; }
+        public double _PSNR { get; set; }
+        public double _MD { get; set; }
+
+
         public LineChartViewModel()
         {
 

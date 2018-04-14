@@ -48,6 +48,14 @@
                         </TextBlock.RenderTransform>
                     </TextBlock>
                     <TextBlock HorizontalAlignment="Left" Margin="288,335,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,246,0,0" TextWrapping="Wrap" Text="błąd średniokwadratowy" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,268,0,0" TextWrapping="Wrap" Text="stosunek sygnał-szum" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1"><Run Text="szczytowy "/><LineBreak/><Run Text="stosunek sygnał"/><Run Text="-"/><Run Text="szum"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,322,0,0" TextWrapping="Wrap" Text="maksymalna różnica" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="161,246,0,0" TextWrapping="Wrap" Text="{Binding _MSE}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="161,268,0,0" TextWrapping="Wrap" Text="{Binding _SNR}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="161,301,0,0" TextWrapping="Wrap" Text="{Binding _PSNR}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="161,322,0,0" TextWrapping="Wrap" Text="{Binding _MD}" VerticalAlignment="Top" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Dyskretny" Height="21" Margin="-2.4,-2,-2,0" VerticalAlignment="Top">
