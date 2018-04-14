@@ -24,8 +24,8 @@
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
                     <oxy:Plot Title="{Binding Title}" Margin="38,18,10,10.2">
-                        <oxy:LineSeries ItemsSource="{Binding Points}" StrokeThickness="5" Color="Blue"/>
-                        <oxy:LineSeries ItemsSource="{Binding PointsDysOdt}" Color="Red"/>
+                        <oxy:LineSeries ItemsSource="{Binding Points}" Color="Blue"/>
+                        <oxy:LineSeries ItemsSource="{Binding PointsOdt}" Color="Red"/>
                     </oxy:Plot>
                     <TextBlock HorizontalAlignment="Left" Margin="10,18,0,0" TextWrapping="Wrap" Text="wartość średnia" VerticalAlignment="Top" Grid.Column="1"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" Text="wartość bezwzględna" VerticalAlignment="Top" Grid.Column="1"/>

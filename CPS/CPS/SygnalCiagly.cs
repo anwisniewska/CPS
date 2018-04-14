@@ -29,7 +29,7 @@ namespace CPS
         public IList<OxyPlot.DataPoint> PointsDys = new List<OxyPlot.DataPoint>();
         public ICollection<Point> TimeAndAmplitudeDys = new Collection<Point>();
         [NonSerialized]
-        public IList<OxyPlot.DataPoint> PointsDysOdt = new List<OxyPlot.DataPoint>();
+        public IList<OxyPlot.DataPoint> PointsOdt = new List<OxyPlot.DataPoint>();
         [NonSerialized]
         public IList<OxyPlot.DataPoint> PointsDysKwan = new List<OxyPlot.DataPoint>();
         public double _Srednia { get; set; }
@@ -37,6 +37,11 @@ namespace CPS
         public double _Skuteczna { get; set; }
         public double _Wariancja { get; set; }
         public double _MocSrednia { get; set; }
+        public double _MSE { get; set; }
+        public double _SNR { get; set; }
+        public double _PSNR { get; set; }
+        public double _MD { get; set; }
+
 
         public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns, int his)
         {
@@ -308,7 +313,7 @@ namespace CPS
                 }
                 
             }
-            PointsDysOdt = PointsDysOdtCiag;
+            PointsOdt = PointsDysOdtCiag;
         }
 
         public void PierwszyRzad()
@@ -340,18 +345,47 @@ namespace CPS
                 }
 
             }
-            PointsDysOdt = PointsDysOdtCiag;
+            PointsOdt = PointsDysOdtCiag;
         }
 
         public void CalculateErrors()
         {
             //blad sredniokwadratowy mse
-
+            double roznica = 0;
+            double suma = 0;
+            for(int i =0; i<Points.Count; i++)
+            {
+                roznica = PointsOdt.ElementAt(i).Y - Points.ElementAt(i).X;
+                roznica = roznica * roznica;
+                suma = suma + roznica;
+            }
+            _MSE = (1/Points.Count) * suma;
             //stosune sygnal - szum snr
-
+            double x2 = 0;
+            double sumaKwadratow = 0;
+            foreach(var point in PointsOdt)
+            {
+                x2 = point.Y * point.Y;
+                sumaKwadratow = sumaKwadratow + x2;
+            }
+            _SNR = 10 * Math.Log10(sumaKwadratow/suma);
             //szczytowy stosunek sygnal - szum psnr
-
+            double max = PointsOdt.ElementAt(0).Y;
+            foreach(var point in PointsOdt)
+            {
+                if (point.Y > max)
+                    max = point.Y;
+            }
+            _PSNR = 10 * Math.Log10(max / _MSE);
             //maksymalna roznica md
+            double roznicaMd = Math.Abs(PointsOdt.ElementAt(0).Y - Points.ElementAt(0).Y);
+            for(int i = 0; i<PointsOdt.Count; i++)
+            {
+                double nowaRoznicaMd = Math.Abs(PointsOdt.ElementAt(i).Y - Points.ElementAt(i).Y);
+                if (nowaRoznicaMd > roznicaMd)
+                    roznicaMd = nowaRoznicaMd;
+            }
+            _MD = roznicaMd;
         }
 
         public LineChartViewModel MakeChart(string title)
@@ -360,7 +394,7 @@ namespace CPS
             vm.Title = title;
             vm.Points = Points;
             vm.PointsDys = PointsDys;
-            vm.PointsDysOdt = PointsDysOdt;
+            vm.PointsOdt = PointsOdt;
             vm._A = _A;
             vm._t1 = _t1;
             vm._T = _T;
