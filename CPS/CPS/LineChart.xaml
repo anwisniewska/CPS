@@ -80,9 +80,7 @@
                         <ColumnDefinition Width="236*"/>
                     </Grid.ColumnDefinitions>
                     <oxy:Plot Title="{Binding Title}" Margin="14,18,230,10.2" Grid.Column="1">
-                        <oxy:LineSeries ItemsSource="{Binding PointsDysOdt}" Color="Transparent" 
-                            MarkerFill="SteelBlue" 
-                            MarkerType="Circle" />
+                        <oxy:LineSeries ItemsSource="{Binding PointsDysOdt}" />
                     </oxy:Plot>
                     <TextBlock HorizontalAlignment="Left" Margin="8,161,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
                         <TextBlock.RenderTransform>

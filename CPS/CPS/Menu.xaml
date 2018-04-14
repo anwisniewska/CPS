@@ -60,5 +60,9 @@
             <ComboBoxItem IsSelected="True">Kwantyzacja z obciecięm</ComboBoxItem>
             <ComboBoxItem>Kwantyzacja z zaokrągleniem</ComboBoxItem>
         </ComboBox>
+        <ComboBox Name ="odtwarzanie" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="313">
+            <ComboBoxItem IsSelected="True">Ekstrapolacja zerowego rzędu</ComboBoxItem>
+            <ComboBoxItem>Interpolacja pierwszego rzędu</ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Window>

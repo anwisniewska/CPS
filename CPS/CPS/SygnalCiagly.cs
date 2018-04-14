@@ -289,6 +289,26 @@ namespace CPS
             }
         }
 
+        public void ZerowyRzad()
+        {
+            IList<OxyPlot.DataPoint> PointsDysOdtCiag = new List<OxyPlot.DataPoint>();
+            int ile = (Points.Count - 1) / (PointsDysOdt.Count - 1);
+            int iter = 0;
+            int ileJuzDodane = 0;
+            foreach(var point in Points)
+            {
+                PointsDysOdtCiag.Add(new DataPoint(point.X, PointsDysOdt.ElementAt(iter).Y));
+                ileJuzDodane++;
+                if(ileJuzDodane == 10)
+                {
+                    iter++;
+                    ileJuzDodane = 0;
+                }
+                
+            }
+            PointsDysOdt = PointsDysOdtCiag;
+        }
+
         public LineChartViewModel MakeChart(string title)
         {
             LineChartViewModel vm = new LineChartViewModel();
