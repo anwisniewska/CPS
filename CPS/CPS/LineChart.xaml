@@ -65,9 +65,8 @@
                         <ColumnDefinition Width="236*"/>
                     </Grid.ColumnDefinitions>
                     <oxy:Plot Title="{Binding Title}" Margin="14,18,230,10" Grid.Column="1">
-                        <oxy:LineSeries ItemsSource="{Binding PointsDys}" Color="Transparent" 
-                MarkerFill="SteelBlue" 
-                MarkerType="Circle" />
+                        <oxy:LineSeries ItemsSource="{Binding PointsDys}" Color="Transparent" MarkerFill="Blue" MarkerType="Circle" />
+                        <oxy:LineSeries ItemsSource="{Binding PointsDysKwan}" Color="Transparent" MarkerFill="Red" MarkerType="Circle" />
                     </oxy:Plot>
                     <TextBlock HorizontalAlignment="Left" Margin="8,161,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
                         <TextBlock.RenderTransform>
@@ -80,6 +79,24 @@
                         </TextBlock.RenderTransform>
                     </TextBlock>
                     <TextBlock HorizontalAlignment="Left" Margin="264,335,0,-0.6" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="602,18,0,0" TextWrapping="Wrap" Text="wartość średnia" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="602,40,0,0" TextWrapping="Wrap" Text="wartość bezwzględna" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="602,61,0,0" TextWrapping="Wrap" Text="wartość skuteczna" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="602,82,0,0" TextWrapping="Wrap" Text="wariancja" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="602,102,0,0" TextWrapping="Wrap" Text="moc średnia" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="753,18,0,0" TextWrapping="Wrap" Text="{Binding _SredniaDys}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="753,40,0,0" TextWrapping="Wrap" Text="{Binding _SredniaBezDys}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="753,61,0,0" TextWrapping="Wrap" Text="{Binding _SkutecznaDys}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="753,82,0,0" TextWrapping="Wrap" Text="{Binding _WariancjaDys}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="753,102,0,0" TextWrapping="Wrap" Text="{Binding _MocSredniaDys}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="602,246,0,0" TextWrapping="Wrap" Text="błąd średniokwadratowy" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="602,268,0,0" TextWrapping="Wrap" Text="stosunek sygnał-szum" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="602,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1"><Run Text="szczytowy "/><LineBreak/><Run Text="stosunek sygnał"/><Run Text="-"/><Run Text="szum"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="602,322,0,0" TextWrapping="Wrap" Text="maksymalna różnica" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="753,246,0,0" TextWrapping="Wrap" Text="{Binding _MSEDys}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="753,268,0,0" TextWrapping="Wrap" Text="{Binding _SNRDys}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="753,301,0,0" TextWrapping="Wrap" Text="{Binding _PSNRDys}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="753,322,0,0" TextWrapping="Wrap" Text="{Binding _MDDys}" VerticalAlignment="Top" Grid.Column="1"/>
                 </Grid>
             </TabItem>
         </TabControl>

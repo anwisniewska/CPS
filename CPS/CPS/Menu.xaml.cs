@@ -64,6 +64,8 @@ namespace CPS
                 KwantyzacjaWybor(s);
                 Odtwarzanie(s);
                 s.CalculateErrors();
+                s.CalculateInfoDys();
+                s.CalculateErrorsDys();
                 lc.DataContext = s.MakeChart(nazwa);
                 lc.Show();
             }
@@ -114,6 +116,8 @@ namespace CPS
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
                         wynik.CalculateErrors();
+                        wynik.CalculateInfoDys();
+                        wynik.CalculateErrorsDys();
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -125,6 +129,8 @@ namespace CPS
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
                         wynik.CalculateErrors();
+                        wynik.CalculateInfoDys();
+                        wynik.CalculateErrorsDys();
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -136,6 +142,8 @@ namespace CPS
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
                         wynik.CalculateErrors();
+                        wynik.CalculateInfoDys();
+                        wynik.CalculateErrorsDys();
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -147,6 +155,8 @@ namespace CPS
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
                         wynik.CalculateErrors();
+                        wynik.CalculateInfoDys();
+                        wynik.CalculateErrorsDys();
                         lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
                         lc.Show();
                         WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
@@ -187,6 +197,8 @@ namespace CPS
                 KwantyzacjaWybor(sc);
                 Odtwarzanie(sc);
                 sc.CalculateErrors();
+                sc.CalculateInfoDys();
+                sc.CalculateErrorsDys();
                 lc.DataContext = sc.MakeChart(signal.Text);
                 lc.Show();
 

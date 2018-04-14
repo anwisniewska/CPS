@@ -41,6 +41,15 @@ namespace CPS
         public double _SNR { get; set; }
         public double _PSNR { get; set; }
         public double _MD { get; set; }
+        public double _SredniaDys { get; set; }
+        public double _SredniaBezDys { get; set; }
+        public double _SkutecznaDys { get; set; }
+        public double _WariancjaDys { get; set; }
+        public double _MocSredniaDys { get; set; }
+        public double _MSEDys { get; set; }
+        public double _SNRDys { get; set; }
+        public double _PSNRDys { get; set; }
+        public double _MDDys { get; set; }
 
 
         public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns, int his)
@@ -225,6 +234,43 @@ namespace CPS
             
         }
 
+        public void CalculateInfoDys()
+        {
+            // srednia
+            double mnoznik = (1) / (PointsDys.Last().X - PointsDys.First().X + 1);
+            double suma = 0;
+            foreach (var i in PointsDys)
+            {
+                suma = suma + i.Y;
+            }
+            _SredniaDys = mnoznik + suma;
+            // srednia bezwzgledna
+            suma = 0;
+            foreach (var i in PointsDys)
+            {
+                suma = suma + Math.Abs(i.Y);
+            }
+            _SredniaBezDys = mnoznik + suma;
+            // moc srednia
+            suma = 0;
+            foreach (var i in PointsDys)
+            {
+                suma = suma + Math.Pow(i.Y, 2);
+            }
+            _MocSredniaDys = mnoznik + suma;
+            // wariancja
+            suma = 0;
+            foreach (var i in PointsDys)
+            {
+                suma = suma + Math.Pow((i.Y - _Srednia), 2);
+            }
+            _WariancjaDys = mnoznik + suma;
+            // wartosc skuteczna
+            _SkutecznaDys = Math.Sqrt(_MocSrednia);
+
+
+        }
+
         public void FromPointsToTimeAndAmplitude()
         {
             foreach (var point in Points)
@@ -355,7 +401,7 @@ namespace CPS
             double suma = 0;
             for(int i =0; i<Points.Count; i++)
             {
-                roznica = PointsOdt.ElementAt(i).Y - Points.ElementAt(i).X;
+                roznica = PointsOdt.ElementAt(i).Y - Points.ElementAt(i).Y;
                 roznica = roznica * roznica;
                 suma = suma + roznica;
             }
@@ -388,6 +434,46 @@ namespace CPS
             _MD = roznicaMd;
         }
 
+        public void CalculateErrorsDys()
+        {
+            //blad sredniokwadratowy mse
+            double roznica = 0;
+            double suma = 0;
+            for (int i = 0; i < PointsDys.Count; i++)
+            {
+                roznica = PointsDysKwan.ElementAt(i).Y - PointsDys.ElementAt(i).Y;
+                roznica = roznica * roznica;
+                suma = suma + roznica;
+            }
+            _MSEDys = (1 / (double)PointsDys.Count) * suma;
+            //stosune sygnal - szum snr
+            double x2 = 0;
+            double sumaKwadratow = 0;
+            foreach (var point in PointsDysKwan)
+            {
+                x2 = point.Y * point.Y;
+                sumaKwadratow = sumaKwadratow + x2;
+            }
+            _SNRDys = 10 * Math.Log10(sumaKwadratow / suma);
+            //szczytowy stosunek sygnal - szum psnr
+            double max = PointsDysKwan.ElementAt(0).Y;
+            foreach (var point in PointsDysKwan)
+            {
+                if (point.Y > max)
+                    max = point.Y;
+            }
+            _PSNRDys = 10 * Math.Log10(max / _MSE);
+            //maksymalna roznica md
+            double roznicaMd = Math.Abs(PointsDysKwan.ElementAt(0).Y - PointsDys.ElementAt(0).Y);
+            for (int j = 0; j < PointsDysKwan.Count;j++)
+            {
+                double nowaRoznicaMd = Math.Abs(PointsDysKwan.ElementAt(j).Y - PointsDys.ElementAt(j).Y);
+                if (nowaRoznicaMd > roznicaMd)
+                    roznicaMd = nowaRoznicaMd;
+            }
+            _MDDys = roznicaMd;
+        }
+
         public LineChartViewModel MakeChart(string title)
         {
             LineChartViewModel vm = new LineChartViewModel();
@@ -395,6 +481,7 @@ namespace CPS
             vm.Points = Points;
             vm.PointsDys = PointsDys;
             vm.PointsOdt = PointsOdt;
+            vm.PointsDysKwan = PointsDysKwan;
             vm._A = _A;
             vm._t1 = _t1;
             vm._T = _T;
@@ -412,6 +499,17 @@ namespace CPS
             vm._SNR = Math.Round(_SNR, 2);
             vm._PSNR = Math.Round(_PSNR, 2);
             vm._MD = Math.Round(_MD, 2);
+
+            vm._SredniaDys = Math.Round(_SredniaDys, 2);
+            vm._SredniaBezDys = Math.Round(_SredniaBezDys, 2);
+            vm._MocSredniaDys = Math.Round(_MocSredniaDys, 2);
+            vm._WariancjaDys = Math.Round(_WariancjaDys, 2);
+            vm._SkutecznaDys = Math.Round(_SkutecznaDys, 2);
+
+            vm._MSEDys = Math.Round(_MSEDys, 2);
+            vm._SNRDys = Math.Round(_SNRDys, 2);
+            vm._PSNRDys = Math.Round(_PSNRDys, 2);
+            vm._MDDys = Math.Round(_MDDys, 2);
             return vm;
         }
 

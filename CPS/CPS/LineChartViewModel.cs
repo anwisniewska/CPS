@@ -30,6 +30,17 @@ namespace CPS
         public double _PSNR { get; set; }
         public double _MD { get; set; }
 
+        public double _SredniaDys { get; set; }
+        public double _SredniaBezDys { get; set; }
+        public double _SkutecznaDys { get; set; }
+        public double _WariancjaDys { get; set; }
+        public double _MocSredniaDys { get; set; }
+
+        public double _MSEDys { get; set; }
+        public double _SNRDys { get; set; }
+        public double _PSNRDys { get; set; }
+        public double _MDDys { get; set; }
+
 
         public LineChartViewModel()
         {
@@ -41,5 +52,6 @@ namespace CPS
         public IList<OxyPlot.DataPoint> Points { get; set; }
         public IList<OxyPlot.DataPoint> PointsDys { get; set; }
         public IList<OxyPlot.DataPoint> PointsOdt { get; set; }
+        public IList<OxyPlot.DataPoint> PointsDysKwan { get; set; }
     }
 }
