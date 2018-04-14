@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="Wykres" Height="432.8" Width="870.8">
+        Title="Wykres" Height="435.4" Width="870.8">
     <Window.DataContext>
         <local:LineChartViewModel/>
     </Window.DataContext>
@@ -16,26 +16,27 @@
             <ColumnDefinition Width="55*"/>
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" Margin="-290,604,0,-220.6" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
-        <TabControl HorizontalAlignment="Left" Height="379" Margin="10,10,0,0" VerticalAlignment="Top" Width="841" Grid.ColumnSpan="3">
+        <TabControl HorizontalAlignment="Left" Height="382" Margin="10,10,0,0" VerticalAlignment="Top" Width="841" Grid.ColumnSpan="3">
             <TabItem Header="Sygnał ciągły" HorizontalAlignment="Left" Margin="-2,-2,-42.4,0" Width="102">
-                <Grid Background="#FFE5E5E5">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,-1.2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="14*"/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
                     <oxy:Plot Title="{Binding Title}" Margin="38,18,10,10.2">
                         <oxy:LineSeries ItemsSource="{Binding Points}"/>
+                        <oxy:LineSeries ItemsSource="{Binding PointsDysOdt}" />
                     </oxy:Plot>
-                    <TextBlock HorizontalAlignment="Left" Margin="9.8,127,0,0" TextWrapping="Wrap" Text="wartość średnia" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="9.8,149,0,0" TextWrapping="Wrap" Text="wartość bezwzględna" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="9.8,170,0,0" TextWrapping="Wrap" Text="wartość skuteczna" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="9.8,191,0,0" TextWrapping="Wrap" Text="wariancja" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="9.8,211,0,0" TextWrapping="Wrap" Text="moc średnia" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="160.8,127,0,0" TextWrapping="Wrap" Text="{Binding _Srednia}" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="160.8,149,0,0" TextWrapping="Wrap" Text="{Binding _SredniaBez}" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="160.8,170,0,0" TextWrapping="Wrap" Text="{Binding _Skuteczna}" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="160.8,191,0,0" TextWrapping="Wrap" Text="{Binding _Wariancja}" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="160.8,211,0,0" TextWrapping="Wrap" Text="{Binding _MocSrednia}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,18,0,0" TextWrapping="Wrap" Text="wartość średnia" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,40,0,0" TextWrapping="Wrap" Text="wartość bezwzględna" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,61,0,0" TextWrapping="Wrap" Text="wartość skuteczna" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,82,0,0" TextWrapping="Wrap" Text="wariancja" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,102,0,0" TextWrapping="Wrap" Text="moc średnia" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="161,18,0,0" TextWrapping="Wrap" Text="{Binding _Srednia}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="161,40,0,0" TextWrapping="Wrap" Text="{Binding _SredniaBez}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="161,61,0,0" TextWrapping="Wrap" Text="{Binding _Skuteczna}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="161,82,0,0" TextWrapping="Wrap" Text="{Binding _Wariancja}" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="161,102,0,0" TextWrapping="Wrap" Text="{Binding _MocSrednia}" VerticalAlignment="Top" Grid.Column="1"/>
                     <TextBlock HorizontalAlignment="Left" Margin="8,161,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
                         <TextBlock.RenderTransform>
                             <TransformGroup>
@@ -55,32 +56,10 @@
                         <ColumnDefinition Width="7*"/>
                         <ColumnDefinition Width="236*"/>
                     </Grid.ColumnDefinitions>
-                    <oxy:Plot Title="{Binding Title}" Margin="14,18,230,10.2" Grid.Column="1">
+                    <oxy:Plot Title="{Binding Title}" Margin="14,18,230,10" Grid.Column="1">
                         <oxy:LineSeries ItemsSource="{Binding PointsDys}" Color="Transparent" 
                 MarkerFill="SteelBlue" 
                 MarkerType="Circle" />
-                    </oxy:Plot>
-                    <TextBlock HorizontalAlignment="Left" Margin="8,161,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
-                        <TextBlock.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform Angle="-90"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </TextBlock.RenderTransform>
-                    </TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Margin="264,335,0,-0.6" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top" Grid.Column="1"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Kwantyzacja z odtworzeniem" Height="21" Margin="-2.4,-2,-2,0" VerticalAlignment="Top">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="236*"/>
-                    </Grid.ColumnDefinitions>
-                    <oxy:Plot Title="{Binding Title}" Margin="14,18,230,10.2" Grid.Column="1">
-                        <oxy:LineSeries ItemsSource="{Binding PointsDysOdt}" />
                     </oxy:Plot>
                     <TextBlock HorizontalAlignment="Left" Margin="8,161,0,0" TextWrapping="Wrap" Text="amplituda" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
                         <TextBlock.RenderTransform>

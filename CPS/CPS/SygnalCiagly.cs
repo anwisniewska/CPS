@@ -30,6 +30,8 @@ namespace CPS
         public ICollection<Point> TimeAndAmplitudeDys = new Collection<Point>();
         [NonSerialized]
         public IList<OxyPlot.DataPoint> PointsDysOdt = new List<OxyPlot.DataPoint>();
+        [NonSerialized]
+        public IList<OxyPlot.DataPoint> PointsDysKwan = new List<OxyPlot.DataPoint>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
         public double _Skuteczna { get; set; }
@@ -270,34 +272,34 @@ namespace CPS
 
         public void KwantyzacjaZObcieciem()
         {
-            PointsDysOdt = new List<OxyPlot.DataPoint>();
+            PointsDysKwan = new List<OxyPlot.DataPoint>();
             foreach (var point in PointsDys)
             {
-                PointsDysOdt.Add(new DataPoint(point.X, (int)point.Y));
+                PointsDysKwan.Add(new DataPoint(point.X, (int)point.Y));
             }
         }
 
         public void KwantyzacjaZZaokragleniem()
         {
-            PointsDysOdt = new List<OxyPlot.DataPoint>();
+            PointsDysKwan = new List<OxyPlot.DataPoint>();
             foreach (var point in PointsDys)
             {
                 if((point.Y - (int)point.Y) < 0.5)
-                    PointsDysOdt.Add(new DataPoint(point.X, (int)point.Y));
+                    PointsDysKwan.Add(new DataPoint(point.X, (int)point.Y));
                 else
-                    PointsDysOdt.Add(new DataPoint(point.X, ((int)point.Y)+1));
+                    PointsDysKwan.Add(new DataPoint(point.X, ((int)point.Y)+1));
             }
         }
 
         public void ZerowyRzad()
         {
             IList<OxyPlot.DataPoint> PointsDysOdtCiag = new List<OxyPlot.DataPoint>();
-            int ile = (Points.Count - 1) / (PointsDysOdt.Count - 1);
+            int ile = (Points.Count - 1) / (PointsDys.Count - 1);
             int iter = 0;
             int ileJuzDodane = 0;
             foreach(var point in Points)
             {
-                PointsDysOdtCiag.Add(new DataPoint(point.X, PointsDysOdt.ElementAt(iter).Y));
+                PointsDysOdtCiag.Add(new DataPoint(point.X, PointsDys.ElementAt(iter).Y));
                 ileJuzDodane++;
                 if(ileJuzDodane == 10)
                 {
@@ -312,21 +314,21 @@ namespace CPS
         public void PierwszyRzad()
         {
             IList<OxyPlot.DataPoint> PointsDysOdtCiag = new List<OxyPlot.DataPoint>();
-            int ile = (Points.Count - 1) / (PointsDysOdt.Count - 1);
+            int ile = (Points.Count - 1) / (PointsDys.Count - 1);
             int iter = 0;
             int ileJuzDodane = 0;
             foreach (var point in Points)
             {
-                if(iter == PointsDysOdt.Count-1)
+                if(iter == PointsDys.Count-1)
                 {
-                    PointsDysOdtCiag.Add(new DataPoint(point.X, PointsDysOdt.ElementAt(iter).Y));
+                    PointsDysOdtCiag.Add(new DataPoint(point.X, PointsDys.ElementAt(iter).Y));
                 }
                 else
                 {
-                    double xa = PointsDysOdt.ElementAt(iter).X;
-                    double xb = PointsDysOdt.ElementAt(iter + 1).X;
-                    double ya = PointsDysOdt.ElementAt(iter).Y;
-                    double yb = PointsDysOdt.ElementAt(iter + 1).Y;
+                    double xa = PointsDys.ElementAt(iter).X;
+                    double xb = PointsDys.ElementAt(iter + 1).X;
+                    double ya = PointsDys.ElementAt(iter).Y;
+                    double yb = PointsDys.ElementAt(iter + 1).Y;
                     PointsDysOdtCiag.Add(new DataPoint(point.X, (((yb - ya) / (xb - xa)) * point.X) + (((ya * xb) - (yb * xa)) / (xb - xa))));
                 }
                
@@ -339,6 +341,17 @@ namespace CPS
 
             }
             PointsDysOdt = PointsDysOdtCiag;
+        }
+
+        public void CalculateErrors()
+        {
+            //blad sredniokwadratowy mse
+
+            //stosune sygnal - szum snr
+
+            //szczytowy stosunek sygnal - szum psnr
+
+            //maksymalna roznica md
         }
 
         public LineChartViewModel MakeChart(string title)
