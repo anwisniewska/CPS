@@ -188,5 +188,60 @@ namespace CPS
 
             return wynik;
         }
+
+        public static SygnalCiagly KorelacjaZUzSplotu(SygnalCiagly x, SygnalCiagly y)
+        {
+            ICollection<Point> newPoints = new Collection<Point>();
+            int M = x.TimeAndAmplitude.Count();
+            int N = y.TimeAndAmplitude.Count();
+            ICollection<Point> copyOfX = new Collection<Point>();
+            for (int i = x.TimeAndAmplitude.Count() - 1; i >= 0; i--) 
+            {
+                copyOfX.Add(new Point(x.TimeAndAmplitude.ElementAt(i).X, x.TimeAndAmplitude.ElementAt(i).Y));
+            }
+            for (int i = 0; i <= M + N - 1; i++)
+            {
+                double splot = 0;
+                for (int j = 0; j <= M - 1; j++)
+                {
+                    if ((i - j) < 0) break;
+                    if ((i - j) < N)
+                        splot += copyOfX.ElementAt(j).Y * y.TimeAndAmplitude.ElementAt(i - j).Y;
+                }
+
+                newPoints.Add(new Point(i, splot));
+            }
+
+
+            ICollection<Point> newPoints2 = new Collection<Point>();
+            int M2 = x.TimeAndAmplitudeDys.Count();
+            int N2 = y.TimeAndAmplitudeDys.Count();
+            ICollection<Point> copyOfX2 = x.TimeAndAmplitudeDys;
+            for (int i = x.TimeAndAmplitudeDys.Count() - 1; i >= 0; i--)
+            {
+                copyOfX2.Add(new Point(x.TimeAndAmplitudeDys.ElementAt(i).X, x.TimeAndAmplitudeDys.ElementAt(i).Y));
+            }
+            for (int i = 0; i <= M2 + N2 - 1; i++)
+            {
+                double splot = 0;
+                for (int j = 0; j <= M2 - 1; j++)
+                {
+                    if ((i - j) < 0) break;
+                    if ((i - j) < N2)
+                        splot += copyOfX2.ElementAt(j).Y * y.TimeAndAmplitudeDys.ElementAt(i - j).Y;
+                }
+
+                newPoints2.Add(new Point(i, splot));
+            }
+
+
+            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
+            wynik.TimeAndAmplitude = newPoints;
+            wynik.FromTimeAndAmplitudeToPoints();
+            wynik.TimeAndAmplitudeDys = newPoints2;
+            wynik.FromTimeAndAmplitudeToPointsDys();
+
+            return wynik;
+        }
     }
 }

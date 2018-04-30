@@ -137,6 +137,24 @@ namespace CPS
                     }
 
                 }
+                if (operation.Text == "korelacja z użyciem splotu")
+                {
+                    SygnalCiagly wynik = Operations.KorelacjaZUzSplotu(_sygX, _sygY);
+                    LineChart lc = new LineChart();
+                    wynik.CalculateInfo();
+                    KwantyzacjaWybor(wynik);
+                    Odtwarzanie(wynik);
+                    wynik.CalculateErrors();
+                    wynik.CalculateInfoDys();
+                    wynik.CalculateErrorsDys();
+                    lc.DataContext = wynik.MakeChart("Korelacja z użyciem splotu");
+                    lc.Show();
+                    if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+                    {
+                        WriteRead.WriteToFile(wynik, "Korelacja z użyciem splotu");
+                    }
+
+                }
                 else if(_sygX._t1 != _sygY._t1 || _sygX._d != _sygY._d || _sygX._f != _sygY._f)
                 {
                     MessageBox.Show("Nie można wykonać operacji na tych dwóch sygnałach", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Information);
