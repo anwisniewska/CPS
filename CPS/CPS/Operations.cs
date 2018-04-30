@@ -26,7 +26,7 @@ namespace CPS
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;
             wynik.FromTimeAndAmplitudeToPointsDys();
-            wynik.CalculateInfo();
+            
             return wynik;
         }
 
@@ -47,7 +47,7 @@ namespace CPS
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;
             wynik.FromTimeAndAmplitudeToPointsDys();
-            wynik.CalculateInfo();
+
             return wynik;
         }
 
@@ -68,7 +68,7 @@ namespace CPS
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;
             wynik.FromTimeAndAmplitudeToPointsDys();
-            wynik.CalculateInfo();
+
             return wynik;
         }
 
@@ -95,7 +95,52 @@ namespace CPS
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;
             wynik.FromTimeAndAmplitudeToPointsDys();
-            wynik.CalculateInfo();
+
+            return wynik;
+        }
+
+        public static SygnalCiagly Splot(SygnalCiagly x, SygnalCiagly y)
+        {
+            ICollection<Point> newPoints = new Collection<Point>();
+            int M = x.TimeAndAmplitude.Count();
+            int N = y.TimeAndAmplitude.Count();
+            for (int i = 0; i < M+N-1; i++)
+            {
+                double splot = 0;
+                for(int j = 0; j<M-1; j++)
+                {
+                    if((i-j)<0) break;
+                    if ((i - j) < N)
+                        splot += x.TimeAndAmplitude.ElementAt(j).Y * y.TimeAndAmplitude.ElementAt(i - j).Y;
+                }
+
+                newPoints.Add(new Point(i, splot));
+            }
+
+
+            ICollection<Point> newPoints2 = new Collection<Point>();
+            int M2 = x.TimeAndAmplitudeDys.Count();
+            int N2 = y.TimeAndAmplitudeDys.Count();
+            for (int i = 0; i < M2 + N2 - 1; i++)
+            {
+                double splot = 0;
+                for (int j = 0; j < M2 - 1; j++)
+                {
+                    if ((i - j) < 0) break;
+                    if ((i - j) < N2)
+                        splot += x.TimeAndAmplitudeDys.ElementAt(j).Y * y.TimeAndAmplitudeDys.ElementAt(i - j).Y;
+                }
+
+                newPoints2.Add(new Point(i, splot));
+            }
+
+
+            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
+            wynik.TimeAndAmplitude = newPoints;
+            wynik.FromTimeAndAmplitudeToPoints();
+            wynik.TimeAndAmplitudeDys = newPoints2;
+            wynik.FromTimeAndAmplitudeToPointsDys();
+
             return wynik;
         }
     }

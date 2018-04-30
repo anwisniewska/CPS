@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="Menu" Height="473.89" Width="447.2">
+        Title="Menu" Height="626.69" Width="447.2">
     <Grid Margin="0,0,-0.2,0.4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -39,6 +39,8 @@
             <ComboBoxItem>-</ComboBoxItem>
             <ComboBoxItem>*</ComboBoxItem>
             <ComboBoxItem>/</ComboBoxItem>
+            <ComboBoxItem>splot</ComboBoxItem>
+            <ComboBoxItem>kwantyzacja</ComboBoxItem>
         </ComboBox>
         <Button Content="y" HorizontalAlignment="Left" Margin="170,331,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_Y" Height="19"/>
         <Button Content="wynik" HorizontalAlignment="Left" Margin="250,331,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_wynik" Height="19"/>
@@ -64,5 +66,7 @@
             <ComboBoxItem IsSelected="True">Ekstrapolacja zerowego rzędu</ComboBoxItem>
             <ComboBoxItem>Interpolacja pierwszego rzędu</ComboBoxItem>
         </ComboBox>
+        <Button Content="x" HorizontalAlignment="Left" Margin="9,331,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_X" Height="19"/>
+        <Button Content="y" HorizontalAlignment="Left" Margin="170,331,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_Y" Height="19"/>
     </Grid>
 </Window>

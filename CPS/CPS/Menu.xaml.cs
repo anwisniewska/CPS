@@ -101,6 +101,23 @@ namespace CPS
             }
             else
             {
+                if (operation.Text == "splot")
+                {
+                    SygnalCiagly wynik = Operations.Splot(_sygX, _sygY);
+                    LineChart lc = new LineChart();
+                    wynik.CalculateInfo();
+                    KwantyzacjaWybor(wynik);
+                    Odtwarzanie(wynik);
+                    wynik.CalculateErrors();
+                    wynik.CalculateInfoDys();
+                    wynik.CalculateErrorsDys();
+                    lc.DataContext = wynik.MakeChart("Splot");
+                    lc.Show();
+                    if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+                    {
+                        WriteRead.WriteToFile(wynik, "Splot");
+                    }
+                }
                 if (_sygX._t1 != _sygY._t1 || _sygX._d != _sygY._d || _sygX._f != _sygY._f)
                 {
                     MessageBox.Show("Nie można wykonać operacji na tych dwóch sygnałach", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -113,53 +130,69 @@ namespace CPS
                     {
                         SygnalCiagly wynik = Operations.Add(_sygX, _sygY);
                         LineChart lc = new LineChart();
+                        wynik.CalculateInfo();
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
                         wynik.CalculateErrors();
                         wynik.CalculateInfoDys();
                         wynik.CalculateErrorsDys();
-                        lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
+                        lc.DataContext = wynik.MakeChart("Sygnał po dodawaniu");
                         lc.Show();
-                        WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
+                        if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+                        {
+                            WriteRead.WriteToFile(wynik, "Sygnał po dodawaniu");
+                        }
                     }
                     if (operation.Text == "-")
                     {
                         SygnalCiagly wynik = Operations.Subtract(_sygX, _sygY);
                         LineChart lc = new LineChart();
+                        wynik.CalculateInfo();
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
                         wynik.CalculateErrors();
                         wynik.CalculateInfoDys();
                         wynik.CalculateErrorsDys();
-                        lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
+                        lc.DataContext = wynik.MakeChart("Sygnał po odejmowaniu");
                         lc.Show();
-                        WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
+                        if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+                        {
+                            WriteRead.WriteToFile(wynik, "Sygnał po odejmowaniu");
+                        }
                     }
                     if (operation.Text == "*")
                     {
                         SygnalCiagly wynik = Operations.Muliply(_sygX, _sygY);
                         LineChart lc = new LineChart();
+                        wynik.CalculateInfo();
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
                         wynik.CalculateErrors();
                         wynik.CalculateInfoDys();
                         wynik.CalculateErrorsDys();
-                        lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
+                        lc.DataContext = wynik.MakeChart("Sygnał po mnożeniu");
                         lc.Show();
-                        WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
+                        if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+                        {
+                            WriteRead.WriteToFile(wynik, "Sygnał mnożeniu");
+                        }
                     }
                     if (operation.Text == "/")
                     {
                         SygnalCiagly wynik = Operations.Divide(_sygX, _sygY);
                         LineChart lc = new LineChart();
+                        wynik.CalculateInfo();
                         KwantyzacjaWybor(wynik);
                         Odtwarzanie(wynik);
                         wynik.CalculateErrors();
                         wynik.CalculateInfoDys();
                         wynik.CalculateErrorsDys();
-                        lc.DataContext = wynik.MakeChart("Sygnał wynikowy");
+                        lc.DataContext = wynik.MakeChart("Sygnał po dzieleniu");
                         lc.Show();
-                        WriteRead.WriteToFile(wynik, "Sygnał wynikowy");
+                        if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+                        {
+                            WriteRead.WriteToFile(wynik, "Sygnał po dzieleniu");
+                        }
                     }
                 }
                 
