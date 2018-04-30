@@ -119,6 +119,24 @@ namespace CPS
                     }
 
                 }
+                if (operation.Text == "korelacja bezpośrednia")
+                {
+                    SygnalCiagly wynik = Operations.KorelacjaBezpo(_sygX, _sygY);
+                    LineChart lc = new LineChart();
+                    wynik.CalculateInfo();
+                    KwantyzacjaWybor(wynik);
+                    Odtwarzanie(wynik);
+                    wynik.CalculateErrors();
+                    wynik.CalculateInfoDys();
+                    wynik.CalculateErrorsDys();
+                    lc.DataContext = wynik.MakeChart("Korelacja bezpośrednia");
+                    lc.Show();
+                    if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
+                    {
+                        WriteRead.WriteToFile(wynik, "Korelacja bezpośrednia");
+                    }
+
+                }
                 else if(_sygX._t1 != _sygY._t1 || _sygX._d != _sygY._d || _sygX._f != _sygY._f)
                 {
                     MessageBox.Show("Nie można wykonać operacji na tych dwóch sygnałach", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Information);
