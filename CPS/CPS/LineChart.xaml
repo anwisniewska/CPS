@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" Margin="-290,604,0,-220.6" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
         <TabControl SelectedIndex="2" HorizontalAlignment="Left" Height="382" Margin="10,10,0,0" VerticalAlignment="Top" Width="841" Grid.ColumnSpan="3">
-            <TabItem Header="Sygnał ciągły" HorizontalAlignment="Left" Margin="61,0,-60.6,-0.2" Width="102" RenderTransformOrigin="3.059,0.632">
+            <TabItem Header="Sygnał ciągły" HorizontalAlignment="Left" Margin="56,0,-55.6,-0.2" Width="102" RenderTransformOrigin="3.059,0.632">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,-1.2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="14*"/>
@@ -58,7 +58,7 @@
                     <TextBlock HorizontalAlignment="Left" Margin="161,322,0,0" TextWrapping="Wrap" Text="{Binding _MD}" VerticalAlignment="Top" Grid.Column="1"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Dyskretny" Height="21" Margin="61.6,0,-65.6,-0.2" VerticalAlignment="Top">
+            <TabItem Header="Sygnał Dyskretny" Height="21" Margin="56.6,0,-60.2,-0.2" VerticalAlignment="Top">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="7*"/>
@@ -99,7 +99,7 @@
                     <TextBlock HorizontalAlignment="Left" Margin="753,322,0,0" TextWrapping="Wrap" Text="{Binding _MDDys}" VerticalAlignment="Top" Grid.Column="1"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Wykres" Height="21" Margin="-166.4,0,161.8,-0.2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="55">
+            <TabItem Header="Wykres" Height="21" Margin="-204.8,0,205,-0.2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="55">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="7*"/>
@@ -110,7 +110,7 @@
                     </oxy:Plot>
                 </Grid>
             </TabItem>
-            <TabItem Header="Filtracja" Height="21" Margin="0,0,-11.8,-0.2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="55">
+            <TabItem Header="Filtr" Height="21" Margin="0,0,-5.8,-0.2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="55">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="7*"/>
@@ -118,6 +118,17 @@
                     </Grid.ColumnDefinitions>
                     <oxy:Plot Title="{Binding TitleFiltr}" Margin="14,18,10,9.8" Grid.Column="1">
                         <oxy:LineSeries ItemsSource="{Binding Filtr}" Color="Black" />
+                    </oxy:Plot>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Sygnał filtrowany" Height="21" Margin="0,0,-6.6,-0.2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="107">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="236*"/>
+                    </Grid.ColumnDefinitions>
+                    <oxy:Plot Title="Sygnał filtrowany" Margin="14,18,10,9.8" Grid.Column="1">
+                        <oxy:LineSeries ItemsSource="{Binding SygFiltrowany}" Color="Black" />
                     </oxy:Plot>
                 </Grid>
             </TabItem>

@@ -34,6 +34,8 @@ namespace CPS
         public IList<OxyPlot.DataPoint> PointsDysKwan = new List<OxyPlot.DataPoint>();
         [NonSerialized]
         public IList<OxyPlot.DataPoint> Filtr = new List<OxyPlot.DataPoint>();
+        [NonSerialized]
+        public IList<OxyPlot.DataPoint> SygFiltrowany = new List<OxyPlot.DataPoint>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
         public double _Skuteczna { get; set; }
@@ -559,6 +561,21 @@ namespace CPS
             if (okno == "Okno Blackmana") OBlackman();
             if (typFiltru == "Filtr środkowoprzepustowy") FiltrSrodkowo();
             if (typFiltru == "Filtr górnoprzepustowy") FiltrGorno();
+
+            int M = Filtr.Count();
+            int N = Points.Count();
+            for (int i = 0; i <= M + N - 1; i++)
+            {
+                double splot = 0;
+                for (int j = 0; j <= M - 1; j++)
+                {
+                    if ((i - j) < 0) break;
+                    if ((i - j) < N)
+                        splot += Filtr.ElementAt(j).Y * Points.ElementAt(i - j).Y;
+                }
+
+                SygFiltrowany.Add(new DataPoint(i, splot));
+            }
         }
 
         public LineChartViewModel MakeChart(string title, string okno, string typFiltru)
@@ -571,6 +588,7 @@ namespace CPS
             vm.PointsOdt = PointsOdt;
             vm.PointsDysKwan = PointsDysKwan;
             vm.Filtr = Filtr;
+            vm.SygFiltrowany = SygFiltrowany;
             vm.TitleFiltr = "Filtr + " + okno + " + " + typFiltru;
             vm._A = _A;
             vm._t1 = _t1;
