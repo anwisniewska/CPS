@@ -69,7 +69,7 @@ namespace CPS
                 s.CalculateErrors();
                 s.CalculateInfoDys();
                 s.CalculateErrorsDys();
-                lc.DataContext = s.MakeChart(nazwa);
+                lc.DataContext = s.MakeChart(nazwa, okienko.Text, typFiltru.Text);
                 lc.Show();
             }
         }
@@ -114,7 +114,7 @@ namespace CPS
                     wynik.CalculateErrors();
                     wynik.CalculateInfoDys();
                     wynik.CalculateErrorsDys();
-                    lc.DataContext = wynik.MakeChart("Splot");
+                    lc.DataContext = wynik.MakeChart("Splot", okienko.Text, typFiltru.Text);
                     lc.Show();
                     if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
                     {
@@ -132,7 +132,7 @@ namespace CPS
                     wynik.CalculateErrors();
                     wynik.CalculateInfoDys();
                     wynik.CalculateErrorsDys();
-                    lc.DataContext = wynik.MakeChart("Korelacja bezpośrednia");
+                    lc.DataContext = wynik.MakeChart("Korelacja bezpośrednia", okienko.Text, typFiltru.Text);
                     lc.Show();
                     if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
                     {
@@ -150,7 +150,7 @@ namespace CPS
                     wynik.CalculateErrors();
                     wynik.CalculateInfoDys();
                     wynik.CalculateErrorsDys();
-                    lc.DataContext = wynik.MakeChart("Korelacja z użyciem splotu");
+                    lc.DataContext = wynik.MakeChart("Korelacja z użyciem splotu", okienko.Text, typFiltru.Text);
                     lc.Show();
                     if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
                     {
@@ -176,7 +176,7 @@ namespace CPS
                         wynik.CalculateErrors();
                         wynik.CalculateInfoDys();
                         wynik.CalculateErrorsDys();
-                        lc.DataContext = wynik.MakeChart("Sygnał po dodawaniu");
+                        lc.DataContext = wynik.MakeChart("Sygnał po dodawaniu", okienko.Text, typFiltru.Text);
                         lc.Show();
                         if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
                         {
@@ -193,7 +193,7 @@ namespace CPS
                         wynik.CalculateErrors();
                         wynik.CalculateInfoDys();
                         wynik.CalculateErrorsDys();
-                        lc.DataContext = wynik.MakeChart("Sygnał po odejmowaniu");
+                        lc.DataContext = wynik.MakeChart("Sygnał po odejmowaniu", okienko.Text, typFiltru.Text);
                         lc.Show();
                         if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
                         {
@@ -210,7 +210,7 @@ namespace CPS
                         wynik.CalculateErrors();
                         wynik.CalculateInfoDys();
                         wynik.CalculateErrorsDys();
-                        lc.DataContext = wynik.MakeChart("Sygnał po mnożeniu");
+                        lc.DataContext = wynik.MakeChart("Sygnał po mnożeniu", okienko.Text, typFiltru.Text);
                         lc.Show();
                         if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
                         {
@@ -227,7 +227,7 @@ namespace CPS
                         wynik.CalculateErrors();
                         wynik.CalculateInfoDys();
                         wynik.CalculateErrorsDys();
-                        lc.DataContext = wynik.MakeChart("Sygnał po dzieleniu");
+                        lc.DataContext = wynik.MakeChart("Sygnał po dzieleniu", okienko.Text, typFiltru.Text);
                         lc.Show();
                         if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)
                         {
@@ -272,7 +272,7 @@ namespace CPS
                 sc.CalculateErrors();
                 sc.CalculateInfoDys();
                 sc.CalculateErrorsDys();
-                lc.DataContext = sc.MakeChart(signal.Text);
+                lc.DataContext = sc.MakeChart(signal.Text, okienko.Text, typFiltru.Text);
                 lc.Show();
 
                 if (checkboxzapisz.IsChecked.GetValueOrDefault() == true)

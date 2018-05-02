@@ -484,11 +484,86 @@ namespace CPS
 
         public void StworzFiltr()
         {
-
+            for(int n = 0; n <= _M - 1; n++)
+            {
+                double cos = 0;
+                if (n == (_M - 1) / 2)
+                    cos = 2 / _K;
+                else
+                {
+                    double gora = Math.Sin( ( 2 * Math.PI * ( n - ( _M - 1 ) / 2 ) / _K ));
+                    double dol = Math.PI * ( n - ( _M - 1 ) / 2 );
+                    cos = gora / dol;
+                }
+                Filtr.Add(new DataPoint(n, cos));
+            }
         }
 
-        public LineChartViewModel MakeChart(string title)
+        public void OHamming()
         {
+            IList<OxyPlot.DataPoint> nowyFiltr = new List<OxyPlot.DataPoint>();
+            for (int n = 0; n <= _M - 1; n++)
+            {
+                double cos = 0.53836 - (0.46164 * Math.Cos( (2*Math.PI*n) / _M ));
+                nowyFiltr.Add(new DataPoint(n, Filtr.ElementAt(n).Y*cos));
+            }
+            Filtr = nowyFiltr;
+        }
+        public void OHanning()
+        {
+            IList<OxyPlot.DataPoint> nowyFiltr = new List<OxyPlot.DataPoint>();
+            for (int n = 0; n <= _M - 1; n++)
+            {
+                double cos = 0.5 - (0.5 * Math.Cos((2 * Math.PI * n) / _M));
+                nowyFiltr.Add(new DataPoint(n, Filtr.ElementAt(n).Y * cos));
+            }
+            Filtr = nowyFiltr;
+        }
+        public void OBlackman()
+        {
+            IList<OxyPlot.DataPoint> nowyFiltr = new List<OxyPlot.DataPoint>();
+            for (int n = 0; n <= _M - 1; n++)
+            {
+                double cos = 0.42 - (0.5 * Math.Cos((2 * Math.PI * n) / _M)) + (0.8 * Math.Cos((4 * Math.PI * n) / _M));
+                nowyFiltr.Add(new DataPoint(n, Filtr.ElementAt(n).Y * cos));
+            }
+            Filtr = nowyFiltr;
+        }
+
+        public void FiltrSrodkowo()
+        {
+            IList<OxyPlot.DataPoint> nowyFiltr = new List<OxyPlot.DataPoint>();
+            for (int n = 0; n <= _M - 1; n++)
+            {
+                double cos = 2*Math.Sin((Math.PI*n)/2);
+                nowyFiltr.Add(new DataPoint(n, Filtr.ElementAt(n).Y * cos));
+            }
+            Filtr = nowyFiltr;
+        }
+        public void FiltrGorno()
+        {
+            IList<OxyPlot.DataPoint> nowyFiltr = new List<OxyPlot.DataPoint>();
+            for (int n = 0; n <= _M - 1; n++)
+            {
+                double cos = Math.Pow((-1), n);
+                nowyFiltr.Add(new DataPoint(n, Filtr.ElementAt(n).Y * cos));
+            }
+            Filtr = nowyFiltr;
+        }
+
+        public void Filtracja(string okno, string typFiltru)
+        {
+            StworzFiltr();
+            if (okno == "Okno Hamminga") OHamming();
+            if (okno == "Okno Hanninga") OHanning();
+            if (okno == "Okno Blackmana") OBlackman();
+            if (typFiltru == "Filtr środkowoprzepustowy") FiltrSrodkowo();
+            if (typFiltru == "Filtr górnoprzepustowy") FiltrGorno();
+        }
+
+        public LineChartViewModel MakeChart(string title, string okno, string typFiltru)
+        {
+            Filtracja(okno, typFiltru);
             LineChartViewModel vm = new LineChartViewModel();
             vm.Title = title;
             vm.Points = Points;
@@ -496,6 +571,7 @@ namespace CPS
             vm.PointsOdt = PointsOdt;
             vm.PointsDysKwan = PointsDysKwan;
             vm.Filtr = Filtr;
+            vm.TitleFiltr = "Filtr + " + okno + " + " + typFiltru;
             vm._A = _A;
             vm._t1 = _t1;
             vm._T = _T;
