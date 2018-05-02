@@ -53,5 +53,6 @@ namespace CPS
         public IList<OxyPlot.DataPoint> PointsDys { get; set; }
         public IList<OxyPlot.DataPoint> PointsOdt { get; set; }
         public IList<OxyPlot.DataPoint> PointsDysKwan { get; set; }
+        public IList<OxyPlot.DataPoint> Filtr { get; set; }
     }
 }

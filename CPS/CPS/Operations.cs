@@ -9,7 +9,7 @@ namespace CPS
 {
     static class Operations
     {
-        public static SygnalCiagly Add(SygnalCiagly x, SygnalCiagly y)
+        public static SygnalCiagly Add(SygnalCiagly x, SygnalCiagly y, int N, int K, int M)
         {
             ICollection<Point> newPoints = new Collection<Point>();
             for(int i = 0; i<x.TimeAndAmplitude.Count(); i++)
@@ -21,7 +21,7 @@ namespace CPS
             {
                 newPoints2.Add(new Point(x.TimeAndAmplitudeDys.ElementAt(i).X, x.TimeAndAmplitudeDys.ElementAt(i).Y + y.TimeAndAmplitudeDys.ElementAt(i).Y));
             }
-            SygnalCiagly wynik = new SygnalCiagly(0,0,0,0,0,0,0,0);
+            SygnalCiagly wynik = new SygnalCiagly(0,0,0,0,0,0,0,0, N, K, M);
             wynik.TimeAndAmplitude = newPoints;
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;
@@ -30,7 +30,7 @@ namespace CPS
             return wynik;
         }
 
-        public static SygnalCiagly Subtract(SygnalCiagly x, SygnalCiagly y)
+        public static SygnalCiagly Subtract(SygnalCiagly x, SygnalCiagly y, int N, int K, int M)
         {
             ICollection<Point> newPoints = new Collection<Point>();
             for (int i = 0; i < x.TimeAndAmplitude.Count(); i++)
@@ -42,7 +42,7 @@ namespace CPS
             {
                 newPoints2.Add(new Point(x.TimeAndAmplitudeDys.ElementAt(i).X, x.TimeAndAmplitudeDys.ElementAt(i).Y - y.TimeAndAmplitudeDys.ElementAt(i).Y));
             }
-            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
+            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0, N, K, M);
             wynik.TimeAndAmplitude = newPoints;
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;
@@ -51,7 +51,7 @@ namespace CPS
             return wynik;
         }
 
-        public static SygnalCiagly Muliply(SygnalCiagly x, SygnalCiagly y)
+        public static SygnalCiagly Muliply(SygnalCiagly x, SygnalCiagly y, int N, int K, int M)
         {
             ICollection<Point> newPoints = new Collection<Point>();
             for (int i = 0; i < x.TimeAndAmplitude.Count(); i++)
@@ -63,7 +63,7 @@ namespace CPS
             {
                 newPoints2.Add(new Point(x.TimeAndAmplitudeDys.ElementAt(i).X, x.TimeAndAmplitudeDys.ElementAt(i).Y * y.TimeAndAmplitudeDys.ElementAt(i).Y));
             }
-            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
+            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0, N, K, M);
             wynik.TimeAndAmplitude = newPoints;
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;
@@ -72,7 +72,7 @@ namespace CPS
             return wynik;
         }
 
-        public static SygnalCiagly Divide(SygnalCiagly x, SygnalCiagly y)
+        public static SygnalCiagly Divide(SygnalCiagly x, SygnalCiagly y, int N, int K, int M)
         {
             ICollection<Point> newPoints = new Collection<Point>();
             for (int i = 0; i < x.TimeAndAmplitude.Count(); i++)
@@ -90,7 +90,7 @@ namespace CPS
                 else iloraz = x.TimeAndAmplitudeDys.ElementAt(i).Y / y.TimeAndAmplitudeDys.ElementAt(i).Y;
                 newPoints2.Add(new Point(x.TimeAndAmplitudeDys.ElementAt(i).X, iloraz));
             }
-            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
+            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0, N, K, M);
             wynik.TimeAndAmplitude = newPoints;
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;
@@ -99,7 +99,7 @@ namespace CPS
             return wynik;
         }
 
-        public static SygnalCiagly Splot(SygnalCiagly x, SygnalCiagly y)
+        public static SygnalCiagly Splot(SygnalCiagly x, SygnalCiagly y, int Nf, int K, int Mf)
         {
             ICollection<Point> newPoints = new Collection<Point>();
             int M = x.TimeAndAmplitude.Count();
@@ -135,7 +135,7 @@ namespace CPS
             }
 
 
-            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
+            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0, Nf, K, Mf);
             wynik.TimeAndAmplitude = newPoints;
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;
@@ -144,7 +144,7 @@ namespace CPS
             return wynik;
         }
 
-        public static SygnalCiagly KorelacjaBezpo(SygnalCiagly x, SygnalCiagly y)
+        public static SygnalCiagly KorelacjaBezpo(SygnalCiagly x, SygnalCiagly y, int Nf, int K, int Mf)
         {
             ICollection<Point> newPoints = new Collection<Point>();
             int M = x.TimeAndAmplitude.Count();
@@ -180,7 +180,7 @@ namespace CPS
             }
 
 
-            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
+            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0, Nf, K, Mf);
             wynik.TimeAndAmplitude = newPoints;
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;
@@ -189,7 +189,7 @@ namespace CPS
             return wynik;
         }
 
-        public static SygnalCiagly KorelacjaZUzSplotu(SygnalCiagly x, SygnalCiagly y)
+        public static SygnalCiagly KorelacjaZUzSplotu(SygnalCiagly x, SygnalCiagly y, int Nf, int K, int Mf)
         {
             ICollection<Point> newPoints = new Collection<Point>();
             int M = x.TimeAndAmplitude.Count();
@@ -235,7 +235,7 @@ namespace CPS
             }
 
 
-            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0);
+            SygnalCiagly wynik = new SygnalCiagly(0, 0, 0, 0, 0, 0, 0, 0, Nf, K, Mf);
             wynik.TimeAndAmplitude = newPoints;
             wynik.FromTimeAndAmplitudeToPoints();
             wynik.TimeAndAmplitudeDys = newPoints2;

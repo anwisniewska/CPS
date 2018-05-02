@@ -32,6 +32,8 @@ namespace CPS
         public IList<OxyPlot.DataPoint> PointsOdt = new List<OxyPlot.DataPoint>();
         [NonSerialized]
         public IList<OxyPlot.DataPoint> PointsDysKwan = new List<OxyPlot.DataPoint>();
+        [NonSerialized]
+        public IList<OxyPlot.DataPoint> Filtr = new List<OxyPlot.DataPoint>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
         public double _Skuteczna { get; set; }
@@ -50,9 +52,12 @@ namespace CPS
         public double _SNRDys { get; set; }
         public double _PSNRDys { get; set; }
         public double _MDDys { get; set; }
+        public double _M { get; set; }
+        public double _K { get; set; }
+        public double _N { get; set; }
 
 
-        public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns, int his)
+        public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns, int his, int N, int K, int M)
         {
             this._A = A;
             this._t1 = t1;
@@ -62,6 +67,9 @@ namespace CPS
             this._f = f;
             this._ns = ns;
             this._his = his;
+            this._M = M;
+            this._K = K;
+            this._N = N;
 
             // co by okres sie dziwnie nie konczyl
             if (_T != 0)
@@ -474,6 +482,11 @@ namespace CPS
             _MDDys = roznicaMd;
         }
 
+        public void StworzFiltr()
+        {
+
+        }
+
         public LineChartViewModel MakeChart(string title)
         {
             LineChartViewModel vm = new LineChartViewModel();
@@ -482,6 +495,7 @@ namespace CPS
             vm.PointsDys = PointsDys;
             vm.PointsOdt = PointsOdt;
             vm.PointsDysKwan = PointsDysKwan;
+            vm.Filtr = Filtr;
             vm._A = _A;
             vm._t1 = _t1;
             vm._T = _T;
