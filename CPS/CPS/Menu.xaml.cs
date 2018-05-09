@@ -34,6 +34,7 @@ namespace CPS
         public int _M { get; set; }
         public int _N { get; set; }
         public int _K { get; set; }
+        public int _Opoznienie { get; set; }
         private SygnalCiagly _sygX = null;
         private SygnalCiagly _sygY = null;
 
@@ -109,7 +110,7 @@ namespace CPS
             {
                 if (operation.Text == "splot")
                 {
-                    SygnalCiagly wynik = Operations.Splot(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M));
+                    SygnalCiagly wynik = Operations.Splot(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M), Convert.ToInt32(_Opoznienie));
                     LineChart lc = new LineChart();
                     wynik.CalculateInfo();
                     KwantyzacjaWybor(wynik);
@@ -127,7 +128,7 @@ namespace CPS
                 }
                 if (operation.Text == "korelacja bezpośrednia")
                 {
-                    SygnalCiagly wynik = Operations.KorelacjaBezpo(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M));
+                    SygnalCiagly wynik = Operations.KorelacjaBezpo(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M), Convert.ToInt32(_Opoznienie));
                     LineChart lc = new LineChart();
                     wynik.CalculateInfo();
                     KwantyzacjaWybor(wynik);
@@ -145,7 +146,7 @@ namespace CPS
                 }
                 if (operation.Text == "korelacja z użyciem splotu")
                 {
-                    SygnalCiagly wynik = Operations.KorelacjaZUzSplotu(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M));
+                    SygnalCiagly wynik = Operations.KorelacjaZUzSplotu(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M), Convert.ToInt32(_Opoznienie));
                     LineChart lc = new LineChart();
                     wynik.CalculateInfo();
                     KwantyzacjaWybor(wynik);
@@ -171,7 +172,7 @@ namespace CPS
                 {
                     if (operation.Text == "+")
                     {
-                        SygnalCiagly wynik = Operations.Add(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M));
+                        SygnalCiagly wynik = Operations.Add(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M), Convert.ToInt32(_Opoznienie));
                         LineChart lc = new LineChart();
                         wynik.CalculateInfo();
                         KwantyzacjaWybor(wynik);
@@ -188,7 +189,7 @@ namespace CPS
                     }
                     if (operation.Text == "-")
                     {
-                        SygnalCiagly wynik = Operations.Subtract(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M));
+                        SygnalCiagly wynik = Operations.Subtract(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M), Convert.ToInt32(_Opoznienie));
                         LineChart lc = new LineChart();
                         wynik.CalculateInfo();
                         KwantyzacjaWybor(wynik);
@@ -205,7 +206,7 @@ namespace CPS
                     }
                     if (operation.Text == "*")
                     {
-                        SygnalCiagly wynik = Operations.Muliply(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M));
+                        SygnalCiagly wynik = Operations.Muliply(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M), Convert.ToInt32(_Opoznienie));
                         LineChart lc = new LineChart();
                         wynik.CalculateInfo();
                         KwantyzacjaWybor(wynik);
@@ -222,7 +223,7 @@ namespace CPS
                     }
                     if (operation.Text == "/")
                     {
-                        SygnalCiagly wynik = Operations.Divide(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M));
+                        SygnalCiagly wynik = Operations.Divide(_sygX, _sygY, Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M), Convert.ToInt32(_Opoznienie));
                         LineChart lc = new LineChart();
                         wynik.CalculateInfo();
                         KwantyzacjaWybor(wynik);
@@ -249,7 +250,7 @@ namespace CPS
             if (signal.Text == "Szum impulsowy" || signal.Text == "Impuls jednostkowy")
                 sd = new SygnalDyskretny(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_ns), Convert.ToDouble(_f), Convert.ToDouble(_p), Convert.ToInt32(_his));
             else
-                sc = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his), Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M));
+                sc = new SygnalCiagly(Convert.ToDouble(_A), Convert.ToDouble(_t1), Convert.ToDouble(_d), Convert.ToDouble(_T), Convert.ToDouble(_kw), Convert.ToDouble(_f), Convert.ToDouble(_ns), Convert.ToInt32(_his), Convert.ToInt32(_N), Convert.ToInt32(_K), Convert.ToInt32(_M), Convert.ToInt32(_Opoznienie));
 
             LineChart lc = new LineChart();
             PointChart pc = new PointChart();

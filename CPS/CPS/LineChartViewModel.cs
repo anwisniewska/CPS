@@ -41,6 +41,7 @@ namespace CPS
         public double _PSNRDys { get; set; }
         public double _MDDys { get; set; }
 
+        public double _Opoznienie { get; set; }
 
         public LineChartViewModel()
         {

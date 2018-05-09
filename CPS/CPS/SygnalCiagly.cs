@@ -57,9 +57,10 @@ namespace CPS
         public double _M { get; set; }
         public double _K { get; set; }
         public double _N { get; set; }
+        public double _Opoznienie { get; set; }
 
 
-        public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns, int his, int N, int K, int M)
+        public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns, int his, int N, int K, int M, int op)
         {
             this._A = A;
             this._t1 = t1;
@@ -72,6 +73,7 @@ namespace CPS
             this._M = M;
             this._K = K;
             this._N = N;
+            this._Opoznienie = op;
 
             // co by okres sie dziwnie nie konczyl
             if (_T != 0)

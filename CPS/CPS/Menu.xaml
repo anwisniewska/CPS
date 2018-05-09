@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="Menu" Height="653.89" Width="447.2">
+        Title="Menu" Height="731.49" Width="447.2">
     <Grid Margin="0,0,-0.2,0.4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -87,5 +87,8 @@
             <ComboBoxItem>Filtr środkowoprzepustowy</ComboBoxItem>
             <ComboBoxItem>Filtr górnoprzepustowy</ComboBoxItem>
         </ComboBox>
+        <TextBlock HorizontalAlignment="Left" Margin="10,622,0,0" TextWrapping="Wrap" Text="Radar" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding _Opoznienie}" HorizontalAlignment="Left" Height="23" Margin="10,644,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="138,651,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="opó"/><Run Text="źnienie (w próbkach)"/></TextBlock>
     </Grid>
 </Window>
