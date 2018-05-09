@@ -174,67 +174,137 @@ namespace CPS
 
         public void SygnalProstokatny()
         {
-            int ktory = 1;
-            double wypelnienie = _T * _kw;
-            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
-                double koniecOkresu = _t1 + (ktory * _T);
-                if (i < koniecOkresu - (_T - wypelnienie))
+                int ktory = 1;
+                double wypelnienie = _T * _kw;
+                for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
                 {
-                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                    double koniecOkresu = _t1 + (ktory * _T);
+                    if (i < koniecOkresu - (_T - wypelnienie))
+                    {
+                        Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                    }
+                    if (i >= koniecOkresu - (_T - wypelnienie))
+                    {
+                        Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
+                    }
+                    if (i >= koniecOkresu)
+                        ktory++;
                 }
-                if (i >= koniecOkresu - (_T - wypelnienie))
+            }
+
+            if(_Opoznienie>0)
+            {
+                int ktory = 1;
+                double wypelnienie = _T * _kw;
+                for (double i = _t1 + _Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
                 {
-                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
+                    double koniecOkresu = _t1 + (ktory * _T);
+                    if (i < koniecOkresu - (_T - wypelnienie))
+                    {
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(_A, 2)));
+                    }
+                    if (i >= koniecOkresu - (_T - wypelnienie))
+                    {
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(0.0, 2)));
+                    }
+                    if (i >= koniecOkresu)
+                        ktory++;
                 }
-                if (i >= koniecOkresu)
-                    ktory++;
             }
 
         }
 
         public void SygnalProstokatnySymetryczny()
         {
-            int ktory = 1;
-            double wypelnienie = _T * _kw;
-            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
-                double koniecOkresu = _t1 + (ktory * _T);
-                if (i < koniecOkresu - (_T - wypelnienie))
+                int ktory = 1;
+                double wypelnienie = _T * _kw;
+                for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
                 {
-                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                    double koniecOkresu = _t1 + (ktory * _T);
+                    if (i < koniecOkresu - (_T - wypelnienie))
+                    {
+                        Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
+                    }
+                    if (i >= koniecOkresu - (_T - wypelnienie))
+                    {
+                        Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(-_A, 2)));
+                    }
+                    if (i >= koniecOkresu)
+                        ktory++;
                 }
-                if (i >= koniecOkresu - (_T - wypelnienie))
+            }
+            if (_Opoznienie > 0)
+            {
+                int ktory = 1;
+                double wypelnienie = _T * _kw;
+                for (double i = _t1 + _Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
                 {
-                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(-_A, 2)));
+                    double koniecOkresu = _t1 + (ktory * _T);
+                    if (i < koniecOkresu - (_T - wypelnienie))
+                    {
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(_A, 2)));
+                    }
+                    if (i >= koniecOkresu - (_T - wypelnienie))
+                    {
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(-_A, 2)));
+                    }
+                    if (i >= koniecOkresu)
+                        ktory++;
                 }
-                if (i >= koniecOkresu)
-                    ktory++;
             }
         }
 
         public void SygnalTrojkatny()
         {
-            int ktory = 1;
-            double wypelnienie = _T * _kw;
-            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
-                double poczatekOkresu = _t1 + ((ktory-1) * _T);
-                double koniecOkresu = _t1 + (ktory * _T);
-                double szczyt = koniecOkresu - (_T - wypelnienie);
-                if (i < szczyt) // zbocze rosnace
+                int ktory = 1;
+                double wypelnienie = _T * _kw;
+                for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
                 {
-                    double wartosc = (((_A) / (szczyt - poczatekOkresu)) * i) + ((-_A * poczatekOkresu) / (szczyt - poczatekOkresu));
-                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(wartosc, 2)));
+                    double poczatekOkresu = _t1 + ((ktory - 1) * _T);
+                    double koniecOkresu = _t1 + (ktory * _T);
+                    double szczyt = koniecOkresu - (_T - wypelnienie);
+                    if (i < szczyt) // zbocze rosnace
+                    {
+                        double wartosc = (((_A) / (szczyt - poczatekOkresu)) * i) + ((-_A * poczatekOkresu) / (szczyt - poczatekOkresu));
+                        Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(wartosc, 2)));
+                    }
+                    if (i >= szczyt) // zbocze malejace
+                    {
+                        double wartosc = (((-_A) / (koniecOkresu - szczyt)) * i) + ((_A * koniecOkresu) / (koniecOkresu - szczyt));
+                        Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(wartosc, 2)));
+                    }
+                    if (i >= koniecOkresu)
+                        ktory++;
                 }
-                if (i >= szczyt) // zbocze malejace
-                {
-                    double wartosc = (((-_A) / (koniecOkresu - szczyt)) * i) + ((_A * koniecOkresu) / (koniecOkresu - szczyt));
-                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(wartosc, 2)));
-                }
-                if (i >= koniecOkresu)
-                    ktory++;
             }
+            if(_Opoznienie>0)
+            {
+                int ktory = 1;
+                double wypelnienie = _T * _kw;
+                for (double i = _t1 + _Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
+                {
+                    double poczatekOkresu = _t1 + ((ktory - 1) * _T);
+                    double koniecOkresu = _t1 + (ktory * _T);
+                    double szczyt = koniecOkresu - (_T - wypelnienie);
+                    if (i < szczyt) // zbocze rosnace
+                    {
+                        double wartosc = (((_A) / (szczyt - poczatekOkresu)) * i) + ((-_A * poczatekOkresu) / (szczyt - poczatekOkresu));
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(wartosc, 2)));
+                    }
+                    if (i >= szczyt) // zbocze malejace
+                    {
+                        double wartosc = (((-_A) / (koniecOkresu - szczyt)) * i) + ((_A * koniecOkresu) / (koniecOkresu - szczyt));
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(wartosc, 2)));
+                    }
+                    if (i >= koniecOkresu)
+                        ktory++;
+                }
+
+            }
+
         }
 
         public void CalculateInfo()
