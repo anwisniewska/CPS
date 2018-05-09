@@ -36,6 +36,10 @@ namespace CPS
         public IList<OxyPlot.DataPoint> Filtr = new List<OxyPlot.DataPoint>();
         [NonSerialized]
         public IList<OxyPlot.DataPoint> SygFiltrowany = new List<OxyPlot.DataPoint>();
+        [NonSerialized]
+        public IList<OxyPlot.DataPoint> Opozniony = new List<OxyPlot.DataPoint>();
+        [NonSerialized]
+        public IList<OxyPlot.DataPoint> Radar = new List<OxyPlot.DataPoint>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
         public double _Skuteczna { get; set; }
@@ -114,6 +118,13 @@ namespace CPS
             {
                 Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Sin(((2 * Math.PI) / _T) * (i - _t1)), 2)));
             }
+            if(_Opoznienie > 0)
+            {
+                for (double i = _t1+_Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
+                {
+                    Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(_A * Math.Sin(((2 * Math.PI) / _T) * (i - _t1)), 2)));
+                }
+            }
         }
 
         public void SygnalSinusoidalnyWyprostowanyJednopolowkowo()
@@ -122,6 +133,14 @@ namespace CPS
             {
                 Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.5* _A * (Math.Sin(((2 * Math.PI) / _T) * (i - _t1)) + Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1)))), 2)));
             }
+
+            if (_Opoznienie > 0)
+            {
+                for (double i = _t1 + _Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
+                {
+                    Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(0.5 * _A * (Math.Sin(((2 * Math.PI) / _T) * (i - _t1)) + Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1)))), 2)));
+                }
+            }
         }
 
         public void SygnalSinusoidalnyWyprostowanyDwupolowkowo()
@@ -129,6 +148,14 @@ namespace CPS
             for (double i = _t1; i <= _t1 + _d; i += 1/ (_f * 10))
             {
                 Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1))), 2)));
+            }
+
+            if (_Opoznienie > 0)
+            {
+                for (double i = _t1 + _Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
+                {
+                    Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(_A * Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1))), 2)));
+                }
             }
         }
 
@@ -160,9 +187,10 @@ namespace CPS
                 {
                     Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
                 }
-                if (i == koniecOkresu)
+                if (i >= koniecOkresu)
                     ktory++;
             }
+
         }
 
         public void SygnalProstokatnySymetryczny()
@@ -593,6 +621,8 @@ namespace CPS
             vm.PointsDysKwan = PointsDysKwan;
             vm.Filtr = Filtr;
             vm.SygFiltrowany = SygFiltrowany;
+            vm.Opozniony = Opozniony;
+            vm.Radar = Radar;
             vm.TitleFiltr = "Filtr + " + okno + " + " + typFiltru;
             vm._A = _A;
             vm._t1 = _t1;

@@ -143,10 +143,10 @@
                         <oxy:LineSeries ItemsSource="{Binding Points}" Color="Black" />
                     </oxy:Plot>
                     <oxy:Plot Margin="0,137,178.6,132.2" Grid.ColumnSpan="2">
-                        <oxy:LineSeries ItemsSource="{Binding Points}" Color="Black" />
+                        <oxy:LineSeries ItemsSource="{Binding Opozniony}" Color="Black" />
                     </oxy:Plot>
                     <oxy:Plot Margin="0,264,178.6,5.2" Grid.ColumnSpan="2">
-                        <oxy:LineSeries ItemsSource="{Binding Points}" Color="Black" />
+                        <oxy:LineSeries ItemsSource="{Binding Radar}" Color="Black" />
                     </oxy:Plot>
                 </Grid>
             </TabItem>

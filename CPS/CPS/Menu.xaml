@@ -26,7 +26,7 @@
         <TextBox Name="nswart" Text="{Binding _ns}" HorizontalAlignment="Left" Height="23" Margin="10,254,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox Text="{Binding _f}" HorizontalAlignment="Left" Height="23" Margin="10,121,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBlock Name="nsnazwa" HorizontalAlignment="Left" Margin="135,261,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="210"><Run Text="N"/><Run Text="umer próbki ze skokiem"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="135,128,0,0" TextWrapping="Wrap" Text="Częstotliwość próbkowania" VerticalAlignment="Top" RenderTransformOrigin="0.274,-3.75" Height="16" Width="144"/>
+        <TextBlock HorizontalAlignment="Left" Margin="135,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.274,-3.75" Height="16" Width="290" Text="Częstotliwość próbkowania"/>
         <TextBlock Name="pnazwa" HorizontalAlignment="Left" Margin="135,289,0,0" TextWrapping="Wrap" Text="Prawdopodobieństwo" VerticalAlignment="Top" RenderTransformOrigin="-0.613,-1.375" Height="16" Width="116"/>
         <TextBox Name="pwart" Text="{Binding _p}" HorizontalAlignment="Left" Height="23" Margin="10,282,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox Text="{Binding _his}" HorizontalAlignment="Left" Height="23" Margin="10,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
