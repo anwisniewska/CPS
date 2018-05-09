@@ -486,7 +486,8 @@ namespace CPS
 
         public void StworzFiltr()
         {
-            for(int n = 0; n <= _M - 1; n++)
+            Filtr = new List<OxyPlot.DataPoint>();
+            for (int n = 0; n <= _M - 1; n++)
             {
                 double cos = 0;
                 if (n == (_M - 1) / 2)
@@ -562,6 +563,7 @@ namespace CPS
             if (typFiltru == "Filtr środkowoprzepustowy") FiltrSrodkowo();
             if (typFiltru == "Filtr górnoprzepustowy") FiltrGorno();
 
+            SygFiltrowany = new List<OxyPlot.DataPoint>();
             int M = Filtr.Count();
             int N = Points.Count();
             for (int i = 0; i <= M + N - 1; i++)

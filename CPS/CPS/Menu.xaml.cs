@@ -69,6 +69,9 @@ namespace CPS
                 s.CalculateErrors();
                 s.CalculateInfoDys();
                 s.CalculateErrorsDys();
+                s._M = Convert.ToInt32(_M);
+                s._N = Convert.ToInt32(_N);
+                s._K = Convert.ToInt32(_K);
                 lc.DataContext = s.MakeChart(nazwa, okienko.Text, typFiltru.Text);
                 lc.Show();
             }
