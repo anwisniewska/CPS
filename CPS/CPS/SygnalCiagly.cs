@@ -682,6 +682,7 @@ namespace CPS
 
         public void Radaruj()
         {
+            //korelacja
             int M = Opozniony.Count();
             int N = Points.Count();
             for (int i = (M - 1) * (-1); i <= N - 1; i++)
@@ -695,6 +696,28 @@ namespace CPS
                 }
 
                 Radar.Add(new DataPoint(i, korelacja));
+            }
+
+            //szukanie probki maksymalnej
+            double x = 0;
+            double y = 0;
+            double ktora = 0;
+            foreach(var point in Radar)
+            {
+                if(point.X == 0)
+                {
+                    x = Radar.ElementAt(0).X;
+                    y = Radar.ElementAt(0).Y;
+                }
+                if(point.X > 0)
+                {
+                    if (point.Y > y)
+                    {
+                        x = point.X;
+                        y = point.Y;
+                    }
+                }
+                ktora++;
             }
         }
 
