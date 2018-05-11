@@ -42,6 +42,8 @@ namespace CPS
         public double _MDDys { get; set; }
 
         public double _Opoznienie { get; set; }
+        public double _Odleglosc { get; set; }
+        public double _CzasOpoznienia { get; set; }
 
         public LineChartViewModel()
         {

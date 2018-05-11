@@ -148,6 +148,12 @@
                     <oxy:Plot Margin="0,264,178.6,5.2" Grid.ColumnSpan="2">
                         <oxy:LineSeries ItemsSource="{Binding Radar}" Color="Black" />
                     </oxy:Plot>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="765.8,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="opóźnien"/><Run Text="ie"/><LineBreak/><Run Text="w próbkach"/></TextBlock>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="765.8,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="odległość [m]"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="765.8,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="czas "/><LineBreak/><Run Text="opóźnienia [s]"/></TextBlock>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="885.8,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding _Opoznienie}"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="885.8,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding _CzasOpoznienia}"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="833.8,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding _Odleglosc}"/>
                 </Grid>
             </TabItem>
         </TabControl>

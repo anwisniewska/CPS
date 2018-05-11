@@ -62,6 +62,8 @@ namespace CPS
         public double _K { get; set; }
         public double _N { get; set; }
         public double _Opoznienie { get; set; }
+        public double _Odleglosc { get; set; }
+        public double _CzasOpoznienia { get; set; }
 
 
         public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns, int his, int N, int K, int M, int op)
@@ -85,7 +87,10 @@ namespace CPS
                 int calosci = (int)(_d / _T);
                 _d = _T * calosci;
             }
-            
+
+            _Odleglosc = 0;
+            _CzasOpoznienia = 0;
+
         }
       
         public void SzumJednostajny()
@@ -720,10 +725,14 @@ namespace CPS
 
             //delta czasu
             double delta = x * _f * 10; //w hz 
-            double delataCzas = 1 / delta; // w s
+            _CzasOpoznienia = 1 / delta; // w s
 
             //droga w ta i z powrotem
-            double predkoscSwiatla = 299792458; // m/s
+            double predkoscSwiatla = 299792458; // m/s (V)
+            double drogaWDwieStrony = predkoscSwiatla * _CzasOpoznienia; // S = Vt
+
+            //chwilowa odleglosc od czujnika
+            _Odleglosc = drogaWDwieStrony / 2;
         }
 
         public LineChartViewModel MakeChart(string title, string okno, string typFiltru)
@@ -769,6 +778,10 @@ namespace CPS
             vm._SNRDys = Math.Round(_SNRDys, 2);
             vm._PSNRDys = Math.Round(_PSNRDys, 2);
             vm._MDDys = Math.Round(_MDDys, 2);
+
+            vm._Odleglosc = _Odleglosc;
+            vm._Opoznienie = _Opoznienie;
+            vm._CzasOpoznienia = _CzasOpoznienia;
             return vm;
         }
 
