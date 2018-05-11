@@ -680,9 +680,28 @@ namespace CPS
             }
         }
 
+        public void Radaruj()
+        {
+            int M = Opozniony.Count();
+            int N = Points.Count();
+            for (int i = (M - 1) * (-1); i <= N - 1; i++)
+            {
+                double korelacja = 0;
+                for (int j = 0; j <= M - 1; j++)
+                {
+                    if ((i + j) >= N) break;
+                    if ((i + j) >= 0)
+                        korelacja += Opozniony.ElementAt(j).Y * Points.ElementAt(i + j).Y;
+                }
+
+                Radar.Add(new DataPoint(i, korelacja));
+            }
+        }
+
         public LineChartViewModel MakeChart(string title, string okno, string typFiltru)
         {
             Filtracja(okno, typFiltru);
+            if (_Opoznienie > 0) Radaruj();
             LineChartViewModel vm = new LineChartViewModel();
             vm.Title = title;
             vm.Points = Points;
