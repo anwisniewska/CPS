@@ -724,8 +724,8 @@ namespace CPS
             }
 
             //delta czasu
-            double delta = x * _f * 10; //w hz 
-            _CzasOpoznienia = 1 / delta; // w s
+            double sekunda = 1 / (_f * 10);
+            _CzasOpoznienia = x * sekunda;
 
             //droga w ta i z powrotem
             double predkoscSwiatla = 299792458; // m/s (V)
