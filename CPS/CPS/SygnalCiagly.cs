@@ -455,7 +455,7 @@ namespace CPS
         public void ZerowyRzad()
         {
             IList<OxyPlot.DataPoint> PointsDysOdtCiag = new List<OxyPlot.DataPoint>();
-            int ile = (Points.Count - 1) / (PointsDys.Count - 1);
+            int ile = (Points.Count) / (PointsDys.Count);
             int iter = 0;
             int ileJuzDodane = 0;
             foreach(var point in Points)
@@ -701,7 +701,6 @@ namespace CPS
             //szukanie probki maksymalnej
             double x = 0;
             double y = 0;
-            double ktora = 0;
             foreach(var point in Radar)
             {
                 if(point.X == 0)
@@ -717,8 +716,14 @@ namespace CPS
                         y = point.Y;
                     }
                 }
-                ktora++;
             }
+
+            //delta czasu
+            double delta = x * _f * 10; //w hz 
+            double delataCzas = 1 / delta; // w s
+
+            //droga w ta i z powrotem
+            double predkoscSwiatla = 299792458; // m/s
         }
 
         public LineChartViewModel MakeChart(string title, string okno, string typFiltru)
