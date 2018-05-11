@@ -125,9 +125,10 @@ namespace CPS
             }
             if(_Opoznienie > 0)
             {
-                for (double i = _t1+_Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
+                double op = _Opoznienie / (_f * 10);
+                for (double i = _t1+ op; i <= _t1 + _d + op; i += 1 / (_f * 10))
                 {
-                    Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(_A * Math.Sin(((2 * Math.PI) / _T) * (i - _t1)), 2)));
+                    Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - op, 2), Math.Round(_A * Math.Sin(((2 * Math.PI) / _T) * (i - _t1)), 2)));
                 }
             }
         }
@@ -141,9 +142,10 @@ namespace CPS
 
             if (_Opoznienie > 0)
             {
-                for (double i = _t1 + _Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
+                double op = _Opoznienie / (_f * 10);
+                for (double i = _t1 + op; i <= _t1 + _d + op; i += 1 / (_f * 10))
                 {
-                    Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(0.5 * _A * (Math.Sin(((2 * Math.PI) / _T) * (i - _t1)) + Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1)))), 2)));
+                    Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - op, 2), Math.Round(0.5 * _A * (Math.Sin(((2 * Math.PI) / _T) * (i - _t1)) + Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1)))), 2)));
                 }
             }
         }
@@ -157,9 +159,10 @@ namespace CPS
 
             if (_Opoznienie > 0)
             {
-                for (double i = _t1 + _Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
+                double op = _Opoznienie / (_f * 10);
+                for (double i = _t1 + op; i <= _t1 + _d + op; i += 1 / (_f * 10))
                 {
-                    Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(_A * Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1))), 2)));
+                    Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - op, 2), Math.Round(_A * Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1))), 2)));
                 }
             }
         }
@@ -200,18 +203,19 @@ namespace CPS
 
             if(_Opoznienie>0)
             {
+                double op = _Opoznienie / (_f * 10);
                 int ktory = 1;
                 double wypelnienie = _T * _kw;
-                for (double i = _t1 + _Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
+                for (double i = _t1 + op; i <= _t1 + _d + op; i += 1 / (_f * 10))
                 {
                     double koniecOkresu = _t1 + (ktory * _T);
                     if (i < koniecOkresu - (_T - wypelnienie))
                     {
-                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(_A, 2)));
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - op, 2), Math.Round(_A, 2)));
                     }
                     if (i >= koniecOkresu - (_T - wypelnienie))
                     {
-                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(0.0, 2)));
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - op, 2), Math.Round(0.0, 2)));
                     }
                     if (i >= koniecOkresu)
                         ktory++;
@@ -242,18 +246,19 @@ namespace CPS
             }
             if (_Opoznienie > 0)
             {
+                double op = _Opoznienie / (_f * 10);
                 int ktory = 1;
                 double wypelnienie = _T * _kw;
-                for (double i = _t1 + _Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
+                for (double i = _t1 + op; i <= _t1 + _d + op; i += 1 / (_f * 10))
                 {
                     double koniecOkresu = _t1 + (ktory * _T);
                     if (i < koniecOkresu - (_T - wypelnienie))
                     {
-                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(_A, 2)));
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - op, 2), Math.Round(_A, 2)));
                     }
                     if (i >= koniecOkresu - (_T - wypelnienie))
                     {
-                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(-_A, 2)));
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - op, 2), Math.Round(-_A, 2)));
                     }
                     if (i >= koniecOkresu)
                         ktory++;
@@ -287,9 +292,10 @@ namespace CPS
             }
             if(_Opoznienie>0)
             {
+                double op = _Opoznienie / (_f * 10);
                 int ktory = 1;
                 double wypelnienie = _T * _kw;
-                for (double i = _t1 + _Opoznienie; i <= _t1 + _d + _Opoznienie; i += 1 / (_f * 10))
+                for (double i = _t1 + op; i <= _t1 + _d + op; i += 1 / (_f * 10))
                 {
                     double poczatekOkresu = _t1 + ((ktory - 1) * _T);
                     double koniecOkresu = _t1 + (ktory * _T);
@@ -297,12 +303,12 @@ namespace CPS
                     if (i < szczyt) // zbocze rosnace
                     {
                         double wartosc = (((_A) / (szczyt - poczatekOkresu)) * i) + ((-_A * poczatekOkresu) / (szczyt - poczatekOkresu));
-                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(wartosc, 2)));
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - op, 2), Math.Round(wartosc, 2)));
                     }
                     if (i >= szczyt) // zbocze malejace
                     {
                         double wartosc = (((-_A) / (koniecOkresu - szczyt)) * i) + ((_A * koniecOkresu) / (koniecOkresu - szczyt));
-                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - _Opoznienie, 2), Math.Round(wartosc, 2)));
+                        Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - op, 2), Math.Round(wartosc, 2)));
                     }
                     if (i >= koniecOkresu)
                         ktory++;
