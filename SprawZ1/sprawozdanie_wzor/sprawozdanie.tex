@@ -12,10 +12,10 @@
 
 \setlength{\textheight}{21cm}
 
-\title{{\bf Zadanie nr 1 - Generacja sygnału i szumu}\linebreak
+\title{{\bf Zadanie nr 3 - Splot, filtracja i korelacja sygnałów}\linebreak
 Cyfrowe Przetwarzanie Sygnałów}
 \author{Aneta Wiśniewska, 204029 \and Hanna Paluszkiewicz, 203962}
-\date{19.03.2018}
+\date{14.05.2018}
 
 \begin{document}
 \clearpage\maketitle
@@ -24,7 +24,7 @@ Cyfrowe Przetwarzanie Sygnałów}
 \setcounter{page}{1}
 \section{Cel zadania}
 
-Celem ćwiczenia jest poznanie wybranych własności podstawowych rodzajów sygnałów. Aby to osiągnąć, trzeba napisać aplikację umożliwiającą generację jedenastu wariantów sygnałów.
+Celem ćwiczenia jest zapoznanie się w praktyce z procesami splotu, filtracji i korelacji sygnałów. Aby to osiągnąć, trzeba napisać aplikację umożliwiającą przetwarzanie analgowo-cyfrowe z uwzględnieniem operacji próbkowania i kwantyzacji oraz konwersji odwrotnej, tj. cyfrowo-analogowej (w naszym przypadku tylko interpolacja i ekstrapolacja).
 
 \section{Wstęp teoretyczny}
 
@@ -34,24 +34,50 @@ Celem ćwiczenia jest poznanie wybranych własności podstawowych rodzajów sygn
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{alligator}
-\item [Sygnał] to proces zmian w czasie stanu obiektu fizycznego, bądź wielkości fizycznej.
+\item [Splot] to jedno z najważniejszych działań podczas filtracji sygnałów dyskretnych. Jest operacją przetwarzania dwóch sygnałów, w wyniku której otrzymujemy pojedyńczy sygnał dyskretny.  W ogólnym przypadku splot jest zdefiniowany wzorem:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{ui1.PNG}
+ \vspace{-0.3cm}
+ \caption{Widok główny aplikacji}
+ \label{Widok_aplikacjis}
+\end{figure}
+W praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonych równomiernie w dowolnych miejscach osi czasu. Zwykle przyjmuje się konwencję indeksacyjną, gdzie oba sygnały zaczynają się  na osi czasu od próbki zero. Poza granicami przedziału oba sygnały są zerowe. 
+\\Wzór dla tej konwencji przyjmuje postać: 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{ui1.PNG}
+ \vspace{-0.3cm}
+ \caption{Widok główny aplikacji}
+ \label{Widok_aplikacjis}
+\end{figure}
 
-\subitem  Rozróżniamy następujące modele matematyczne sygnałów:
-\subsubitem dystrybucje
-\subsubitem funkcje rzeczywiste czasu
-\subsubitem funkcje zespolone
+\item [Filtracja sygnałów]  - należy do podstawowych operacji CPS. W ramach filtracji widmo sygnału ulega modyfikacji. Zostały odfiltrowane składowe częci sygnału o częstotliwosciach należących do pasma zaporowego. Reszta widma leżąca w pamie przepustowym, nie uległa zmianie lub podlega niewielkiemu tłumieniu. 
+\\Filtry ze względu na umiejscowienie pasma przepustowego i zaporowego dzielimy na:
+\subitem [Filtry dolnoprzepustowe] - dsfhis 
+\subitem [filtry górnoprzepustowe]
+\subitem [filtry pasmowe]
 
-\item [Klasyfikacja sygnałów ze względu na dziedzinę okreslonosci ] ,
-\subitem  Sygnały ciągłe w czasie \\
-\subitem Sygnały dyskretne
+\item [Korelacja] - jest ważną częscią przetwarzania sygnałów. Jest stosowana, gdy trzeba porównać sygnał z innym, zwłaszcza z przesuniętą na osi czasu swoją kopią.
+Polega na przetwarzaniu dwóch sygnałów dyskretnych, w czego wyniku otrzymujemy pojedynczy sygnał dyskretny.
+\\Korelacja w ogólnym przypadku jest opisywana wzorem"
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{ui1.PNG}
+ \vspace{-0.3cm}
+ \caption{Widok główny aplikacji}
+ \label{Widok_aplikacjis}
+\end{figure}
+\\Podobnie jak w operacji splotu w praktyce............................................................................................................
+\\Opisanym wzorem:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{ui1.PNG}
+ \vspace{-0.3cm}
+ \caption{Widok główny aplikacji}
+ \label{Widok_aplikacjis}
+\end{figure}
 
-\item [Klasyfikacja sygnałów ze względu na czas trwania ] ,
-\subitem  Sygnały o nieskończonym czasie trwania \\
-\subitem Sygnały impulsowe
-
-\item [Klasyfikacja sygnałów ze względu na przewidywalnosć ewolucji w czasie ] ,
-\subitem  Sygnały deterministyczne \\
-\subitem Sygnały stochastyczne (losowe)
 \end{labeling}
 
 
@@ -91,8 +117,22 @@ sygnału ciągłego oraz sygnału będącego wynikiem operacji na dwóch sygnał
 \\Tak jak w przypadku generacji, sygnał jest  reprezentowany graficznie w postaci histogramu i wykresu funkcji.
 
 \subsection{Opis metod}
-Opisy wszystkich metod zastosowanych do implementacji sygnałów, zostały zapisane w poszczególnych eksperymentach.
-
+Opisy wszystkich metod zastosowanych do implementacji sygnałów, zostały zapisane w poszczególnych eksperymentach. 
+\\ Próbkowanie pozwala na zmianę analogowego sygnału wejsciowego w sygnał dyskretny:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=3.3cm]{WzorProbkowanie.PNG}
+ \vspace{-0.3cm}
+ \label{Wykres}
+\end{figure}
+reprezentowany jako ciąg próbek rozmieszczonych równomiernie w czasie w odstępach Ts. Twierdzenie o próbkowaniu okresla możliwosć odtworzenia oryginalnego sygnału analogowego przy założeniu, że częstotliwosć próbkowania
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=2.3cm]{cz.PNG}
+ \vspace{-0.3cm}
+ \label{cz}
+\end{figure}
+jest przynajmniej dwukrotnie wyższa niż najwyższa częstotliwosć  jakiejkolwiek składowej sygnału.
 \subsection{Opis implementacji}
 Aplikacja została napisana w wysokopoziomowym języku programowania - C\#. Do rysowania wykresów została wykorzystana zewnątrzna biblioteka OxyPlot. Program został napisany przy pomocy metodyki obiektowej i stosuje metody numeryczne.
 
@@ -106,20 +146,32 @@ Poniżej znajdują się wszystkie przeprowadzone eksperymenty - możliwe do uzys
 
 \subsection{Eksperyment nr 1}
 
-Eksperyment nr 1 - Szum o rozkładzie jednostajnym\\
+Eksperyment nr 1 -  Splot\\
 
 
 \subsubsection{Założenia}
-Amlituda generowanego sygnału przyjmuje, z jednakowym prawdopodobieństwem, losowe wartości z zakresu od <-Amax, Amax>.
-Parametry: A, t1, d.
+Do eksperymentu generujemy sygnał sinusoidalny o podanych niżej parametrach. Wejciowy sygnał analogowy zostanie zamieniony na sygnał dyskretny.
+Sygnał opisuje wzór:
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=4.3cm]{SinWzor.PNG}
+ \vspace{-0.3cm}
+ \label{gw}
+\end{figure}
+Parametry: A, T, t1, d.
+
+W tym eksperymencie odtworzenie sygnału odbywa się porzez interpolację pierwszego rzędu, a dysktretyzacja przez kwantyzację z odcięciem. W tej metodzie wartosci sygnału pomiędzy sąsiednimi próbkami są interpolowwane za pomocą odcinków prostej.
+
 \subsubsection{Przebieg}
 Do generacji synału zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
 \item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 10 s
-\item [Częstotliwość próbkowania (d): ] 25 Hz
+\item [Czas trwania (t1):] 2 s
+\item [Częstotliwość próbkowania (d): ] 10 Hz
+\item [Okres podstawowy :] 1 s
 \end{labeling}
 
 \subsubsection{Rezultat}
@@ -127,9 +179,9 @@ Do generacji synału zostały podane parametry:
 Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SzumRozkJedn.PNG}
+ \includegraphics[width=12.3cm]{SinKwantObcIntA2T2f10H2t1C.PNG}
  \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu pierwszego}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
  \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
@@ -138,9 +190,9 @@ Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram syg
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{SzumRozkJednHist.PNG}
+ \includegraphics[width=12.3cm]{SinKwantObcIntA2T2f10H2t1D.PNG}
  \vspace{-0.3cm}
- \caption{Wykres dla wynikw eksperymentu pierwszego h}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
  \label{Wykres dla wynikw eksperymentu pierwszego h}
 \end{figure}
 
@@ -150,62 +202,7 @@ Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram syg
 
 \subsection{Eksperyment nr 2}
 
-Eksperyment nr 2  - Szum gaussowski
-
-\subsubsection{Założenia}
-W szumie gaussowskim amplituda przyjmuje losowe wartości. Rozkład gęstości prawdopodobieństwa tych wartości jest rozkładem normalnym,czyli funkcja gęstości rozkładu zmiennej losowe jprzedstawia wzór:
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=4.3cm]{GaussWzor.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-
-gdzie:
-mi - średnia (należy przyjąć wartość 0);
-gamma - odchylenie standardowe (należy przyjąć wartość 1).
-Generując sygnał należy posłużyć się generatorem liczb losowych o rozkładzie
-normalnym.
-Parametry: A, t1, d.
-
-\subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 10 s
-\item [Częstotliwość próbkowania (d): ] 25 Hz
-\end{labeling}
-\subsubsection{Rezultat}
-
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Histogram dla wyników eksperymentu drugiego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{szumGauss.PNG}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu drugiego}
- \label{Wykres dla wyników eksperymentu drugiego}
-\end{figure}
-\newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{szumGaussHist.PNG}
- \vspace{-0.3cm}
- \caption{Histogram dla wyników eksperymentu drugiego}
- \label{Histogram dla wyników eksperymentu drugiego}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PODROZDZIA PT. EKSPERYMENT NR 3 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 3}
-
-Eksperyment nr 3 Sygnał sinusoidalny
-
+Eksperyment nr 2  - Filtracja
 \subsubsection{Założenia}
 Sygnał opisuje wzór:
 
@@ -215,8 +212,61 @@ Sygnał opisuje wzór:
  \vspace{-0.3cm}
  \label{gw}
 \end{figure}
+Parametry: A, T, t1, d.
 
-Parametry: A, T t1, d.
+\subsubsection{Przebieg}
+Do generacji synału zostały podane parametry:
+\addtokomafont{labelinglabel}{\sffamily}
+
+\begin{labeling}{szj}
+\item [Amplituda (A):] 2
+\item [Czas trwania (t1):] 2 s
+\item [Częstotliwość próbkowania (d): ] 10 Hz
+\item [Okres podstawowy :] 1 s
+\end{labeling}
+\subsubsection{Rezultat}
+
+Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Histogram dla wyników eksperymentu drugiego}.
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1C.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1D.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PODROZDZIA PT. EKSPERYMENT NR 3 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Eksperyment nr 3}
+
+Eksperyment nr 3  Korelacja
+
+\subsubsection{Teoria}
+Ekstrapolacja zerowego rzędu jest najprostszą metodą rekonstrukcji sygnału. W  niej wartosć próbki jest pamiętana i definiuje stałą wartosć sygnału wyjsciowego aż do następnej próbki. Do tej metody potrzeba dużo wiekszej częstotliwosci próbkowania niż wynikałoby z "Twierdzenia o próbkowaniu". 
+
+\subsubsection{Założenia}
+Ekstrapolacja zerowego rzędu
+Sygnał opisuje wzór:
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=4.3cm]{SinWzor.PNG}
+ \vspace{-0.3cm}
+ \label{gw}
+\end{figure}
+
+Parametry: A, T, t1, d.
 
 
 \subsubsection{Przebieg}
@@ -224,9 +274,10 @@ Do generacji synału zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-\item [Amplituda (A):] 3
-\item [Czas trwania (t1):] 20 s
-\item [Częstotliwość próbkowania (d): ] 40 Hz
+\item [Amplituda (A):] 2
+\item [Czas trwania (t1):] 2 s
+\item [Częstotliwość próbkowania (d): ] 10 Hz
+\item [Okres podstawowy :] 1 s
 \end{labeling}
 
 
@@ -235,9 +286,9 @@ Do generacji synału zostały podane parametry:
 Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu trzeciego}.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{Sin.PNG}
+ \includegraphics[width=12.3cm]{SinKwantZaokrEkstA2T2f10H2t1C.PNG}
  \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu trzeciego}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, ekstrapolacja zerowego rzędu}
  \label{Wykres dla wyników eksperymentu trzeciego}
 \end{figure}
 
@@ -245,9 +296,9 @@ Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartoś
 Rys. \ref{Histogram dla wyników eksperymentu trzeciego} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{SinHist.PNG}
+ \includegraphics[width=12.3cm]{SinKwantObcrEkstA2T2f10H2t1D.PNG}
  \vspace{-0.3cm}
- \caption{Histogram dla wyników eksperymentu trzeciego}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z obcięciem, ekstrapolacja zerowego rzędu}
  \label{Histogram dla wyników eksperymentu trzeciego}
 \end{figure}
 
@@ -257,18 +308,21 @@ Rys. \ref{Histogram dla wyników eksperymentu trzeciego} przedstawia histogram s
 
 \subsection{Eksperyment nr 4}
 
-Eksperyment nr 4 - Sygnał sinusoidalny wyprostowany jednopołówkowo\\
+Eksperyment nr 4 - Korelacja\\
 
 \subsubsection{Założenia}
+Do eksperymentu generujemy sygnał sinusoidalny o podanych niżej parametrach. Wejciowy sygnał analogowy zostanie zamieniony na sygnał dyskretny.
 Sygnał opisuje wzór:
+
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{SinJedPWzor.PNG}
+ \includegraphics[width=4.3cm]{SinWzor.PNG}
  \vspace{-0.3cm}
  \label{gw}
 \end{figure}
-\newpage
-Parametry: A, T t1, d.
+Parametry: A, T, t1, d.
+
+W tym eksperymencie odtworzenie sygnału odbywa się porzez interpolację pierwszego rzędu, a dysktretyzacja przez kwantyzację z odcięciem. W tej metodzie wartosci sygnału pomiędzy sąsiednimi próbkami są interpolowwane za pomocą odcinków prostej.
 
 \subsubsection{Przebieg}
 Do generacji synału zostały podane parametry:
@@ -276,8 +330,9 @@ Do generacji synału zostały podane parametry:
 
 \begin{labeling}{szj}
 \item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 10 s
-\item [Częstotliwość próbkowania (d): ] 25 Hz
+\item [Czas trwania (t1):] 2 s
+\item [Częstotliwość próbkowania (d): ] 10 Hz
+\item [Okres podstawowy :] 1 s
 \end{labeling}
 
 \subsubsection{Rezultat}
@@ -285,9 +340,9 @@ Do generacji synału zostały podane parametry:
 Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu czwartego}.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinJednoP.PNG}
+ \includegraphics[width=12.3cm]{SinKwantZaokrEkstA2T2f10H2t1C.PNG}
  \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu czwartego}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, ekstrapolacja zerowego rzędu}
  \label{Wykres dla wyników eksperymentu czwartego}
 \end{figure}
 
@@ -295,453 +350,29 @@ Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartoś
 Rys. \ref{Histogram dla wyników eksperymentu czwartego} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{SinJednoPHist.PNG}
+ \includegraphics[width=12.3cm]{SinKwantZaokrEkstA2T2f10H2t1D.PNG}
  \vspace{-0.3cm}
- \caption{Histogram dla wyników eksperymentu czwartego}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, ekstrapolacja zerowego rzędu}
  \label{Histogram dla wyników eksperymentu czwartego}
 \end{figure}
 
-\subsection{Eksperyment nr 5}
 
-\subsubsection{Założenia}
-Sygnał opisuje wzór:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=4.3cm]{SinDwuPWzor.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-\newpage
-Parametry: A, T t1, d.
 
-\subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 10 s
-\item [Częstotliwość próbkowania (d): ] 25 Hz
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu piątego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{SinDwuP.PNG}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu piątego}
- \label{Wykres dla wyników eksperymentu piątego}
-\end{figure}
-
-\newpage
-Rys. \ref{Histogram dla wyników eksperymentu piątego} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{SinDwuPHist.PNG}
- \vspace{-0.3cm}
- \caption{Histogram dla wyników eksperymentu piątego}
- \label{Histogram dla wyników eksperymentu piątego}
-\end{figure}
-
-\subsection{Eksperyment nr 6}
-
-Eksperyment nr 6 - Sygnał prostokątny
-
-\subsubsection{Założenia}
-Sygnał można opisać wzorem:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{KwadWzor.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-\newpage
-Parametry: A, T t1, d, kw.\\
-Ze względu na problemy implementacyjne nie został zastosowany w programie. Zamiast niego została zaimplementowana autorska metoda.
-\subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 100 s
-\item [okres podstawowy (T):] 50 s
-\item [współczynnik wypełnienia (k):] 0.5
-\item [Częstotliwość próbkowania (d): ] 25 Hz
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu szóstego}.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{SygProst.PNG}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu szóstego}
- \label{Wykres dla wyników eksperymentu szóstego}
-\end{figure}
-\newpage
-Rys. \ref{Histogram dla wyników eksperymentu szóstego} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{SygProstHist.PNG}
- \vspace{-0.3cm}
- \caption{Histogram dla wyników eksperymentu szóstego}
- \label{Histogram dla wyników eksperymentu szóstego}
-\end{figure}
-
-\subsection{Eksperyment nr 7}
-
-Eksperyment nr 7 - Sygnał prostokątny symetryczny
-
-\subsubsection{Założenia}
-Sygnał można opisać wzorem:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{KwadWzorSym.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-\newpage
-Parametry: A, T t1, d, kw.\\
-Ze względu na problemy implementacyjne nie został zastosowany w programie. Zamiast niego została zaimplementowana autorska metoda.
-
-\subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 100 s
-\item [okres podstawowy (T):] 50 s
-\item [współczynnik wypełnienia (k):] 0.5
-\item [Częstotliwość próbkowania (d): ] 25 Hz
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu siódmego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{SygProstSym.PNG}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu siódmego}
- \label{Wykres dla wyników eksperymentu siódmego}
-\end{figure}
-
-\newpage
-Rys. \ref{Histogram dla wyników eksperymentu szóstego} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{SygProstHist.PNG}
- \vspace{-0.3cm}
- \caption{Histogram dla wyników eksperymentu szóstego}
- \label{Histogram dla wyników eksperymentu szóstego}
-\end{figure}
-
-\subsection{Eksperyment nr 8}
-
-Eksperyment nr 8 - Sygnał trójkątny
-
-\subsubsection{Założenia}
-Sygnał opisuje wzór:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{TrojWzor.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-\newpage
-Parametry: A, T t1, d, kw.
-\\Ze względu na problemy implementacyjne nie został zastosowany w programie. Zamiast niego została zaimplementowana autorska metoda.
-\subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 100 s
-\item [okres podstawowy (T):] 50 s
-\item [współczynnik wypełnienia (k):] 0.5
-\item [Częstotliwość próbkowania (d): ] 25 Hz
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu ósmego}.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{SygTroj.PNG}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu ósmego}
- \label{Wykres dla wyników eksperymentu ósmego}
-\end{figure}
-\newpage
-Rys. \ref{Histogram dla wyników eksperymentu ósmego} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{SygTrojHist.PNG}
- \vspace{-0.3cm}
- \caption{Histogram dla wyników eksperymentu ósmego}
- \label{Histogram dla wyników eksperymentu ósmego}
-\end{figure}
-
-\subsection{Eksperyment nr 9}
-
-Eksperyment nr 9 - Skok jednostkowy
-
-\subsubsection{Założenia}
-Sygnał opisuje wzór:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=4.3cm]{SkowJWzor.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-\newpage
-Parametry: A, T t1, d, kw.
-
-\subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 100 s
-\item [okres podstawowy (T):] 50 s
-\item [współczynnik wypełnienia (k):] 0.5
-\item [Częstotliwość próbkowania (d): ] 25 Hz
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu dziewiątego}.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{SkokJed.PNG}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu dziewiątego}
- \label{Wykres dla wyników eksperymentu dziewiątego}
-\end{figure}
-\newpage
-Rys. \ref{Histogram dla wyników eksperymentu dziewiątego} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{SkokJedHist.PNG}
- \vspace{-0.3cm}
- \caption{Histogram dla wyników eksperymentu dziewiątego}
- \label{Histogram dla wyników eksperymentu dziewiątego}
-\end{figure}
-
-\subsection{Eksperyment nr 10}
-
-Eksperyment nr 10 - Impuls jednostkowy
-
-\subsubsection{Założenia}
-Sygnał opisuje wzór:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=4.3cm]{SkowJWzor.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-\newpage
-Parametry: A, T t1, d, kw.
-
-\subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 100 s
-\item [okres podstawowy (T):] 50 s
-\item [współczynnik wypełnienia (k):] 0.5
-\item [Częstotliwość próbkowania (d): ] 25 Hz
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu dziesiątego}.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{ImpulsJed.PNG}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu dziesiątego}
- \label{Wykres dla wyników eksperymentu dziesiątego}
-\end{figure}
-\newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{ImpulsJedHist.PNG}
- \vspace{-0.3cm}
- \caption{Histogram dla wyników eksperymentu dziesiątego}
- \label{Histogram dla wyników eksperymentu dziesiątego}
-\end{figure}
-
-\subsection{Eksperyment nr 11}
-
-Eksperyment nr 11 - Szum impulsowy
-\subsubsection{Założenia}
-Szum impulsowy jest to sygnałem dyskretnym, którego amplituda przyjmuje wartość 0 oraz wartość A różną od zera.
-Parametry: A, t1, d, f, p gdzie p jest prawdopodobieństwem wystąpienia wartości A.
-
-\subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 100 s
-\item [okres podstawowy (T):] 50 s
-\item [współczynnik wypełnienia (k):] 0.5
-\item [Częstotliwość próbkowania (d): ] 25 Hz
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu dziesiątego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{SzumImp.PNG}
- \vspace{-0.3cm}
- \caption{Wykres dla wynikw eksperymentu pierwszego}
- \label{rysunek do eksperymentu pierwszego}
-\end{figure}
-\newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{SzumImpHist.PNG}
- \vspace{-0.3cm}
- \caption{Wykres dla wynikw eksperymentu pierwszego}
- \label{rysunek do eksperymentu pierwszego}
-\end{figure}
-
-
-\subsection{Eksperyment nr 12}
-
-Eksperyment nr 12 - dodawanie sygnałów
-
-\subsubsection{Założenia}
-Aby wykonać operacje na sygnałach, muszą zgadzać się ich parametry.
-
-\subsubsection{Przebieg}
-Do generacji sumy synałów zostały wybrane sygnał sinusoidalny i szum o rozkładzie normalnym o jednakowych podanych parametrach:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 3
-\item [Czas trwania (t1):] 20 s
-\item [Częstotliwość próbkowania (d): ] 40 Hz
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu dwunastego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{DodawanieSinRozkA3t120d40h5.png}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu dwunastego}
- \label{Wykres dla wyników eksperymentu dwunastego}
-\end{figure}
-
-\subsection{Eksperyment nr 13}
-
-Eksperyment nr 13 - odejmowanie sygnałów
-
-\subsubsection{Założenia}
-Aby wykonać operacje na sygnałach, muszą zgadzać się ich parametry.
-\\
-Parametry: A, T t1, d, kw.
-
-\subsubsection{Przebieg}
-Do generacji odejmowania synałów zostały wybrane sygnał sinusoidalny prostowany jednopołówkowo i sygnał trójkątny o jednakowych podanych parametrach:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 5
-\item [Czas trwania (t1):] 25 s
-\item [Częstotliwość próbkowania (d): ] 50 Hz
-\item [Okres podstawowy (T):] 2 s
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu trzynastego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{MinSinJedPTrojA5t125d50T2.png}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu trzynastego}
- \label{Wykres dla wyników eksperymentu trzynastego}
-\end{figure}
-
-\subsection{Eksperyment nr 14}
-
-Eksperyment nr 13 - mnożenie sygnałów
-
-\subsubsection{Założenia}
-Aby wykonać operacje na sygnałach, muszą zgadzać się ich parametry.
-
-\subsubsection{Przebieg}
-Do generacji mnożenia synałów zostały wybrane sygnał sinusoidalny prostowany jednopołówkowo i sygnał trójkątny o jednakowych podanych parametrach:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 5
-\item [Czas trwania (t1):] 25 s
-\item [Częstotliwość próbkowania (d): ] 50 Hz
-\item [Okres podstawowy (T):] 2 s
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu czternastego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{MnozenieSinJedPTrojA5t125d50T2.png}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu czternastego} 
- \label{Wykres dla wyników eksperymentu czternastego}
-\end{figure}
-
-\subsection{Eksperyment nr 15}
-\subsubsection{Założenia}
-Aby wykonać operacje na sygnałach, muszą zgadzać się ich parametry.
-
-\subsubsection{Przebieg}
-Do generacji dzielenia synałów zostały wybrane sygnał o rozkładzie normalnym i sygnał sinusoidalny o jednakowych podanych parametrach:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 3
-\item [Czas trwania (t1):] 20 s
-\item [Częstotliwość próbkowania (d): ] 40 Hz
-\end{labeling}
-
-\subsubsection{Rezultat}
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu piętnastego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{DzielenieRozkSinA3t120d40h5.png}
- \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu piętnastego}
- \label{Wykres dla wyników eksperymentu piętnastego}
-\end{figure}
 
 \section{Wnioski}
 
-
-Przeprowadzone eksperymenty dowodzą, że  przy małym czasie trwania trzeba zwiekszyć czestotliwosć by gestosć punktów do wykresów byla wystarczajaca - niekoniecznie musi być większa niz czas. Parametr amplitudy ma stosunkowo niewielki wpływ na wygląd graficznej reprezentacji - wykres będzie wyższy lub niższy, ale nie zmienia się jego charakter. Zapimplementowane generatory tworzą bardzo rózne sygnały. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Przeprowadzone eksperymenty dowodzą, że  Interpolacja pierwszego rzędu jest bardziej dokładna niż ekstrapolacja rzędu zerowego.  Dzieje się tak ponieważ między próbkami sygnał się zmienia zatem interpolowanie między kolejnymi próbkami daje lepsze odwzorowanie, niż przepisywanie tej samej wartości do czasu napotkania następnej próbki.
+Aby uzyskać wyniki ekstrapolacji zbliżone do wyników ekstrapolacji należy przyjąć bardzo dużą częstotliwość próbkowania. Są znaczące róźnice w błędach odtworzenia sygnałów przez interpolację i ekstrapolację. Interpolacja jest dużo bardziej dokładna - błąd sredniokwadratowy o ok 0,2, stosunek sygnał-szum i szczytowy stosunek sygnał-szum różnią się nawet o 10 jednostek. Co ciekawe maksymalna różnica między sygnałem analogowym, a odtwarzanym sygnałem jest minimalnie większa dla interpolacji.
+W przypadku kwantyzacji dużo lepiej sprawdza się kwantyzacja z zaokrągleniem. W przypadku kwantyzacji z obcięciem jeżeli próbkowaniem nie trafimy w szczyt amplitudy to maksymalna jej wartość po kwantowaniu będzie mniejsza niż ta w oryginale. Przy kwantyzacji z zaokrągleniem unikamy takiej sytuacji.
+Podczas próbkowania trzeba bardzo uważać przy podawaniu częstotliwości. Jeśli podamy ją zbyt mała sygnał nie zostanie odtworzony, a czasem wręcz możemy uzyskać inny sygnał.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. ZALACZNIKI
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{0}
    \bibitem{l2short} FTIMS Politechnika Łódzka.
     \textsl{Przetwarzanie sygnałów, pojęcia podstawowe Plik}, Wikamp.
  \bibitem{l2short} FTIMS Politechnika Łódzka.
-    \textsl{Zadanie 1 Generacja sygnału i szumu}, Wikamp.
+    \textsl{Zadanie 2 Generacja sygnału i szumu}, Wikamp.
 \end{thebibliography}
-
-
-
 
 \end{document}
