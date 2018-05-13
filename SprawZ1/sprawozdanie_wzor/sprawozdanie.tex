@@ -24,7 +24,7 @@ Cyfrowe Przetwarzanie Sygnałów}
 \setcounter{page}{1}
 \section{Cel zadania}
 
-Celem ćwiczenia jest zapoznanie się w praktyce z procesami splotu, filtracji i korelacji sygnałów. Aby to osiągnąć, trzeba napisać aplikację umożliwiającą przetwarzanie analgowo-cyfrowe z uwzględnieniem operacji próbkowania i kwantyzacji oraz konwersji odwrotnej, tj. cyfrowo-analogowej (w naszym przypadku tylko interpolacja i ekstrapolacja).
+Celem ćwiczenia jest zapoznanie się w praktyce z procesami splotu, filtracji i korelacji sygnałów.
 
 \section{Wstęp teoretyczny}
 
@@ -34,12 +34,14 @@ Celem ćwiczenia jest zapoznanie się w praktyce z procesami splotu, filtracji i
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{alligator}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%SPLOT%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \item [Splot] to jedno z najważniejszych działań podczas filtracji sygnałów dyskretnych. Jest operacją przetwarzania dwóch sygnałów, w wyniku której otrzymujemy pojedyńczy sygnał dyskretny.  W ogólnym przypadku splot jest zdefiniowany wzorem:
 \begin{figure}[h!]
  \centering
  \includegraphics[width=9.3cm]{ui1.PNG}
  \vspace{-0.3cm}
- \caption{Widok główny aplikacji}
  \label{Widok_aplikacjis}
 \end{figure}
 W praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonych równomiernie w dowolnych miejscach osi czasu. Zwykle przyjmuje się konwencję indeksacyjną, gdzie oba sygnały zaczynają się  na osi czasu od próbki zero. Poza granicami przedziału oba sygnały są zerowe. 
@@ -48,19 +50,70 @@ W praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonyc
  \centering
  \includegraphics[width=9.3cm]{ui1.PNG}
  \vspace{-0.3cm}
- \caption{Widok główny aplikacji}
- \label{Widok_aplikacjis}
+ \label{Splot_indeks}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%FILTRACJA%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \item [Filtracja sygnałów]  - należy do podstawowych operacji CPS. W ramach filtracji widmo sygnału ulega modyfikacji. Zostały odfiltrowane składowe częci sygnału o częstotliwosciach należących do pasma zaporowego. Reszta widma leżąca w pamie przepustowym, nie uległa zmianie lub podlega niewielkiemu tłumieniu. 
 \\Filtry ze względu na umiejscowienie pasma przepustowego i zaporowego dzielimy na:
-\subitem [Filtry dolnoprzepustowe] - dsfhis 
-\subitem [filtry górnoprzepustowe]
-\subitem [filtry pasmowe]
+\subitem Filtry dolnoprzepustowe - ich pasma przepustowe są okrelone przedziałem częstotliwosci od 0 do f0 (f0 - częstotliwosć odcięcia filtru) 
+\subitem Filtry górnoprzepustowe - ich pasma przepustowe są okrelone przedziałem częstotliwosci od f0 do fp/2 (fp - częstotliwosć próbkowania sygnału) 
+\subitem Filtry pasmowe - ich pasma przepustowe są okrelone przedziałem częstotliwosci od fd do fg (fd, fg > 0, fd < fg i fd, fg < fp/2) 
+
+W zadaniu są stosowane filtry SOI - o skończonej odpowiedzi impulsowej. Zaletą tych filtrów jest łatwosć implementacji (w oparciu o splot) i projektowania postaci filtru. 
+\\Przy obliczaniu próbki sygnału wyjsciowego (y(n)) jest brane pod uwagę M przeszłych próbek sygnału wejsciowego (x(n)). Wartosci y(n) obliczamy jako sumy ważone x(n) z uwzględnieniem współczynników filtru h(n). 
+\\Opisuje to wzór:
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{ui1.PNG}
+ \vspace{-0.3cm}
+ \label{Splot_indeks}
+\end{figure}
+
+Gdzie:
+\subitem M - rząd filtru
+\subitem h(k) - odpowiedź impulsowa
+
+Jeżeli ciąg próbek sygnału wejsciowego będzie ciągiem wartosci zerowych,  filtr SOI będzie generował na wyjsciu skończony ciąg niezerowych wartosci.
+
+Do projektowania filtrów SOI została zastosowana metoda okna.
+
+
+W praktyce często stosuje się okna:
+\subitem Hamminga
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=4.3cm]{SinWzor.PNG}
+ \vspace{-0.3cm}
+ \label{gw}
+\end{figure}
+
+\subitem Hanninga
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=4.3cm]{SinWzor.PNG}
+ \vspace{-0.3cm}
+ \label{gw}
+\end{figure}
+
+\subitem Blackmana
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=4.3cm]{SinWzor.PNG}
+ \vspace{-0.3cm}
+ \label{gw}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%KORELACJA%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \item [Korelacja] - jest ważną częscią przetwarzania sygnałów. Jest stosowana, gdy trzeba porównać sygnał z innym, zwłaszcza z przesuniętą na osi czasu swoją kopią.
 Polega na przetwarzaniu dwóch sygnałów dyskretnych, w czego wyniku otrzymujemy pojedynczy sygnał dyskretny.
-\\Korelacja w ogólnym przypadku jest opisywana wzorem"
+\\Korelacja w ogólnym przypadku jest opisywana wzorem:
 \begin{figure}[h!]
  \centering
  \includegraphics[width=9.3cm]{ui1.PNG}
@@ -68,7 +121,14 @@ Polega na przetwarzaniu dwóch sygnałów dyskretnych, w czego wyniku otrzymujem
  \caption{Widok główny aplikacji}
  \label{Widok_aplikacjis}
 \end{figure}
-\\Podobnie jak w operacji splotu w praktyce............................................................................................................
+\\Podobnie jak w operacji splotu w praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonych równomiernie w dowolnych miejscach osi czasu i zakres zmiennosci próbek dla każdego n zakresy sumowań zmieniają się zgodnie zumiejscowieniem na osi czasu i liczbami próbek każdego z dyskretnych sygnałów wejsciowych h oraz x. Zwykle przyjmuje się konwencję indeksacyjną, gdzie oba sygnały zaczynają się  na osi czasu od próbki zero. Poza granicami przedziału oba sygnały są zerowe. 
+\\Wzór dla tej konwencji przyjmuje postać: 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{ui1.PNG}
+ \vspace{-0.3cm}
+ \label{Splot_indeks}
+\end{figure}
 \\Opisanym wzorem:
 \begin{figure}[h!]
  \centering
@@ -80,6 +140,7 @@ Polega na przetwarzaniu dwóch sygnałów dyskretnych, w czego wyniku otrzymujem
 
 \end{labeling}
 
+%%%%%%%%%%%%%%%%%%%%%%%%INSTRUKCA OBSŁUGI%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Instrukcja obsługi aplikacji}
 Aplikacja do generacji szumów zawiera interfejs graficzny, który służy do obsługi przez użytkownika. Wygląd został przedstawiony na poniższym rysunku.
@@ -150,28 +211,24 @@ Eksperyment nr 1 -  Splot\\
 
 
 \subsubsection{Założenia}
-Do eksperymentu generujemy sygnał sinusoidalny o podanych niżej parametrach. Wejciowy sygnał analogowy zostanie zamieniony na sygnał dyskretny.
-Sygnał opisuje wzór:
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=4.3cm]{SinWzor.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-Parametry: A, T, t1, d.
-
-W tym eksperymencie odtworzenie sygnału odbywa się porzez interpolację pierwszego rzędu, a dysktretyzacja przez kwantyzację z odcięciem. W tej metodzie wartosci sygnału pomiędzy sąsiednimi próbkami są interpolowwane za pomocą odcinków prostej.
+Operacja splotu jest przeprowadzana dla dwóch dowolnych sygnałów dyskretnych o wczeniej podanych (niekonieczcnie jednakowych) ilosciach próbek. W tym celu jest wykorzystany wzór \ref{Splot_indeks}.
 
 \subsubsection{Przebieg}
 Do generacji synału zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 2 s
-\item [Częstotliwość próbkowania (d): ] 10 Hz
-\item [Okres podstawowy :] 1 s
+\item [Sygnał 1:]
+\subitem [Amplituda (A):] 2
+\subitem [Czas trwania (t1):] 2 s
+\subitem [Częstotliwość próbkowania (d): ] 10 Hz
+\subitem [Okres podstawowy :] 1 s
+
+\item [Sygnał 2:]
+\subitem [Amplituda (A):] 2
+\subitem [Czas trwania (t1):] 2 s
+\subitem [Częstotliwość próbkowania (d): ] 10 Hz
+\subitem [Okres podstawowy :] 1 s
 \end{labeling}
 
 \subsubsection{Rezultat}
@@ -202,9 +259,9 @@ Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram syg
 
 \subsection{Eksperyment nr 2}
 
-Eksperyment nr 2  - Filtracja
+Eksperyment nr 2  - Filtracja z filtrem dolnoprzepustowym
 \subsubsection{Założenia}
-Sygnał opisuje wzór:
+Filtr dolnoprzepustowy opisuje wzór, na podstawie odwrotnego przekształcenia Fouriera:
 
 \begin{figure}[h!]
  \centering
@@ -213,6 +270,27 @@ Sygnał opisuje wzór:
  \label{gw}
 \end{figure}
 Parametry: A, T, t1, d.
+
+gdzie:
+\subitem n - liczba całkowita,
+\subitem częstotliwosć odcięcia filtru - f0 =  fp/K
+
+Zakładamy, że filtr jest idealny -  w pasmie przepustowym nie zmienia się widmo sygnału wejsciowego -  transmitancja jest równa  1. W pasmie zaporowym skłądowe czętotliwosciowe zostaną kompletnie wytłumione (transmitancja równa 0).
+
+Ze względu na nieskońconą liczbę współczynników h(n) nie stosuje się tego wzoru w praktyce.
+
+Wzór na odpowiedź impulsową filtru o M współczynników z przesunięciem (w celu uzyskania nieujemnych indeksów):
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=4.3cm]{SinWzor.PNG}
+ \vspace{-0.3cm}
+ \label{gw}
+\end{figure}
+
+gdzie:
+\subitem n = 0,1, ... , M-1
+\subitem częstotliwosć odcięcia filtru - f0 =  fp/K
 
 \subsubsection{Przebieg}
 Do generacji synału zostały podane parametry:
@@ -245,7 +323,109 @@ Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram syg
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PODROZDZIA PT. EKSPERYMENT NR 3 
+% PODROZDZIA PT. EKSPERYMENT NR 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Eksperyment nr 3}
+
+Eksperyment nr 3  - Filtracja z filtrem srodkowoprzepustowym
+\subsubsection{Założenia}
+Z wykorzystaniem twierdzenia o modulacji przekształcamy odpowiedź impulsową filtru dolnoprzepustowego do odpowiedzi filtru srodkowoprzepustowego:
+współczynniki h(n) są mnożone przez sygnał sinusoidalny  o częstotliwosci f = fp/4
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1C.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+
+Wtedy fd = fp/4-f0 i fg = fp/4 + f0.
+
+\subsubsection{Przebieg}
+Do generacji synału zostały podane parametry:
+\addtokomafont{labelinglabel}{\sffamily}
+
+\begin{labeling}{szj}
+\item [Amplituda (A):] 2
+\item [Czas trwania (t1):] 2 s
+\item [Częstotliwość próbkowania (d): ] 10 Hz
+\item [Okres podstawowy :] 1 s
+\end{labeling}
+\subsubsection{Rezultat}
+
+Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Histogram dla wyników eksperymentu drugiego}.
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1C.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1D.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PODROZDZIA PT. EKSPERYMENT NR 4 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Eksperyment nr 4}
+
+Eksperyment nr 4  - Filtracja z filtrem górnoprzepustowym
+\subsubsection{Założenia}
+Z wykorzystaniem twierdzenia o modulacji przekształcamy odpowiedź impulsową filtru dolnoprzepustowego do odpowiedzi filtru górnoprzepustowego:
+współczynniki h(n) są mnożone przez sygnał sinusoidalny  o częstotliwosci f = fp/2
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1C.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+
+Wtedy f0 = fp/2-f0 (f0 -  nowa częstotliwosć odcięcia).
+
+\subsubsection{Przebieg}
+Do generacji synału zostały podane parametry:
+\addtokomafont{labelinglabel}{\sffamily}
+
+\begin{labeling}{szj}
+\item [Amplituda (A):] 2
+\item [Czas trwania (t1):] 2 s
+\item [Częstotliwość próbkowania (d): ] 10 Hz
+\item [Okres podstawowy :] 1 s
+\end{labeling}
+\subsubsection{Rezultat}
+
+Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Histogram dla wyników eksperymentu drugiego}.
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1C.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1D.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PODROZDZIA PT. EKSPERYMENT NR 5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Eksperyment nr 3}
