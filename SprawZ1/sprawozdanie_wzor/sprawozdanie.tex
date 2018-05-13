@@ -40,7 +40,7 @@ Celem ćwiczenia jest zapoznanie się w praktyce z procesami splotu, filtracji i
 \item [Splot] to jedno z najważniejszych działań podczas filtracji sygnałów dyskretnych. Jest operacją przetwarzania dwóch sygnałów, w wyniku której otrzymujemy pojedyńczy sygnał dyskretny.  W ogólnym przypadku splot jest zdefiniowany wzorem:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{ui1.PNG}
+ \includegraphics[width=6.3cm]{splotWO.PNG}
  \vspace{-0.3cm}
  \label{Widok_aplikacjis}
 \end{figure}
@@ -48,7 +48,7 @@ W praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonyc
 \\Wzór dla tej konwencji przyjmuje postać: 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{ui1.PNG}
+ \includegraphics[width=6.3cm]{splotWS.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
@@ -67,7 +67,7 @@ W zadaniu są stosowane filtry SOI - o skończonej odpowiedzi impulsowej. Zalet�
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{ui1.PNG}
+ \includegraphics[width=9.3cm]{filtrS.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
@@ -86,7 +86,7 @@ W praktyce często stosuje się okna:
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{SinWzor.PNG}
+ \includegraphics[width=6.3cm]{Hm.PNG}
  \vspace{-0.3cm}
  \label{gw}
 \end{figure}
@@ -95,7 +95,7 @@ W praktyce często stosuje się okna:
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{SinWzor.PNG}
+ \includegraphics[width=6.3cm]{Hn.PNG}
  \vspace{-0.3cm}
  \label{gw}
 \end{figure}
@@ -104,7 +104,7 @@ W praktyce często stosuje się okna:
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{SinWzor.PNG}
+ \includegraphics[width=7.3cm]{B.PNG}
  \vspace{-0.3cm}
  \label{gw}
 \end{figure}
@@ -116,27 +116,19 @@ Polega na przetwarzaniu dwóch sygnałów dyskretnych, w czego wyniku otrzymujem
 \\Korelacja w ogólnym przypadku jest opisywana wzorem:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{ui1.PNG}
+ \includegraphics[width=6.3cm]{kor.PNG}
  \vspace{-0.3cm}
- \caption{Widok główny aplikacji}
  \label{Widok_aplikacjis}
 \end{figure}
 \\Podobnie jak w operacji splotu w praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonych równomiernie w dowolnych miejscach osi czasu i zakres zmiennosci próbek dla każdego n zakresy sumowań zmieniają się zgodnie zumiejscowieniem na osi czasu i liczbami próbek każdego z dyskretnych sygnałów wejsciowych h oraz x. Zwykle przyjmuje się konwencję indeksacyjną, gdzie oba sygnały zaczynają się  na osi czasu od próbki zero. Poza granicami przedziału oba sygnały są zerowe. 
 \\Wzór dla tej konwencji przyjmuje postać: 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{ui1.PNG}
+ \includegraphics[width=6.3cm]{korW.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
-\\Opisanym wzorem:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{ui1.PNG}
- \vspace{-0.3cm}
- \caption{Widok główny aplikacji}
- \label{Widok_aplikacjis}
-\end{figure}
+
 
 \end{labeling}
 
@@ -219,38 +211,60 @@ Do generacji synału zostały podane parametry:
 
 \begin{labeling}{szj}
 \item [Sygnał 1:]
-\subitem [Amplituda (A):] 2
-\subitem [Czas trwania (t1):] 2 s
+\subitem [Amplituda (A):] 1
+\subitem [Czas trwania (t1):] 5 s
 \subitem [Częstotliwość próbkowania (d): ] 10 Hz
-\subitem [Okres podstawowy :] 1 s
+\subitem [Okres podstawowy :] 2 s
 
-\item [Sygnał 2:]
-\subitem [Amplituda (A):] 2
-\subitem [Czas trwania (t1):] 2 s
-\subitem [Częstotliwość próbkowania (d): ] 10 Hz
-\subitem [Okres podstawowy :] 1 s
-\end{labeling}
-
-\subsubsection{Rezultat}
-
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinKwantObcIntA2T2f10H2t1C.PNG}
+ \includegraphics[width=12.3cm]{sin.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego}
+ \label{sin}
+\end{figure}
+
+\item [Sygnał 2:]
+\subitem [Amplituda (A):] 1
+\subitem [Czas trwania (t1):] 5 s
+\subitem [Częstotliwość próbkowania (d): ] 10 Hz
+
+\end{labeling}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{szum.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres szumu gausowskiego}
+ \label{szum}
+\end{figure}
+ \newpage
+\subsubsection{Rezultat}
+
+Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{splot.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
+\end{figure}
+ \newpage
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{splotC.PNG}
  \vspace{-0.3cm}
  \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
  \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
 \newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
-
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinKwantObcIntA2T2f10H2t1D.PNG}
+ \includegraphics[width=12.3cm]{splotD.PNG}
  \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
- \label{Wykres dla wynikw eksperymentu pierwszego h}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -258,7 +272,7 @@ Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram syg
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Eksperyment nr 2}
-
+10 20
 Eksperyment nr 2  - Filtracja z filtrem dolnoprzepustowym
 \subsubsection{Założenia}
 Filtr dolnoprzepustowy opisuje wzór, na podstawie odwrotnego przekształcenia Fouriera:
@@ -269,7 +283,6 @@ Filtr dolnoprzepustowy opisuje wzór, na podstawie odwrotnego przekształcenia F
  \vspace{-0.3cm}
  \label{gw}
 \end{figure}
-Parametry: A, T, t1, d.
 
 gdzie:
 \subitem n - liczba całkowita,
@@ -293,21 +306,41 @@ gdzie:
 \subitem częstotliwosć odcięcia filtru - f0 =  fp/K
 
 \subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
+Do generacji synału prostokątnego zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 2 s
-\item [Częstotliwość próbkowania (d): ] 10 Hz
-\item [Okres podstawowy :] 1 s
+\item [Amplituda (A):] 1
+\item [Czas trwania (t1):] 100 s
+\item [Częstotliwość próbkowania (d): ] 1 Hz
+\item [Okres podstawowy :] 100 s
+\item [Współczynnik wypełnienia:] 0,5
 \end{labeling}
-\subsubsection{Rezultat}
 
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Histogram dla wyników eksperymentu drugiego}.
+Wykres sygnału przedstawia poniższy obrazek:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1C.PNG}
+ \includegraphics[width=12.3cm]{prost.PNG}
+ \vspace{-0.3cm}
+ \label{gw}
+\end{figure}
+
+Parametry filtracji:
+\addtokomafont{labelinglabel}{\sffamily}
+
+\begin{labeling}{szj}
+\item [K:] 10
+\item [M:] 20 s
+\end{labeling}
+
+\subsubsection{Rezultat}
+
+Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. 
+\newpage
+Okno prostokątne
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFDOP.PNG}
  \vspace{-0.3cm}
  \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
  \label{Wykres dla wyników eksperymentu drugiego}
@@ -316,7 +349,64 @@ Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartoś
 Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1D.PNG}
+ \includegraphics[width=12.3cm]{prostSFDP.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
+\newpage
+Okno Hamminga
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFDOHm.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostSFDHm.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
+\newpage
+Okno Hanninga
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFDOHn.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostSFDHn.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
+\newpage
+Okno Blackmana
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFDOB.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostSFDB.PNG}
  \vspace{-0.3cm}
  \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
  \label{Histogram dla wyników eksperymentu drugiego}
@@ -344,21 +434,41 @@ współczynniki h(n) są mnożone przez sygnał sinusoidalny  o częstotliwosci 
 Wtedy fd = fp/4-f0 i fg = fp/4 + f0.
 
 \subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
+Do generacji synału prostokątnego zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 2 s
-\item [Częstotliwość próbkowania (d): ] 10 Hz
-\item [Okres podstawowy :] 1 s
+\item [Amplituda (A):] 1
+\item [Czas trwania (t1):] 100 s
+\item [Częstotliwość próbkowania (d): ] 1 Hz
+\item [Okres podstawowy :] 100 s
+\item [Współczynnik wypełnienia:] 0,5
 \end{labeling}
-\subsubsection{Rezultat}
 
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Histogram dla wyników eksperymentu drugiego}.
+Wykres sygnału przedstawia poniższy obrazek:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1C.PNG}
+ \includegraphics[width=12.3cm]{prost.PNG}
+ \vspace{-0.3cm}
+ \label{gw}
+\end{figure}
+
+Parametry filtracji:
+\addtokomafont{labelinglabel}{\sffamily}
+
+\begin{labeling}{szj}
+\item K:] 10
+\item [M:] 20 s
+\end{labeling}
+
+\subsubsection{Rezultat}
+
+Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. 
+\newpage
+Okno prostokątne
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFSOP.PNG}
  \vspace{-0.3cm}
  \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
  \label{Wykres dla wyników eksperymentu drugiego}
@@ -367,11 +477,69 @@ Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartoś
 Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1D.PNG}
+ \includegraphics[width=12.3cm]{prostSFSP.PNG}
  \vspace{-0.3cm}
  \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
  \label{Histogram dla wyników eksperymentu drugiego}
 \end{figure}
+
+\newpage
+Okno Hamminga
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFSOHm.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostSFSHm.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
+\newpage
+Okno Hanninga
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFSOHn.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostSFSHn.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
+\newpage
+Okno Blackmana
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFSOB.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostSFSB.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. EKSPERYMENT NR 4 
@@ -395,21 +563,41 @@ współczynniki h(n) są mnożone przez sygnał sinusoidalny  o częstotliwosci 
 Wtedy f0 = fp/2-f0 (f0 -  nowa częstotliwosć odcięcia).
 
 \subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
+Do generacji synału prostokątnego zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 2 s
-\item [Częstotliwość próbkowania (d): ] 10 Hz
-\item [Okres podstawowy :] 1 s
+\item [Amplituda (A):] 1
+\item [Czas trwania (t1):] 100 s
+\item [Częstotliwość próbkowania (d): ] 1 Hz
+\item [Okres podstawowy :] 100 s
+\item [Współczynnik wypełnienia:] 0,5
 \end{labeling}
-\subsubsection{Rezultat}
 
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Histogram dla wyników eksperymentu drugiego}.
+Wykres sygnału przedstawia poniższy obrazek:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1C.PNG}
+ \includegraphics[width=12.3cm]{prost.PNG}
+ \vspace{-0.3cm}
+ \label{gw}
+\end{figure}
+
+Parametry filtracji:
+\addtokomafont{labelinglabel}{\sffamily}
+
+\begin{labeling}{szj}
+\item K:] 10
+\item [M:] 20 s
+\end{labeling}
+
+\subsubsection{Rezultat}
+
+Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. 
+\newpage
+Okno prostokątne
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFGOP.PNG}
  \vspace{-0.3cm}
  \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
  \label{Wykres dla wyników eksperymentu drugiego}
@@ -418,11 +606,69 @@ Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartoś
 Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinKwantZaokrIntA2T2f10H2t1D.PNG}
+ \includegraphics[width=12.3cm]{prostSFGP.PNG}
  \vspace{-0.3cm}
  \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
  \label{Histogram dla wyników eksperymentu drugiego}
 \end{figure}
+
+\newpage
+Okno Hamminga
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFGOHm.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostSFGHm.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
+\newpage
+Okno Hanninga
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFGOHn.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostSFGHn.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
+\newpage
+Okno Blackmana
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostFGOB.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prostSFGB.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, interpolacja pierwszego rzędu}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. EKSPERYMENT NR 5
@@ -436,17 +682,7 @@ Eksperyment nr 3  Korelacja
 Ekstrapolacja zerowego rzędu jest najprostszą metodą rekonstrukcji sygnału. W  niej wartosć próbki jest pamiętana i definiuje stałą wartosć sygnału wyjsciowego aż do następnej próbki. Do tej metody potrzeba dużo wiekszej częstotliwosci próbkowania niż wynikałoby z "Twierdzenia o próbkowaniu". 
 
 \subsubsection{Założenia}
-Ekstrapolacja zerowego rzędu
-Sygnał opisuje wzór:
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=4.3cm]{SinWzor.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-
-Parametry: A, T, t1, d.
+ghg
 
 
 \subsubsection{Przebieg}
@@ -491,53 +727,97 @@ Rys. \ref{Histogram dla wyników eksperymentu trzeciego} przedstawia histogram s
 Eksperyment nr 4 - Korelacja\\
 
 \subsubsection{Założenia}
-Do eksperymentu generujemy sygnał sinusoidalny o podanych niżej parametrach. Wejciowy sygnał analogowy zostanie zamieniony na sygnał dyskretny.
-Sygnał opisuje wzór:
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=4.3cm]{SinWzor.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-Parametry: A, T, t1, d.
-
-W tym eksperymencie odtworzenie sygnału odbywa się porzez interpolację pierwszego rzędu, a dysktretyzacja przez kwantyzację z odcięciem. W tej metodzie wartosci sygnału pomiędzy sąsiednimi próbkami są interpolowwane za pomocą odcinków prostej.
+Operacja splotu jest przeprowadzana dla dwóch dowolnych sygnałów dyskretnych o wczeniej podanych (niekonieczcnie jednakowych) ilosciach próbek. W tym celu jest wykorzystany wzór \ref{Splot_indeks}.
 
 \subsubsection{Przebieg}
 Do generacji synału zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-\item [Amplituda (A):] 2
-\item [Czas trwania (t1):] 2 s
-\item [Częstotliwość próbkowania (d): ] 10 Hz
-\item [Okres podstawowy :] 1 s
-\end{labeling}
+\item [Sygnał 1:]
+\subitem [Amplituda (A):] 1
+\subitem [Czas trwania (t1):] 5 s
+\subitem [Częstotliwość próbkowania (d): ] 10 Hz
+\subitem [Okres podstawowy :] 2 s
 
-\subsubsection{Rezultat}
-
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wyników eksperymentu czwartego}.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinKwantZaokrEkstA2T2f10H2t1C.PNG}
+ \includegraphics[width=12.3cm]{sin.PNG}
  \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z zaokrągleniem, ekstrapolacja zerowego rzędu}
- \label{Wykres dla wyników eksperymentu czwartego}
+ \caption{Wykres sygnału sinusoidalnego}
+ \label{sin}
+\end{figure}
+
+\item [Sygnał 2:]
+\subitem [Amplituda (A):] 1
+\subitem [Czas trwania (t1):] 5 s
+\subitem [Częstotliwość próbkowania (d): ] 10 Hz
+
+\end{labeling}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{szum.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres szumu gausowskiego}
+ \label{szum}
+\end{figure}
+ \newpage
+\subsubsection{Rezultat}
+
+Korelacja bezposrednia:
+\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{korB.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
+\end{figure}
+ \newpage
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{korBC.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
 \newpage
-Rys. \ref{Histogram dla wyników eksperymentu czwartego} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{SinKwantZaokrEkstA2T2f10H2t1D.PNG}
+ \includegraphics[width=12.3cm]{korBD.PNG}
  \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego dyskretny: kwantyzacja z zaokrągleniem, ekstrapolacja zerowego rzędu}
- \label{Histogram dla wyników eksperymentu czwartego}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
+Korelacja z wykorzystaniem splotu:
+\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{korB.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
+\end{figure}
+ \newpage
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{korBC.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
+\end{figure}
 
-
+\newpage
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{korBD.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
+\end{figure}
 
 \section{Wnioski}
 
