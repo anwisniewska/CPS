@@ -59,7 +59,10 @@ W praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonyc
 \\Filtry ze względu na umiejscowienie pasma przepustowego i zaporowego dzielimy na:
 \subitem Filtry dolnoprzepustowe - ich pasma przepustowe są okrelone przedziałem częstotliwosci od 0 do f0 (f0 - częstotliwosć odcięcia filtru) 
 \subitem Filtry górnoprzepustowe - ich pasma przepustowe są okrelone przedziałem częstotliwosci od f0 do fp/2 (fp - częstotliwosć próbkowania sygnału) 
-\subitem Filtry pasmowe - ich pasma przepustowe są okrelone przedziałem częstotliwosci od fd do fg (fd, fg > 0, fd < fg i fd, fg < fp/2) 
+\subitem Filtry srodkowoprzepustowe - ich pasma przepustowe są okrelone przedziałem częstotliwosci od fd do fp/4 
+
+\subsubitem f0 = fp/K gdzie f0 to częstotliwosć odcięcia
+\subsubitem fp to częstotliwosć 
 
 W zadaniu są stosowane filtry SOI - o skończonej odpowiedzi impulsowej. Zaletą tych filtrów jest łatwosć implementacji (w oparciu o splot) i projektowania postaci filtru. 
 \\Przy obliczaniu próbki sygnału wyjsciowego (y(n)) jest brane pod uwagę M przeszłych próbek sygnału wejsciowego (x(n)). Wartosci y(n) obliczamy jako sumy ważone x(n) z uwzględnieniem współczynników filtru h(n). 
@@ -69,11 +72,11 @@ W zadaniu są stosowane filtry SOI - o skończonej odpowiedzi impulsowej. Zalet�
  \centering
  \includegraphics[width=9.3cm]{filtrS.PNG}
  \vspace{-0.3cm}
- \label{Splot_indeks}
+ \label{filtrS}
 \end{figure}
 
 Gdzie:
-\subitem M - rząd filtru
+\subitem M - rząd filtru 
 \subitem h(k) - odpowiedź impulsowa
 
 Jeżeli ciąg próbek sygnału wejsciowego będzie ciągiem wartosci zerowych,  filtr SOI będzie generował na wyjsciu skończony ciąg niezerowych wartosci.
@@ -144,7 +147,7 @@ Polega na przetwarzaniu dwóch sygnałów dyskretnych, w czego wyniku otrzymujem
  \centering
  \includegraphics[width=6.3cm]{korW.PNG}
  \vspace{-0.3cm}
- \label{Splot_indeks}
+ \label{kw}
 \end{figure}
 
 
@@ -291,7 +294,8 @@ gdzie:
 \subitem częstotliwosć odcięcia filtru - f0 =  fp/K
 
 \subsubsection{Przebieg}
-Do generacji synału prostokątnego zostały podane parametry:
+1:
+\\Do generacji synału prostokątnego zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
@@ -318,11 +322,40 @@ Parametry filtracji:
 \item [M:] 20 
 \end{labeling}
 
+2: (drugi przykład filtru dolnoprzepustowego i okna prostokątnego)
+\\Do generacji synału prostokątnego zostały podane parametry:
+\addtokomafont{labelinglabel}{\sffamily}
+
+\begin{labeling}{szj}
+\item [Amplituda (A):] 1
+\item [Czas trwania (t1):] 100 s
+\item [Częstotliwość próbkowania (d): ] 1 Hz
+\item [Okres podstawowy :] 100 s
+\item [Współczynnik wypełnienia:] 0,5
+\end{labeling}
+
+Wykres sygnału przedstawia poniższy obrazek:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{prost.PNG}
+ \vspace{-0.3cm}
+ \label{gw}
+\end{figure}
+
+Parametry filtracji:
+\addtokomafont{labelinglabel}{\sffamily}
+
+\begin{labeling}{szj}
+\item [K:] 10
+\item [M:] 100 
+\end{labeling}
+
 \subsubsection{Rezultat}
 
 Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. 
 \newpage
 Okno prostokątne
+\\1:
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostFDOP.PNG}
@@ -339,7 +372,23 @@ Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram syg
  \caption{Sygnał filtracja dolnoprzepustowej z oknem prostokątnym}
  \label{Histogram dla wyników eksperymentu drugiego}
 \end{figure}
-
+2:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{filtrMk.PNG}
+ \vspace{-0.3cm}
+ \caption{Filtracja dolnoprzepustowa z oknem prostokątnym}
+ \label{Wykres dla wyników eksperymentu drugiego}
+\end{figure}
+\newpage
+Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{filtrMkS.PNG}
+ \vspace{-0.3cm}
+ \caption{Sygnał filtracja dolnoprzepustowej z oknem prostokątnym}
+ \label{Histogram dla wyników eksperymentu drugiego}
+\end{figure}
 \newpage
 Okno Hamminga
 \begin{figure}[h!]
@@ -646,7 +695,8 @@ Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram syg
 Eksperyment nr 5 - Korelacja\\
 
 \subsubsection{Założenia}
-Operacja splotu jest przeprowadzana dla dwóch dowolnych sygnałów dyskretnych o wczeniej podanych (niekonieczcnie jednakowych) ilosciach próbek. W tym celu jest wykorzystany wzór \ref{Splot_indeks}.
+Eksperyment jest przeprowadzany na dwa sposoby: implementację bezporednią i implementację z użyciem splotu.
+\\W pierwszysm przypadku stosujemy do operacji korelacji wzór bezposredni   \ref{kw}. W drugim do obliczenia korelacji jest wykorzystywany wzór na splot \ref{Splot_indeks}.
 
 \subsubsection{Przebieg}
 Do generacji synału zostały podane parametry:
@@ -683,58 +733,24 @@ Do generacji synału zostały podane parametry:
 \end{figure}
  \newpage
 \subsubsection{Rezultat}
-
+\newpage
 Korelacja bezposrednia:
-\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
+\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu.  Został zastosowany wzór\ref{kw}.
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{korB.PNG}
  \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
- \label{Wykres dla wynikw eksperymentu pierwszego}
-\end{figure}
- \newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{korBC.PNG}
- \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
- \label{Wykres dla wynikw eksperymentu pierwszego}
-\end{figure}
-
-\newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{korBD.PNG}
- \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
- \label{Wykres dla wynikw eksperymentu pierwszego}
+ \caption{Wykres korelacji bezporedniej}
+ \label{wk}
 \end{figure}
 
 Korelacja z wykorzystaniem splotu:
-\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
+\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu.  Został zastosowany wzór\ref{Splot_indeks}.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{korB.PNG}
+ \includegraphics[width=12.3cm]{korS.PNG}
  \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
- \label{Wykres dla wynikw eksperymentu pierwszego}
-\end{figure}
- \newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{korBC.PNG}
- \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
- \label{Wykres dla wynikw eksperymentu pierwszego}
-\end{figure}
-
-\newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{korBD.PNG}
- \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
+ \caption{Wykres korelacji z wykorzystaniem splotu}
  \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
@@ -747,9 +763,18 @@ Korelacja z wykorzystaniem splotu:
 Eksperyment nr 6 - Radar\\
 
 \subsubsection{Założenia}
-Operacja splotu jest przeprowadzana dla dwóch dowolnych sygnałów dyskretnych o wczeniej podanych (niekonieczcnie jednakowych) ilosciach próbek. W tym celu jest wykorzystany wzór \ref{Splot_indeks}.
+Analiza korelacyjna (porównywanie sygnałów) jest stosowana do pomiaru odległosci sygnałów przesuniętych w czasie od celu. Stosuje się do tego radar. Wysyła on sygnał sondujący, który w okrelonych przypadkach (gdy sygnał jest odpowiednio zmodulowany) może być sygnałem okresowym.
+Sygnał po odbiciu się od celu wraca do nadajnika.
+\\Pomiar odległosci dokonuje się na bazie pomiaru opóźnienia przy użyciu analizy korelacyjnej sygnału wysłanego i powracającego.
+Gdy częstotliwosć próbkowania obu sygnałów jest jednakowa i odpowiednio duża, można w wyznaczonych odstępach dokonywać analizy korelacyjnej, która jest spróbkowaana i zbuforowana, dwóch sygnałów -  sondującego i zwrotnego. Osiąga się to dzięki obliczeniu wzajemnej korelacji pary odpowaiadających sobie sygnałów, w celu uaktualnienia odczytu odległosci od celu. 
+
+Korelacja przyjmuje największą wartosć, gdy nakładane na siebie sygnały pokrywają się w jak największym stopniu. Wzór \ref{kw} umożliwia nałożenie obydwu
+sygnałów dla każdego odstępu czasowego próbkowania, z odpowiednim przesunięciem sygnałów sondującego i zwrotnego względem siebie. Także pozwala nam na obliczenie pojedyńczej wartosci korelacji dla każdego z odstępów. Możemy znaleźć maksimum funkcji korelacji. 
+ \ref{Splot_indeks}.
 
 \subsubsection{Przebieg}
+Została zaimplementowana symulacja działania korelacyjnego czujnika odległosci.
+
 Do generacji synału prostokątnego zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
@@ -757,14 +782,13 @@ Do generacji synału prostokątnego zostały podane parametry:
 \item [Amplituda (A):] 1
 \item [Czas trwania (t1):] 100 s
 \item [Częstotliwość próbkowania (d): ] 1 Hz
-\item [Okres podstawowy :] 100 s
-\item [Współczynnik wypełnienia:] 0,5
+\item [Okres podstawowy :] 25 s
 \end{labeling}
 
 Wykres sygnału przedstawia poniższy obrazek:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prost.PNG}
+ \includegraphics[width=12.3cm]{sin1.PNG}
  \vspace{-0.3cm}
  \label{gw}
 \end{figure}
@@ -774,38 +798,45 @@ Opóźnienie = 5:
 \\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostR5.PNG}
+ \includegraphics[width=12.3cm]{sin1R5.PNG}
  \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
- \label{Wykres dla wynikw eksperymentu pierwszego}
+ \caption{Radar sygnaűłu sinusoidalnego z opóźnieniem 5}
+ \label{R5}
 \end{figure}
 
 
-Opóźnienie = 25:
+Opóźnienie = 20:
 \\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostR25.PNG}
+ \includegraphics[width=12.3cm]{sin1R20.PNG}
  \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
- \label{Wykres dla wynikw eksperymentu pierwszego}
+ \caption{Radar sygnału sinusoidalnego z opóźnieniem 20}
+ \label{r20}
 \end{figure}
 
-Opóźnienie = 50:
-\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostR50.PNG}
- \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego ciągły: kwantyzacja z obcięciem, interpolacja pierwszego rzędu}
- \label{Wykres dla wynikw eksperymentu pierwszego}
-\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PODROZDZIA PT. WNIOSKI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Wnioski}
-
+\subsection{Splot}
+W wyniku operacji splotu sygnały zostały nałożone na siebie i w wyniku zastosowania odpowiednich wzorów sygnał wyjsciowy ma cechy obu sygnalów.
+\subsection{Filtracja}
+Przeprowadzone eksperymenty pokazują, że istnieją bardzo duże różnice między zastosowanymi rodzajami filtrów i okien.
+Filtr dolnoprzepustowy w połączeniu z oknem Hamminga przyjmuje bardzo zbliżoną postać do tegosamego filtru z oknem Hanninga. Okno prostokątnezapewnia podobne filtrowanie do opisanych zestawów.  Na drugim przykładzie filtru dolnoprzepustowego i okna prostokątnego widać jak zmienia się M.
+Filtr dolnoprzepustowy z oknem Blackmana, który przyjmuje postać o najbardziej nieregularnym kształcie daje najlepsze wyniki -  sygnał filtrowany jest najbardziej zbliżony do sygnału wejsciowego. Większe zaszzumienie daje okno prostokątne.
+\\Sygnał przefiltrowany przez filtr srodkowoprzepustowy dużo mniej przypomina sygnał wejsciowy niż sygnał wychodzący z dolnoprzepustowego. Różnice między zastosowaniem okien są analogiczne, co w przypadku filtru dolnoprzepustowego.
+\\Sygnał przefiltrowany przez filtr górnoprzepustowy jeszcze mniej przypomina sygnał wejsciowy niż sygnał wychodzący z dolnoprzepustowego. Różnice między zastosowaniem okien są analogiczne, co w przypadku dwóch poprzednich filtrów.
+ 
+\subsection{Korelacja}
+Z eksperymentów wynika, że korelacja bezporednia i z wykorzystaniem splotu dają bardzo zbliżone efekty.
+\subsection{Radar}
 Przeprowadzone eksperymenty dowodzą, że  Interpolacja pierwszego rzędu jest bardziej dokładna niż ekstrapolacja rzędu zerowego.  Dzieje się tak ponieważ między próbkami sygnał się zmienia zatem interpolowanie między kolejnymi próbkami daje lepsze odwzorowanie, niż przepisywanie tej samej wartości do czasu napotkania następnej próbki.
 Aby uzyskać wyniki ekstrapolacji zbliżone do wyników ekstrapolacji należy przyjąć bardzo dużą częstotliwość próbkowania. Są znaczące róźnice w błędach odtworzenia sygnałów przez interpolację i ekstrapolację. Interpolacja jest dużo bardziej dokładna - błąd sredniokwadratowy o ok 0,2, stosunek sygnał-szum i szczytowy stosunek sygnał-szum różnią się nawet o 10 jednostek. Co ciekawe maksymalna różnica między sygnałem analogowym, a odtwarzanym sygnałem jest minimalnie większa dla interpolacji.
 W przypadku kwantyzacji dużo lepiej sprawdza się kwantyzacja z zaokrągleniem. W przypadku kwantyzacji z obcięciem jeżeli próbkowaniem nie trafimy w szczyt amplitudy to maksymalna jej wartość po kwantowaniu będzie mniejsza niż ta w oryginale. Przy kwantyzacji z zaokrągleniem unikamy takiej sytuacji.
 Podczas próbkowania trzeba bardzo uważać przy podawaniu częstotliwości. Jeśli podamy ją zbyt mała sygnał nie zostanie odtworzony, a czasem wręcz możemy uzyskać inny sygnał.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. ZALACZNIKI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
