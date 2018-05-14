@@ -38,9 +38,10 @@ Celem ćwiczenia jest zapoznanie się w praktyce z procesami splotu, filtracji i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%SPLOT%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \item [Splot] to jedno z najważniejszych działań podczas filtracji sygnałów dyskretnych. Jest operacją przetwarzania dwóch sygnałów, w wyniku której otrzymujemy pojedyńczy sygnał dyskretny.  W ogólnym przypadku splot jest zdefiniowany wzorem:
+\\
 \begin{figure}[h!]
  \centering
- \includegraphics[width=6.3cm]{splotWO.PNG}
+ \includegraphics[width=5.3cm]{splotWO.PNG}
  \vspace{-0.3cm}
  \label{Widok_aplikacjis}
 \end{figure}
@@ -48,7 +49,7 @@ W praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonyc
 \\Wzór dla tej konwencji przyjmuje postać: 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=6.3cm]{splotWS.PNG}
+ \includegraphics[width=5.3cm]{splotWS.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
@@ -70,7 +71,7 @@ W zadaniu są stosowane filtry SOI - o skończonej odpowiedzi impulsowej. Zalet�
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{filtrS.PNG}
+ \includegraphics[width=8.3cm]{filtrS.PNG}
  \vspace{-0.3cm}
  \label{filtrS}
 \end{figure}
@@ -87,15 +88,17 @@ Powyższy wzór jest stosowany dla filtru dolnoprzepustowego. Na jego podstawie 
  \centering
  \includegraphics[width=3.3cm]{sr.PNG}
  \vspace{-0.3cm}
- \label{Splot_indeks}
+ \label{sp}
 \end{figure}
+
+
 
 \subsubitem dla filtru górnoprzepustowego:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=3.3cm]{gor.PNG}
+ \includegraphics[width=3cm]{gor.PNG}
  \vspace{-0.3cm}
- \label{Splot_indeks}
+ \label{gp}
 \end{figure}
 
 
@@ -137,15 +140,15 @@ Polega na przetwarzaniu dwóch sygnałów dyskretnych, w czego wyniku otrzymujem
 \\Korelacja w ogólnym przypadku jest opisywana wzorem:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=6.3cm]{kor.PNG}
+ \includegraphics[width=4.3cm]{kor.PNG}
  \vspace{-0.3cm}
- \label{Widok_aplikacjis}
+ \label{kr}
 \end{figure}
 \\Podobnie jak w operacji splotu w praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonych równomiernie w dowolnych miejscach osi czasu i zakres zmiennosci próbek dla każdego n zakresy sumowań zmieniają się zgodnie zumiejscowieniem na osi czasu i liczbami próbek każdego z dyskretnych sygnałów wejsciowych h oraz x. Zwykle przyjmuje się konwencję indeksacyjną, gdzie oba sygnały zaczynają się  na osi czasu od próbki zero. Poza granicami przedziału oba sygnały są zerowe. 
 \\Wzór dla tej konwencji przyjmuje postać: 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=6.3cm]{korW.PNG}
+ \includegraphics[width=4.3cm]{korW.PNG}
  \vspace{-0.3cm}
  \label{kw}
 \end{figure}
@@ -157,7 +160,6 @@ Polega na przetwarzaniu dwóch sygnałów dyskretnych, w czego wyniku otrzymujem
 
 \subsection{Instrukcja obsługi aplikacji}
 Aplikacja do generacji szumów zawiera interfejs graficzny, który służy do obsługi przez użytkownika. Wygląd został przedstawiony na poniższym rysunku.
-\newpage
 \begin{figure}[h!]
  \centering
  \includegraphics[width=9.3cm]{ui1.PNG}
@@ -170,20 +172,21 @@ Na górze okienka znajduje się wysuwana lista możliwych do generacji sygnałó
 Niżej jest przycisk do generacji sygnałów oraz lista parametrów wykresu. Tutaj wpisuje się dane wpływające na sygnał.
 Pola umożliwiają ustawienie charakterystycznych parametrów sygnału. Na ich podstawie program wylicza wartości amplitudy sygnału w określonym czasie oraz wyświetla graficzną reprezentację sygnału w postaci wykresu funkcji amplitudy od czasu i histogramu.\\
 
-Na dole okienka znajdują się przyciski: do odtwarzania sygnału z pliku, oraz do operacji na dwóch sygnałach. Po kliknięciu w x i y wybieramy odpowiednio pierwszy i dugi składnik działania. Między nimi można wybrać jedno z czterech działań.  Po wcisnięciu przycisku "wynik" program liczy wynik działania i wywietla jego graficzną reprezentację. 
+Na dole okienka znajdują się przyciski do operacji na dwóch sygnałach (dodawanie, odejmowanie itp, a także splot, korelacja). Po kliknięciu w x i y wybieramy odpowiednio pierwszy i dugi składnik działania. Po wcisnięciu przycisku "wynik" program liczy wynik działania i wywietla jego graficzną reprezentację. 
+Poniżej znajdują się wysuwane listy z opcjami kwantyzacji, ekstrapolacji. Niżej znajdują się okienka służące do wpisywania parametróW filtracji. Pod nimi znajdują się do wyboru warianty okna i filtru.
+Na samym dole okna jest okienko do wpisywania parametrów radaru. 
 
 \subsubsection{Generowanie sygnału}
-Aby wygenerować sygnał użytkownik musi kliknąć w generuj sygnał.
-\\Po wygenerowaniu sygnału pojawiają się dwa dodatkowe okienka aplikacji.
+Aby wygenerować sygnał użytkownik musi kliknąć w generuj sygnał lub w przypadku innych operacji wynik.
+\\Po wygenerowaniu sygnału pojawiają się dodatkowe okienko aplikacji.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=15.3cm]{okienka.PNG}
+ \includegraphics[width=15.3cm]{prost.PNG}
  \vspace{-0.3cm}
  \caption{Okna po generacji sygnału}
  \label{Widok_aplikacjis}
 \end{figure}
-\\Jedno wyświetla histogram sygnału
-\\Drugie przedstawia wykres funkcji amplitudy od czasu oraz obliczone wartości: wartość średnią, wartość średnią bezwzględną, wartość skuteczną, wariancję oraz moc średnią.
+\\W kolejnych zakładkach okienka są inne wykresy.
 
 \subsubsection{Odczyt sygnału z pliku}
 Oprócz generacji i zapisu do pliku, program umożliwia odczyt z pliku sygnału będącego wynikiem dyskretyzacji (bez kwantyzacji) wygenerowanego
@@ -214,9 +217,9 @@ Do generacji synału zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-\item [Sygnał 1:]
+\item [Sygnał 1:] 
 \subitem [Amplituda (A):] 1
-\subitem [Czas trwania (t1):] 5 s
+\subitem [Czas trwania (t1):] 4 s
 \subitem [Częstotliwość próbkowania (d): ] 10 Hz
 \subitem [Okres podstawowy :] 2 s
 
@@ -228,9 +231,9 @@ Do generacji synału zostały podane parametry:
  \label{sin}
 \end{figure}
 
-\item [Sygnał 2:]
+\item [Sygnał 2:] 
 \subitem [Amplituda (A):] 1
-\subitem [Czas trwania (t1):] 5 s
+\subitem [Czas trwania (t1):] 4 s
 \subitem [Częstotliwość próbkowania (d): ] 10 Hz
 
 \end{labeling}
@@ -260,14 +263,14 @@ Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości li
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Eksperyment nr 2}
-10 20
 Eksperyment nr 2  - Filtracja z filtrem dolnoprzepustowym
+
 \subsubsection{Założenia}
 Filtr dolnoprzepustowy opisuje wzór, na podstawie odwrotnego przekształcenia Fouriera:
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{four.PNG}
+ \includegraphics[width=6.3cm]{four.PNG}
  \vspace{-0.3cm}
  \label{gw}
 \end{figure}
@@ -284,7 +287,7 @@ Wzór na odpowiedź impulsową filtru o M współczynników z przesunięciem (w 
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{f.PNG}
+ \includegraphics[width=6.3cm]{f.PNG}
  \vspace{-0.3cm}
  \label{gw}
 \end{figure}
@@ -294,8 +297,7 @@ gdzie:
 \subitem częstotliwosć odcięcia filtru - f0 =  fp/K
 
 \subsubsection{Przebieg}
-1:
-\\Do generacji synału prostokątnego zostały podane parametry:
+Do generacji synału prostokątnego zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
@@ -306,54 +308,30 @@ gdzie:
 \item [Współczynnik wypełnienia:] 0,5
 \end{labeling}
 
-Wykres sygnału przedstawia poniższy obrazek:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prost.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
 
-Parametry filtracji:
-\addtokomafont{labelinglabel}{\sffamily}
-
+1:
 \begin{labeling}{szj}
 \item [K:] 10
 \item [M:] 20 
 \end{labeling}
 
 2: (drugi przykład filtru dolnoprzepustowego i okna prostokątnego)
-\\Do generacji synału prostokątnego zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 1
-\item [Czas trwania (t1):] 100 s
-\item [Częstotliwość próbkowania (d): ] 1 Hz
-\item [Okres podstawowy :] 100 s
-\item [Współczynnik wypełnienia:] 0,5
-\end{labeling}
-
-Wykres sygnału przedstawia poniższy obrazek:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prost.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-
-Parametry filtracji:
-\addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
 \item [K:] 10
 \item [M:] 100 
 \end{labeling}
 
+3: (trzeci przykład filtru dolnoprzepustowego i okna prostokątnego)
+
+\begin{labeling}{szj}
+\item [K:] 100
+\item [M:] 20 
+\end{labeling}
 \subsubsection{Rezultat}
 
 Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. 
-\newpage
+
 Okno prostokątne
 \\1:
 \begin{figure}[h!]
@@ -369,7 +347,7 @@ Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram syg
  \centering
  \includegraphics[width=12.3cm]{prostSFDP.PNG}
  \vspace{-0.3cm}
- \caption{Sygnał filtracja dolnoprzepustowej z oknem prostokątnym}
+ \caption{Sygnał filtracji dolnoprzepustowej z oknem prostokątnym}
  \label{Histogram dla wyników eksperymentu drugiego}
 \end{figure}
 2:
@@ -381,31 +359,41 @@ Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram syg
  \label{Wykres dla wyników eksperymentu drugiego}
 \end{figure}
 \newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+
+3:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{dK.PNG}
+ \vspace{-0.3cm}
+ \caption{Filtracja dolnoprzepustowa z oknem prostokątnym}
+ \label{pdg}
+\end{figure}
+\newpage
+
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{filtrMkS.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracja dolnoprzepustowej z oknem prostokątnym}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{filtrMks}
 \end{figure}
-\newpage
+
 Okno Hamminga
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostFDOHm.PNG}
  \vspace{-0.3cm}
  \caption{Filtracja dolnoprzepustowa z oknem Hamminga}
- \label{Wykres dla wyników eksperymentu drugiego}
+ \label{fdohm}
 \end{figure}
-\newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+
+
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFDHm.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracja dolnoprzepustowej z oknem Hamminga}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{hm}
 \end{figure}
 
 \newpage
@@ -417,14 +405,14 @@ Okno Hanninga
  \caption{Filtracja dolnoprzepustowa z oknem Hanninga}
  \label{Wykres dla wyników eksperymentu drugiego}
 \end{figure}
-\newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+
+
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFDHn.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracji dolnoprzepustowej z oknem Hanninga}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{hn}
 \end{figure}
 
 \newpage
@@ -434,16 +422,15 @@ Okno Blackmana
  \includegraphics[width=12.3cm]{prostFDOB.PNG}
  \vspace{-0.3cm}
  \caption{Filtracja dolnoprzepustowa z oknem Blackmana}
- \label{Wykres dla wyników eksperymentu drugiego}
+ \label{bm}
 \end{figure}
 \newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFDB.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracji dolnoprzepustowej z oknem Blackmana}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{sb}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -490,7 +477,7 @@ Parametry filtracji:
 \subsubsection{Rezultat}
 
 Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. 
-\newpage
+
 Okno prostokątne
 \begin{figure}[h!]
  \centering
@@ -499,14 +486,13 @@ Okno prostokątne
  \caption{Filtracja srodkowoprzepustowa z oknem prostokątnym}
  \label{Wykres dla wyników eksperymentu drugiego}
 \end{figure}
-\newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFSP.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracji srodkowoprzepustowej z oknem prostokątnym}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{sfsp}
 \end{figure}
 
 \newpage
@@ -516,19 +502,18 @@ Okno Hamminga
  \includegraphics[width=12.3cm]{prostFSOHm.PNG}
  \vspace{-0.3cm}
  \caption{Filtracja srodkowoprzepustowa z oknem Hamminga}
- \label{Wykres dla wyników eksperymentu drugiego}
+ \label{fsohm}
 \end{figure}
+
 \newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFSHm.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracji srodkowoprzepustowej z oknem Hamminga}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{sfshm}
 \end{figure}
 
-\newpage
 Okno Hanninga
 \begin{figure}[h!]
  \centering
@@ -537,33 +522,33 @@ Okno Hanninga
  \caption{Filtracja srodkowoprzepustowa z oknem prostokątnym}
  \label{Wykres dla wyników eksperymentu drugiego}
 \end{figure}
+
 \newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFSHn.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracji srodkowoprzepustowej z oknem Hamminga}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{sfshn}
 \end{figure}
 
-\newpage
 Okno Blackmana
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostFSOB.PNG}
  \vspace{-0.3cm}
  \caption{Filtracja srodkowoprzepustowa z oknem prostokątnym}
- \label{Wykres dla wyników eksperymentu drugiego}
+ \label{fsob}
 \end{figure}
+
 \newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFSB.PNG}
  \vspace{-0.3cm}
- \caption{Sygnał filtracji srodkowoprzepustowej z oknem Hamminga}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \caption{Sygnał filtracji srodkowoprzepustowej z oknem Blackmana}
+ \label{ob}
 \end{figure}
 
 
@@ -609,23 +594,21 @@ Parametry filtracji:
 \subsubsection{Rezultat}
 
 Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. 
-\newpage
 Okno prostokątne
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostFGOP.PNG}
  \vspace{-0.3cm}
  \caption{Filtracja górnoprzepustowa z oknem prostokątnym}
- \label{Wykres dla wyników eksperymentu drugiego}
+ \label{gfh}
 \end{figure}
-\newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+ 
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFGP.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracji górnoprzepustowej z oknem prostokątnym}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{hg}
 \end{figure}
 
 \newpage
@@ -635,54 +618,52 @@ Okno Hamminga
  \includegraphics[width=12.3cm]{prostFGOHm.PNG}
  \vspace{-0.3cm}
  \caption{Filtracja górnoprzepustowa z oknem Hamminga}
- \label{Wykres dla wyników eksperymentu drugiego}
+ \label{dtf}
 \end{figure}
 \newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFGHm.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracji górnoprzepustowej z oknem Hamminga}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{esrd}
 \end{figure}
 
-\newpage
 Okno Hanninga
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostFGOHn.PNG}
  \vspace{-0.3cm}
  \caption{Filtracja górnoprzepustowa z oknem Hanninga}
- \label{Wykres dla wyników eksperymentu drugiego}
+ \label{seaw}
 \end{figure}
 \newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFGHn.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracji górnoprzepustowej z oknem Hanninga}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{qwe}
 \end{figure}
 
-\newpage
 Okno Blackmana
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostFGOB.PNG}
  \vspace{-0.3cm}
  \caption{Filtracja górnoprzepustowa z oknem Blackmana}
- \label{Wykres dla wyników eksperymentu drugiego}
+ \label{werty}
 \end{figure}
 \newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{prostSFGB.PNG}
  \vspace{-0.3cm}
  \caption{Sygnał filtracji górnoprzepustowa z oknem Blackmana}
- \label{Histogram dla wyników eksperymentu drugiego}
+ \label{joi}
 \end{figure}
 
 
@@ -751,7 +732,7 @@ Korelacja z wykorzystaniem splotu:
  \includegraphics[width=12.3cm]{korS.PNG}
  \vspace{-0.3cm}
  \caption{Wykres korelacji z wykorzystaniem splotu}
- \label{Wykres dla wynikw eksperymentu pierwszego}
+ \label{redtrfytguyhiuj}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -770,7 +751,7 @@ Gdy częstotliwosć próbkowania obu sygnałów jest jednakowa i odpowiednio du�
 
 Korelacja przyjmuje największą wartosć, gdy nakładane na siebie sygnały pokrywają się w jak największym stopniu. Wzór \ref{kw} umożliwia nałożenie obydwu
 sygnałów dla każdego odstępu czasowego próbkowania, z odpowiednim przesunięciem sygnałów sondującego i zwrotnego względem siebie. Także pozwala nam na obliczenie pojedyńczej wartosci korelacji dla każdego z odstępów. Możemy znaleźć maksimum funkcji korelacji. 
- \ref{Splot_indeks}.
+ 
 
 \subsubsection{Przebieg}
 Została zaimplementowana symulacja działania korelacyjnego czujnika odległosci.
@@ -786,6 +767,7 @@ Do generacji synału prostokątnego zostały podane parametry:
 \end{labeling}
 
 Wykres sygnału przedstawia poniższy obrazek:
+\newpage
 \begin{figure}[h!]
  \centering
  \includegraphics[width=12.3cm]{sin1.PNG}
@@ -821,30 +803,36 @@ Opóźnienie = 20:
 
 \section{Wnioski}
 \subsection{Splot}
+Splot dwóch funkcji w dziedzinie czasu jest równoważny pomnożeniu ich widm w dziedzinie częstotliwości. Można też wyrazić go przez korelacje - trzeba sygnał x odwrocić. Długosć splotu równa się sumie dlugosci sygnałów splotowanych -1.
 W wyniku operacji splotu sygnały zostały nałożone na siebie i w wyniku zastosowania odpowiednich wzorów sygnał wyjsciowy ma cechy obu sygnalów.
 \subsection{Filtracja}
-Przeprowadzone eksperymenty pokazują, że istnieją bardzo duże różnice między zastosowanymi rodzajami filtrów i okien.
-Filtr dolnoprzepustowy w połączeniu z oknem Hamminga przyjmuje bardzo zbliżoną postać do tegosamego filtru z oknem Hanninga. Okno prostokątnezapewnia podobne filtrowanie do opisanych zestawów.  Na drugim przykładzie filtru dolnoprzepustowego i okna prostokątnego widać jak zmienia się M.
-Filtr dolnoprzepustowy z oknem Blackmana, który przyjmuje postać o najbardziej nieregularnym kształcie daje najlepsze wyniki -  sygnał filtrowany jest najbardziej zbliżony do sygnału wejsciowego. Większe zaszzumienie daje okno prostokątne.
-\\Sygnał przefiltrowany przez filtr srodkowoprzepustowy dużo mniej przypomina sygnał wejsciowy niż sygnał wychodzący z dolnoprzepustowego. Różnice między zastosowaniem okien są analogiczne, co w przypadku filtru dolnoprzepustowego.
-\\Sygnał przefiltrowany przez filtr górnoprzepustowy jeszcze mniej przypomina sygnał wejsciowy niż sygnał wychodzący z dolnoprzepustowego. Różnice między zastosowaniem okien są analogiczne, co w przypadku dwóch poprzednich filtrów.
- 
+W filtrze dolnoprzepustowym okna wygladzaj filtr a zatem filtrowany sygnał i wyjsciowy są zbliżone (sa niewielkie roznice).
+Parametr K wplywa na częstotliwosć odcięcia. Przy większym M, czyli rzędzie, filtr jest dłuższy oraz pojawia się na nim wiecej zmian wartosci (zafalowań).
+\\ Z filtrami srodkowoprzepustowymi sytuacja z oknami wygląda podobnie jak w filtrze dolnoprzepustowym.
+
+
+Różne typow filtrów odcinają czestotliwosci w innych pasmach. W przeciwienstwie do filtru dolnoprzepustowego, filtr srodkowoprzepustowy często zmienia swoje wartosci, a  w filtrze górnoprzepustowym co druga próbka jest ujemna. W filtrze dolnoprzepustowym wykres filtru jest gładki.
+Nie możemy wiele powiedzieć o filtrach, ze względu na brak informacji  o widmie częstotliwosciowym.
+Stosując okna zmniejszamy zafalowania charakterystyki. 
+Z analizy pokazanych wykresów można stwierdzić, że okna Hanninga, Hamminga i Blackmana w dużym stopniu redukują nieliniowosć transmitancji w pamie przepustowym. Dodatkowa istotnie polepszają tłumienie składowych w pamie zaporowym w odniesieniu do okna prostokątnego.
+
+
 \subsection{Korelacja}
+Korelację można wykonać splotem i tez trzeba sygnał x odwrocić.
 Z eksperymentów wynika, że korelacja bezporednia i z wykorzystaniem splotu dają bardzo zbliżone efekty.
+
+
 \subsection{Radar}
-Przeprowadzone eksperymenty dowodzą, że  Interpolacja pierwszego rzędu jest bardziej dokładna niż ekstrapolacja rzędu zerowego.  Dzieje się tak ponieważ między próbkami sygnał się zmienia zatem interpolowanie między kolejnymi próbkami daje lepsze odwzorowanie, niż przepisywanie tej samej wartości do czasu napotkania następnej próbki.
-Aby uzyskać wyniki ekstrapolacji zbliżone do wyników ekstrapolacji należy przyjąć bardzo dużą częstotliwość próbkowania. Są znaczące róźnice w błędach odtworzenia sygnałów przez interpolację i ekstrapolację. Interpolacja jest dużo bardziej dokładna - błąd sredniokwadratowy o ok 0,2, stosunek sygnał-szum i szczytowy stosunek sygnał-szum różnią się nawet o 10 jednostek. Co ciekawe maksymalna różnica między sygnałem analogowym, a odtwarzanym sygnałem jest minimalnie większa dla interpolacji.
-W przypadku kwantyzacji dużo lepiej sprawdza się kwantyzacja z zaokrągleniem. W przypadku kwantyzacji z obcięciem jeżeli próbkowaniem nie trafimy w szczyt amplitudy to maksymalna jej wartość po kwantowaniu będzie mniejsza niż ta w oryginale. Przy kwantyzacji z zaokrągleniem unikamy takiej sytuacji.
-Podczas próbkowania trzeba bardzo uważać przy podawaniu częstotliwości. Jeśli podamy ją zbyt mała sygnał nie zostanie odtworzony, a czasem wręcz możemy uzyskać inny sygnał.
+Z eksperymentów wynika, że jesli zalożymy taką samą częstotliwosć próbkowania, to wieksze opóźnienie równa się większej odleglosci. Poniewaz są t0 sygnały okresowe, to przyjmując okres = np 25 opóznienie równe 5 oraz 30 bedą dawaly takie same wyniki.
+Ponieważ przyjęłysmy jako predkosć predkosć swiatla to odleglosci wychodzą bardzo duże.
+Trzeba pamietać, że czestotliwosć próbkowania nie zawsze będzie wynosić 1Hz czyli 1 próbke na sekunde - przy obliczeniu odstepu czasowego zawsze trzeba otrzymywać wynik w sekundach i podzielić 1/czestotliwosć.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. ZALACZNIKI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{0}
-   \bibitem{l2short} FTIMS Politechnika Łódzka.
-    \textsl{Przetwarzanie sygnałów, pojęcia podstawowe Plik}, Wikamp.
  \bibitem{l2short} FTIMS Politechnika Łódzka.
-    \textsl{Zadanie 2 Generacja sygnału i szumu}, Wikamp.
+    \textsl{Zadanie 3 Splot, filtracja i korelacja}, Wikamp.
 \end{thebibliography}
 
 \end{document}
