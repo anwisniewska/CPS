@@ -61,5 +61,7 @@ namespace CPS
         public IList<OxyPlot.DataPoint> SygFiltrowany { get; set; }
         public IList<OxyPlot.DataPoint> Opozniony { get; set; }
         public IList<OxyPlot.DataPoint> Radar { get; set; }
+        public IList<OxyPlot.DataPoint> Re { get; set; }
+        public IList<OxyPlot.DataPoint> Im { get; set; }
     }
 }

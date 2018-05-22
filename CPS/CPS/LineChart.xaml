@@ -162,12 +162,31 @@
                         <ColumnDefinition Width="7*"/>
                         <ColumnDefinition Width="236*"/>
                     </Grid.ColumnDefinitions>
-                    <oxy:Plot Title="{Binding Title}" Margin="9.8,10,13.6,197.2" Grid.Column="1" Background="White">
-                        <oxy:LineSeries ItemsSource="{Binding Points}" Color="Black" />
+                    <oxy:Plot Margin="9.8,10,13.6,197.2" Grid.Column="1" Background="White">
+                        <oxy:LineSeries ItemsSource="{Binding Re}" Color="Black" />
                     </oxy:Plot>
-                    <oxy:Plot Title="{Binding Title}" Margin="9.8,199,13.6,10.2" Grid.Column="1" Background="White">
-                        <oxy:LineSeries ItemsSource="{Binding Points}" Color="Black" />
+                    <oxy:Plot Margin="9.8,199,13.6,10.2" Grid.Column="1" Background="White">
+                        <oxy:LineSeries ItemsSource="{Binding Im}" Color="Black" />
                     </oxy:Plot>
+                    <TextBlock HorizontalAlignment="Left" Margin="-31,96,0,0" TextWrapping="Wrap" Text="Część rzeczywista" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-90.213"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="-20,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-90.213"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform><Run Text="Część "/><Run Text="urojona"/></TextBlock>
                 </Grid>
             </TabItem>
         </TabControl>

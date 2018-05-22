@@ -40,6 +40,10 @@ namespace CPS
         public IList<OxyPlot.DataPoint> Opozniony = new List<OxyPlot.DataPoint>();
         [NonSerialized]
         public IList<OxyPlot.DataPoint> Radar = new List<OxyPlot.DataPoint>();
+        [NonSerialized]
+        public IList<OxyPlot.DataPoint> Re = new List<OxyPlot.DataPoint>();
+        [NonSerialized]
+        public IList<OxyPlot.DataPoint> Im = new List<OxyPlot.DataPoint>();
         public double _Srednia { get; set; }
         public double _SredniaBez { get; set; }
         public double _Skuteczna { get; set; }
@@ -753,10 +757,31 @@ namespace CPS
             _Odleglosc = drogaWDwieStrony / 2;
         }
 
+        public void DFT()
+        {
+            double N = Math.Pow(2, _d);
+
+            for(int m = 0; m < N; m++)
+            {
+                double sumaRe = 0;
+                double sumaIm = 0;
+                for (int n = 0; n < N; n++)
+                {
+                    sumaRe += Points.ElementAt(n).Y * Math.Cos((2 * Math.PI * m * n) / N);
+                    sumaIm += Points.ElementAt(n).Y * (-Math.Sin((2 * Math.PI * m * n) / N));
+                }
+                //Re.Add(new DataPoint(m, Math.Round((1 / N) * sumaRe, 2)));
+                //Im.Add(new DataPoint(m, Math.Round((1 / N) * sumaIm, 2)));
+                Re.Add(new DataPoint(m, Math.Round( sumaRe, 2)));
+                Im.Add(new DataPoint(m, Math.Round( sumaIm, 2)));
+            }
+        }
+
         public LineChartViewModel MakeChart(string title, string okno, string typFiltru)
         {
             Filtracja(okno, typFiltru);
             if (_Opoznienie > 0) Radaruj();
+            DFT();
             LineChartViewModel vm = new LineChartViewModel();
             vm.Title = title;
             vm.Points = Points;
@@ -767,6 +792,8 @@ namespace CPS
             vm.SygFiltrowany = SygFiltrowany;
             vm.Opozniony = Opozniony;
             vm.Radar = Radar;
+            vm.Re = Re;
+            vm.Im = Im;
             vm.TitleFiltr = "Filtr + " + okno + " + " + typFiltru;
             vm._A = _A;
             vm._t1 = _t1;
