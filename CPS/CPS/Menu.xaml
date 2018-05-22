@@ -13,20 +13,20 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <TextBox Text="{Binding _A}" HorizontalAlignment="Left" Height="23" Margin="10,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding _t1}" HorizontalAlignment="Left" Height="23" Margin="10,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="Awart" Text="{Binding _A}" HorizontalAlignment="Left" Height="23" Margin="10,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="t1wart" Text="{Binding _t1}" HorizontalAlignment="Left" Height="23" Margin="10,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Text="{Binding _d}" HorizontalAlignment="Left" Height="23" Margin="10,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="Twart" Text="{Binding _T}" HorizontalAlignment="Left" Height="23" Margin="10,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="kwwart" Text="{Binding _kw}" HorizontalAlignment="Left" Height="23" Margin="10,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="135,43,0,0" TextWrapping="Wrap" Text="Amplituda" VerticalAlignment="Top" Height="16" Width="55"/>
-        <TextBlock HorizontalAlignment="Left" Margin="135,72,0,0" TextWrapping="Wrap" Text="Czas początkowy" VerticalAlignment="Top" Height="16" Width="190"/>
-        <TextBlock HorizontalAlignment="Left" Margin="135,101,0,0" TextWrapping="Wrap" Text="Czas trwania" VerticalAlignment="Top" Height="15" Width="152"/>
+        <TextBlock Name="Anazwa" HorizontalAlignment="Left" Margin="135,43,0,0" TextWrapping="Wrap" Text="Amplituda" VerticalAlignment="Top" Height="16" Width="55"/>
+        <TextBlock Name="t1nazwa" HorizontalAlignment="Left" Margin="135,72,0,0" TextWrapping="Wrap" Text="Czas początkowy" VerticalAlignment="Top" Height="16" Width="190"/>
+        <TextBlock Name="koniecnazwa" HorizontalAlignment="Left" Margin="135,101,0,0" TextWrapping="Wrap" Text="Czas trwania" VerticalAlignment="Top" Height="15" Width="152"/>
         <TextBlock Name="Tnazwa"  HorizontalAlignment="Left" Margin="135,205,0,0" TextWrapping="Wrap" Text="Okres podstawowy" VerticalAlignment="Top" Height="16" Width="101"/>
         <TextBlock Name="kwnazwa" HorizontalAlignment="Left" Margin="135,233,0,0" TextWrapping="Wrap" Text="Współczynnik wypełnienia" VerticalAlignment="Top" Height="16" Width="225"/>
         <TextBox Name="nswart" Text="{Binding _ns}" HorizontalAlignment="Left" Height="23" Margin="10,254,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding _f}" HorizontalAlignment="Left" Height="23" Margin="10,121,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="fwart" Text="{Binding _f}" HorizontalAlignment="Left" Height="23" Margin="10,121,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBlock Name="nsnazwa" HorizontalAlignment="Left" Margin="135,261,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="210"><Run Text="N"/><Run Text="umer próbki ze skokiem"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="135,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.274,-3.75" Height="16" Width="290" Text="Częstotliwość próbkowania"/>
+        <TextBlock Name="fnazwa" HorizontalAlignment="Left" Margin="135,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.274,-3.75" Height="16" Width="290" Text="Częstotliwość próbkowania"/>
         <TextBlock Name="pnazwa" HorizontalAlignment="Left" Margin="135,289,0,0" TextWrapping="Wrap" Text="Prawdopodobieństwo" VerticalAlignment="Top" RenderTransformOrigin="-0.613,-1.375" Height="16" Width="116"/>
         <TextBox Name="pwart" Text="{Binding _p}" HorizontalAlignment="Left" Height="23" Margin="10,282,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox Text="{Binding _his}" HorizontalAlignment="Left" Height="23" Margin="10,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -57,6 +57,7 @@
             <ComboBoxItem>Skok jednostkowy</ComboBoxItem>
             <ComboBoxItem>Impuls jednostkowy</ComboBoxItem>
             <ComboBoxItem>Szum impulsowy</ComboBoxItem>
+            <ComboBoxItem>S1</ComboBoxItem>
         </ComboBox>
         <Button Content="Stwórz sygnał" HorizontalAlignment="Left" Margin="328,10,0,0" VerticalAlignment="Top" Width="97" Click="Button_Click_stworz" Height="22"/>
         <ComboBox Name="kwantyzacja" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Width="313">

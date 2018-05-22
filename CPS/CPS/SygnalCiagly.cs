@@ -133,6 +133,16 @@ namespace CPS
             }
         }
 
+        public void HardCodedExample()
+        {
+            double i = 0;
+            do
+            {
+                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(2 * Math.Sin(Math.PI * i + Math.PI / 2) + 5 * Math.Sin(((2 * Math.PI) / 0.5) * i + Math.PI / 2), 2)));
+                i = i + (1.0 / 16.0);
+            } while (Points.Count < Math.Pow(2, _d));
+        }
+
         public void SygnalSinusoidalnyWyprostowanyJednopolowkowo()
         {
             for (double i = _t1; i <= _t1 + _d; i += 1/ (_f * 10))
@@ -436,7 +446,7 @@ namespace CPS
                 if (point.X == iter)
                 {
                     PointsDys.Add(new DataPoint(point.X, point.Y));
-                    iter += 1 / (_f);
+                    iter += 1 / (_f);      /// pomnoz na poczatku przez 10 a to zmien na co ktoras probke bo sie posiekam
                     iter = Math.Round(iter, 2);
                 }
             }

@@ -266,16 +266,17 @@ namespace CPS
             if (signal.Text == "Skok jednostkowy") sc.Skok();
             if (signal.Text == "Impuls jednostkowy") sd.ImpulsJednostkowy();
             if (signal.Text == "Szum impulsowy") sd.SzumImpulsowy();
+            if (signal.Text == "S1") sc.HardCodedExample();
 
             if (sc != null)
             {
                 sc.CalculateInfo();
-                sc.Dyskryminacja();
-                KwantyzacjaWybor(sc);
-                Odtwarzanie(sc);
-                sc.CalculateErrors();
-                sc.CalculateInfoDys();
-                sc.CalculateErrorsDys();
+                if (signal.Text != "S1") sc.Dyskryminacja();
+                if (signal.Text != "S1") KwantyzacjaWybor(sc);
+                if (signal.Text != "S1") Odtwarzanie(sc);
+                if (signal.Text != "S1") sc.CalculateErrors();
+                if (signal.Text != "S1") sc.CalculateInfoDys();
+                if (signal.Text != "S1") sc.CalculateErrorsDys();
                 lc.DataContext = sc.MakeChart(signal.Text, okienko.Text, typFiltru.Text);
                 lc.Show();
 
@@ -306,9 +307,34 @@ namespace CPS
         private void signal_DropDownClosed(object sender, EventArgs e)
         {
             if (!IsInitialized) return;
+            if(signal.Text == "S1")
+            {
+                koniecnazwa.Text = "n";
+                Awart.Visibility = Visibility.Hidden;
+                Anazwa.Visibility = Visibility.Hidden;
+                fwart.Visibility = Visibility.Hidden;
+                fnazwa.Visibility = Visibility.Hidden;
+                t1nazwa.Visibility = Visibility.Hidden;
+                t1wart.Visibility = Visibility.Hidden;
+                Twart.Visibility = Visibility.Hidden;
+                kwwart.Visibility = Visibility.Hidden;
+                nswart.Visibility = Visibility.Hidden;
+                pwart.Visibility = Visibility.Hidden;
+                Tnazwa.Visibility = Visibility.Hidden;
+                kwnazwa.Visibility = Visibility.Hidden;
+                nsnazwa.Visibility = Visibility.Hidden;
+                pnazwa.Visibility = Visibility.Hidden;
+            }
             if (signal.Text == "Szum o rozkładzie jednostajnym" ||
                 signal.Text == "Szum gaussowski")
             {
+                koniecnazwa.Text = "Czas trwania";
+                Awart.Visibility = Visibility.Visible;
+                Anazwa.Visibility = Visibility.Visible;
+                fwart.Visibility = Visibility.Visible;
+                fnazwa.Visibility = Visibility.Visible;
+                t1nazwa.Visibility = Visibility.Visible;
+                t1wart.Visibility = Visibility.Visible;
                 Twart.Visibility = Visibility.Hidden;
                 kwwart.Visibility = Visibility.Hidden;
                 nswart.Visibility = Visibility.Hidden;
@@ -322,6 +348,13 @@ namespace CPS
                 signal.Text == "Sygnał sinusoidalny wyprostowany jednopołówkowo" ||
                 signal.Text == "Sygnał sinusoidalny wyprostowany dwupołówkowo")
             {
+                koniecnazwa.Text = "Czas trwania";
+                Awart.Visibility = Visibility.Visible;
+                Anazwa.Visibility = Visibility.Visible;
+                fwart.Visibility = Visibility.Visible;
+                fnazwa.Visibility = Visibility.Visible;
+                t1nazwa.Visibility = Visibility.Visible;
+                t1wart.Visibility = Visibility.Visible;
                 Twart.Visibility = Visibility.Visible;
                 kwwart.Visibility = Visibility.Hidden;
                 nswart.Visibility = Visibility.Hidden;
@@ -335,6 +368,13 @@ namespace CPS
                 signal.Text == "Sygnał prostokątny symetryczny" ||
                 signal.Text == "Sygnał trójkątny")
             {
+                koniecnazwa.Text = "Czas trwania";
+                Awart.Visibility = Visibility.Visible;
+                Anazwa.Visibility = Visibility.Visible;
+                fwart.Visibility = Visibility.Visible;
+                fnazwa.Visibility = Visibility.Visible;
+                t1nazwa.Visibility = Visibility.Visible;
+                t1wart.Visibility = Visibility.Visible;
                 Twart.Visibility = Visibility.Visible;
                 kwwart.Visibility = Visibility.Visible;
                 nswart.Visibility = Visibility.Hidden;
@@ -347,6 +387,13 @@ namespace CPS
             if (signal.Text == "Skok jednostkowy" ||
                 signal.Text == "Impuls jednostkowy")
             {
+                koniecnazwa.Text = "Czas trwania";
+                Awart.Visibility = Visibility.Visible;
+                Anazwa.Visibility = Visibility.Visible;
+                fwart.Visibility = Visibility.Visible;
+                fnazwa.Visibility = Visibility.Visible;
+                t1nazwa.Visibility = Visibility.Visible;
+                t1wart.Visibility = Visibility.Visible;
                 Twart.Visibility = Visibility.Hidden;
                 kwwart.Visibility = Visibility.Hidden;
                 nswart.Visibility = Visibility.Visible;
@@ -358,6 +405,13 @@ namespace CPS
             }
             if (signal.Text == "Szum impulsowy")
             {
+                koniecnazwa.Text = "Czas trwania";
+                Awart.Visibility = Visibility.Visible;
+                Anazwa.Visibility = Visibility.Visible;
+                fwart.Visibility = Visibility.Visible;
+                fnazwa.Visibility = Visibility.Visible;
+                t1nazwa.Visibility = Visibility.Visible;
+                t1wart.Visibility = Visibility.Visible;
                 Twart.Visibility = Visibility.Hidden;
                 kwwart.Visibility = Visibility.Hidden;
                 nswart.Visibility = Visibility.Hidden;
