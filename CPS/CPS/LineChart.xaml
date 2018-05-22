@@ -111,7 +111,7 @@
                     </oxy:Plot>
                 </Grid>
             </TabItem>
-            <TabItem Header="Filtr" Height="21" Margin="0,0,-5.8,-0.2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="55">
+            <TabItem Header="Filtr" Height="21" Margin="0,0,-6.4,-0.2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="55">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="7*"/>
@@ -154,6 +154,20 @@
                     <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="885.8,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding _Opoznienie}"/>
                     <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="885.8,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding _CzasOpoznienia}"/>
                     <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="833.8,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding _Odleglosc}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Fourier" Height="21" Margin="0,0,-7.8,-0.2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="55">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="236*"/>
+                    </Grid.ColumnDefinitions>
+                    <oxy:Plot Title="{Binding Title}" Margin="9.8,10,13.6,197.2" Grid.Column="1" Background="White">
+                        <oxy:LineSeries ItemsSource="{Binding Points}" Color="Black" />
+                    </oxy:Plot>
+                    <oxy:Plot Title="{Binding Title}" Margin="9.8,199,13.6,10.2" Grid.Column="1" Background="White">
+                        <oxy:LineSeries ItemsSource="{Binding Points}" Color="Black" />
+                    </oxy:Plot>
                 </Grid>
             </TabItem>
         </TabControl>

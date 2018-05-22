@@ -136,10 +136,12 @@ namespace CPS
         public void HardCodedExample()
         {
             double i = 0;
+            double n = 0;
             do
             {
-                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(2 * Math.Sin(Math.PI * i + Math.PI / 2) + 5 * Math.Sin(((2 * Math.PI) / 0.5) * i + Math.PI / 2), 2)));
+                Points.Add(new OxyPlot.DataPoint(Math.Round(n, 2), Math.Round(2 * Math.Sin(Math.PI * i + Math.PI / 2) + 5 * Math.Sin(((2 * Math.PI) / 0.5) * i + Math.PI / 2), 2)));
                 i = i + (1.0 / 16.0);
+                n++;
             } while (Points.Count < Math.Pow(2, _d));
         }
 
