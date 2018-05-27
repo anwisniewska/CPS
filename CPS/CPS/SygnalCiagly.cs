@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -143,10 +144,11 @@ namespace CPS
             double n = 0;
             do
             {
-                Points.Add(new OxyPlot.DataPoint(Math.Round(n, 2), Math.Round(2 * Math.Sin(Math.PI * i + Math.PI / 2) + 5 * Math.Sin(((2 * Math.PI) / 0.5) * i + Math.PI / 2), 2)));
+                Points.Add(new OxyPlot.DataPoint(n, 2.0 * Math.Sin(Math.PI * i + Math.PI / 2) + 5.0 * Math.Sin(((2 * Math.PI) / 0.5) * i + Math.PI / 2.0)));
                 i = i + (1.0 / 16.0);
                 n++;
-            } while (Points.Count < Math.Pow(2, _d));
+            } while (n < Math.Pow(2, _d));
+            //while (i < 5);
         }
 
         public void SygnalSinusoidalnyWyprostowanyJednopolowkowo()
@@ -759,7 +761,8 @@ namespace CPS
 
         public void DFT()
         {
-            double N = Math.Pow(2, _d);
+            //double N = Math.Pow(2, _d);
+            double N = Points.Count();
 
             for(int m = 0; m < N; m++)
             {
@@ -767,21 +770,153 @@ namespace CPS
                 double sumaIm = 0;
                 for (int n = 0; n < N; n++)
                 {
-                    sumaRe += Points.ElementAt(n).Y * Math.Cos((2 * Math.PI * m * n) / N);
-                    sumaIm += Points.ElementAt(n).Y * (-Math.Sin((2 * Math.PI * m * n) / N));
+                    sumaRe += Points.ElementAt(n).Y * Math.Cos((2.0 * Math.PI * m * n) / N);
+                    sumaIm += Points.ElementAt(n).Y * (-Math.Sin((2.0 * Math.PI * m * n) / N));
                 }
-                //Re.Add(new DataPoint(m, Math.Round((1 / N) * sumaRe, 2)));
-                //Im.Add(new DataPoint(m, Math.Round((1 / N) * sumaIm, 2)));
-                Re.Add(new DataPoint(m, Math.Round( sumaRe, 2)));
-                Im.Add(new DataPoint(m, Math.Round( sumaIm, 2)));
+                Re.Add(new DataPoint(m, sumaRe));
+                Im.Add(new DataPoint(m, sumaIm));
             }
         }
 
-        public LineChartViewModel MakeChart(string title, string okno, string typFiltru)
+        public void FFT()
+        {
+            //double N = Math.Pow(2, _d);
+            double N = Points.Count();
+
+            if (N % 2 == 0)
+                for (int m = 0; m < N; m++)
+                {
+                    double sumaRe1 = 0;
+                    double sumaIm1 = 0;
+                    double sumaRe2 = 0;
+                    double sumaIm2 = 0;
+                    for (int n = 0; n < N / 2; n++)
+                    {
+                        double cos = Math.Cos((2.0 * Math.PI * m * n) / (N / 2));
+                        double sin = (-Math.Sin((2.0 * Math.PI * m * n) / (N / 2)));
+                        sumaRe1 += Points.ElementAt(2 * n).Y * cos;
+                        sumaIm1 += Points.ElementAt(2 * n).Y * sin;
+                        sumaRe2 += Points.ElementAt(2 * n + 1).Y * cos;
+                        sumaIm2 += Points.ElementAt(2 * n + 1).Y * sin;
+                    }
+                    Re.Add(new DataPoint(m, (sumaRe1 + Math.Cos((2.0 * Math.PI * m) / N) * sumaRe2)));
+                    Im.Add(new DataPoint(m, (sumaIm1 - Math.Cos((2.0 * Math.PI * m) / N) * sumaIm2)));
+                }
+        }
+
+        void Separate(Complex[] X, int N)
+        {
+            Complex[] temp = new Complex[N / 2];
+            for (int i = 0; i < N / 2; i++)
+                temp[i] = X[i * 2 + 1];
+
+            for (int i = 0; i < N / 2; i++)
+                X[i] = X[i * 2];
+
+            for (int i = 0; i < N / 2; i++)
+                X[i + N / 2] = temp[i];
+        }
+
+        void Fft2(Complex[] X, int N)
+        {
+            if (N < 2)
+            {
+            }
+            else
+            {
+                Separate(X, N);
+                Fft2(X, N / 2);
+                Fft2(X.Skip(N / 2).ToArray(), N / 2);
+                                          
+                for (int k = 0; k < N / 2; k++)
+                {
+                    Complex e = X[k];
+                    Complex o = X[k + N / 2];
+                                                
+                    Complex w = new Complex(Math.Cos(2.0 * Math.PI * k / N), -Math.Sin(2.0 * Math.PI * k / N));
+                    X[k] = e + w * o;
+                    X[k + N / 2] = e - w * o;
+                }
+            }
+        }
+
+        //public void FFT()
+        //{
+        //    int N = Points.Count();
+        //    if(N > 0 && ((N & (N - 1)) == 0))
+        //    {
+        //        Complex[] X = new Complex[N];
+        //        for(int i=0; i<N; i++)
+        //        {
+        //            X[i] = new Complex(Points.ElementAt(i).Y, 0);
+        //        }
+
+        //        Fft2(X, N);
+
+        //        for(int i = 0; i < N; i++)
+        //        {
+        //            Re.Add(new DataPoint(i, X[i].Real));
+        //            Im.Add(new DataPoint(i, X[i].Imaginary));
+        //        }
+        //    }
+        //}
+
+        public void DCTII()
+        {
+            double N = Points.Count();
+            double cm = Math.Sqrt(2 / N);
+
+            for (int m = 0; m < N; m++)
+            {
+                if(m == 0) cm = Math.Sqrt(1 / N);
+                double sumaRe = 0;
+                for (int n = 0; n < N; n++)
+                {
+                    sumaRe += Points.ElementAt(n).Y * Math.Cos((Math.PI * m * (2.0*n +1)) / (2*N));
+                }
+                Re.Add(new DataPoint(m, cm*sumaRe));
+            }
+        }
+
+        public void FCTII()
+        {
+            double N = Points.Count();
+            if (N % 2 == 0)
+            {
+                ICollection<Double> nowaKolejnosc = new Collection<Double>();
+                for (int i = 0; i < N / 2; i++)
+                {
+                    nowaKolejnosc.Add(Points.ElementAt(2 * i).Y);
+                }
+                for (int i = (int)((N / 2) - 1); i >= 0; i--)
+                {
+                    nowaKolejnosc.Add(Points.ElementAt(2 * i+1).Y);
+                }
+
+                double cm = Math.Sqrt(2 / N);
+
+                for (int m = 0; m < N; m++)
+                {
+                    if (m == 0) cm = Math.Sqrt(1 / N);
+                    double sumaRe = 0;
+                    for (int n = 0; n < N; n++)
+                    {
+                        sumaRe += Points.ElementAt(n).Y * Math.Cos((Math.PI * m * 2.0 * n) / N);
+                    }
+                    Re.Add(new DataPoint(m, cm*Math.Cos((Math.PI * m) / (2*N)) *sumaRe));
+                }
+            }
+
+        }
+
+        public LineChartViewModel MakeChart(string title, string okno, string typFiltru, string trans)
         {
             Filtracja(okno, typFiltru);
             if (_Opoznienie > 0) Radaruj();
-            DFT();
+            if(trans == "DFT") DFT();
+            if (trans == "FFT") FFT();
+            if (trans == "DCTII") DCTII();
+            if (trans == "FCTII") FCTII();
             LineChartViewModel vm = new LineChartViewModel();
             vm.Title = title;
             vm.Points = Points;

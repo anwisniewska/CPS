@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="Menu" Height="731.49" Width="447.2">
+        Title="Menu" Height="773.89" Width="447.2">
     <Grid Margin="0,0,-0.2,0.4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -89,5 +89,11 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,622,0,0" TextWrapping="Wrap" Text="Radar" VerticalAlignment="Top"/>
         <TextBox Text="{Binding _Opoznienie}" HorizontalAlignment="Left" Height="23" Margin="10,644,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="138,651,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="opó"/><Run Text="źnienie (w próbkach)"/></TextBlock>
+        <ComboBox x:Name="trans" HorizontalAlignment="Left" Margin="9,690,0,0" VerticalAlignment="Top" Width="313">
+            <ComboBoxItem IsSelected="True">DFT</ComboBoxItem>
+            <ComboBoxItem>FFT</ComboBoxItem>
+            <ComboBoxItem>DCTII</ComboBoxItem>
+            <ComboBoxItem>FCTII</ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Window>
