@@ -97,7 +97,7 @@ namespace CPS
             _CzasOpoznienia = 0;
 
         }
-      
+
         public void SzumJednostajny()
         {
             Random rand = new Random();
@@ -124,14 +124,14 @@ namespace CPS
 
         public void SygnalSinusoidalny()
         {
-            for (double i=_t1; i<=_t1+_d; i+=1/ (_f * 10))
+            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
                 Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Sin(((2 * Math.PI) / _T) * (i - _t1)), 2)));
             }
-            if(_Opoznienie > 0)
+            if (_Opoznienie > 0)
             {
                 double op = _Opoznienie / (_f * 10);
-                for (double i = _t1+ op; i <= _t1 + _d + op; i += 1 / (_f * 10))
+                for (double i = _t1 + op; i <= _t1 + _d + op; i += 1 / (_f * 10))
                 {
                     Opozniony.Add(new OxyPlot.DataPoint(Math.Round(i - op, 2), Math.Round(_A * Math.Sin(((2 * Math.PI) / _T) * (i - _t1)), 2)));
                 }
@@ -153,9 +153,9 @@ namespace CPS
 
         public void SygnalSinusoidalnyWyprostowanyJednopolowkowo()
         {
-            for (double i = _t1; i <= _t1 + _d; i += 1/ (_f * 10))
+            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
-                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.5* _A * (Math.Sin(((2 * Math.PI) / _T) * (i - _t1)) + Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1)))), 2)));
+                Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.5 * _A * (Math.Sin(((2 * Math.PI) / _T) * (i - _t1)) + Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1)))), 2)));
             }
 
             if (_Opoznienie > 0)
@@ -170,7 +170,7 @@ namespace CPS
 
         public void SygnalSinusoidalnyWyprostowanyDwupolowkowo()
         {
-            for (double i = _t1; i <= _t1 + _d; i += 1/ (_f * 10))
+            for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
                 Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A * Math.Abs(Math.Sin(((2 * Math.PI) / _T) * (i - _t1))), 2)));
             }
@@ -189,10 +189,10 @@ namespace CPS
         {
             for (double i = _t1; i <= _t1 + _d; i += 1 / (_f * 10))
             {
-                if(i < _ns)
+                if (i < _ns)
                     Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.0, 2)));
                 if (i == _ns)
-                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.5* _A, 2)));
+                    Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(0.5 * _A, 2)));
                 if (i > _ns)
                     Points.Add(new OxyPlot.DataPoint(Math.Round(i, 2), Math.Round(_A, 2)));
             }
@@ -219,7 +219,7 @@ namespace CPS
                 }
             }
 
-            if(_Opoznienie>0)
+            if (_Opoznienie > 0)
             {
                 double op = _Opoznienie / (_f * 10);
                 int ktory = 1;
@@ -308,7 +308,7 @@ namespace CPS
                         ktory++;
                 }
             }
-            if(_Opoznienie>0)
+            if (_Opoznienie > 0)
             {
                 double op = _Opoznienie / (_f * 10);
                 int ktory = 1;
@@ -341,7 +341,7 @@ namespace CPS
             // srednia
             double mnoznik = (1) / (Points.Last().X - Points.First().X + 1);
             double suma = 0;
-            foreach(var i in Points)
+            foreach (var i in Points)
             {
                 suma = suma + i.Y;
             }
@@ -370,7 +370,7 @@ namespace CPS
             // wartosc skuteczna
             _Skuteczna = Math.Sqrt(_MocSrednia);
 
-            
+
         }
 
         public void CalculateInfoDys()
@@ -450,7 +450,7 @@ namespace CPS
             double iter = 0;
             foreach (var point in Points)
             {
-                
+
                 if (point.X == iter)
                 {
                     PointsDys.Add(new DataPoint(point.X, point.Y));
@@ -474,10 +474,10 @@ namespace CPS
             PointsDysKwan = new List<OxyPlot.DataPoint>();
             foreach (var point in PointsDys)
             {
-                if((point.Y - (int)point.Y) < 0.5)
+                if ((point.Y - (int)point.Y) < 0.5)
                     PointsDysKwan.Add(new DataPoint(point.X, (int)point.Y));
                 else
-                    PointsDysKwan.Add(new DataPoint(point.X, ((int)point.Y)+1));
+                    PointsDysKwan.Add(new DataPoint(point.X, ((int)point.Y) + 1));
             }
         }
 
@@ -487,16 +487,16 @@ namespace CPS
             int ile = (Points.Count) / (PointsDys.Count);
             int iter = 0;
             int ileJuzDodane = 0;
-            foreach(var point in Points)
+            foreach (var point in Points)
             {
                 PointsDysOdtCiag.Add(new DataPoint(point.X, PointsDys.ElementAt(iter).Y));
                 ileJuzDodane++;
-                if(ileJuzDodane == 10)
+                if (ileJuzDodane == 10)
                 {
                     iter++;
                     ileJuzDodane = 0;
                 }
-                
+
             }
             PointsOdt = PointsDysOdtCiag;
         }
@@ -509,7 +509,7 @@ namespace CPS
             int ileJuzDodane = 0;
             foreach (var point in Points)
             {
-                if(iter == PointsDys.Count-1)
+                if (iter == PointsDys.Count - 1)
                 {
                     PointsDysOdtCiag.Add(new DataPoint(point.X, PointsDys.ElementAt(iter).Y));
                 }
@@ -521,7 +521,7 @@ namespace CPS
                     double yb = PointsDys.ElementAt(iter + 1).Y;
                     PointsDysOdtCiag.Add(new DataPoint(point.X, (((yb - ya) / (xb - xa)) * point.X) + (((ya * xb) - (yb * xa)) / (xb - xa))));
                 }
-               
+
                 ileJuzDodane++;
                 if (ileJuzDodane == 10)
                 {
@@ -538,25 +538,25 @@ namespace CPS
             //blad sredniokwadratowy mse
             double roznica = 0;
             double suma = 0;
-            for(int i =0; i<Points.Count; i++)
+            for (int i = 0; i < Points.Count; i++)
             {
                 roznica = PointsOdt.ElementAt(i).Y - Points.ElementAt(i).Y;
                 roznica = roznica * roznica;
                 suma = suma + roznica;
             }
-            _MSE = (1/(double)Points.Count) * suma;
+            _MSE = (1 / (double)Points.Count) * suma;
             //stosune sygnal - szum snr
             double x2 = 0;
             double sumaKwadratow = 0;
-            foreach(var point in PointsOdt)
+            foreach (var point in PointsOdt)
             {
                 x2 = point.Y * point.Y;
                 sumaKwadratow = sumaKwadratow + x2;
             }
-            _SNR = 10 * Math.Log10(sumaKwadratow/suma);
+            _SNR = 10 * Math.Log10(sumaKwadratow / suma);
             //szczytowy stosunek sygnal - szum psnr
             double max = PointsOdt.ElementAt(0).Y;
-            foreach(var point in PointsOdt)
+            foreach (var point in PointsOdt)
             {
                 if (point.Y > max)
                     max = point.Y;
@@ -564,7 +564,7 @@ namespace CPS
             _PSNR = 10 * Math.Log10(max / _MSE);
             //maksymalna roznica md
             double roznicaMd = Math.Abs(PointsOdt.ElementAt(0).Y - Points.ElementAt(0).Y);
-            for(int i = 0; i<PointsOdt.Count; i++)
+            for (int i = 0; i < PointsOdt.Count; i++)
             {
                 double nowaRoznicaMd = Math.Abs(PointsOdt.ElementAt(i).Y - Points.ElementAt(i).Y);
                 if (nowaRoznicaMd > roznicaMd)
@@ -604,7 +604,7 @@ namespace CPS
             _PSNRDys = 10 * Math.Log10(max / _MSE);
             //maksymalna roznica md
             double roznicaMd = Math.Abs(PointsDysKwan.ElementAt(0).Y - PointsDys.ElementAt(0).Y);
-            for (int j = 0; j < PointsDysKwan.Count;j++)
+            for (int j = 0; j < PointsDysKwan.Count; j++)
             {
                 double nowaRoznicaMd = Math.Abs(PointsDysKwan.ElementAt(j).Y - PointsDys.ElementAt(j).Y);
                 if (nowaRoznicaMd > roznicaMd)
@@ -623,8 +623,8 @@ namespace CPS
                     cos = 2 / _K;
                 else
                 {
-                    double gora = Math.Sin( ( 2 * Math.PI * ( n - ( _M - 1 ) / 2 ) / _K ));
-                    double dol = Math.PI * ( n - ( _M - 1 ) / 2 );
+                    double gora = Math.Sin((2 * Math.PI * (n - (_M - 1) / 2) / _K));
+                    double dol = Math.PI * (n - (_M - 1) / 2);
                     cos = gora / dol;
                 }
                 Filtr.Add(new DataPoint(n, cos));
@@ -636,8 +636,8 @@ namespace CPS
             IList<OxyPlot.DataPoint> nowyFiltr = new List<OxyPlot.DataPoint>();
             for (int n = 0; n <= _M - 1; n++)
             {
-                double cos = 0.53836 - (0.46164 * Math.Cos( (2*Math.PI*n) / _M ));
-                nowyFiltr.Add(new DataPoint(n, Filtr.ElementAt(n).Y*cos));
+                double cos = 0.53836 - (0.46164 * Math.Cos((2 * Math.PI * n) / _M));
+                nowyFiltr.Add(new DataPoint(n, Filtr.ElementAt(n).Y * cos));
             }
             Filtr = nowyFiltr;
         }
@@ -667,7 +667,7 @@ namespace CPS
             IList<OxyPlot.DataPoint> nowyFiltr = new List<OxyPlot.DataPoint>();
             for (int n = 0; n <= _M - 1; n++)
             {
-                double cos = 2*Math.Sin((Math.PI*n)/2);
+                double cos = 2 * Math.Sin((Math.PI * n) / 2);
                 nowyFiltr.Add(new DataPoint(n, Filtr.ElementAt(n).Y * cos));
             }
             Filtr = nowyFiltr;
@@ -730,14 +730,14 @@ namespace CPS
             //szukanie probki maksymalnej
             double x = 0;
             double y = 0;
-            foreach(var point in Radar)
+            foreach (var point in Radar)
             {
-                if(point.X == 0)
+                if (point.X == 0)
                 {
                     x = Radar.ElementAt(0).X;
                     y = Radar.ElementAt(0).Y;
                 }
-                if(point.X > 0)
+                if (point.X > 0)
                 {
                     if (point.Y > y)
                     {
@@ -764,7 +764,7 @@ namespace CPS
             //double N = Math.Pow(2, _d);
             double N = Points.Count();
 
-            for(int m = 0; m < N; m++)
+            for (int m = 0; m < N; m++)
             {
                 double sumaRe = 0;
                 double sumaIm = 0;
@@ -778,88 +778,93 @@ namespace CPS
             }
         }
 
-        public void FFT()
-        {
-            //double N = Math.Pow(2, _d);
-            double N = Points.Count();
+        //public void FFT()
+        //{
+        //    //double N = Math.Pow(2, _d);
+        //    double N = Points.Count();
 
-            if (N % 2 == 0)
-                for (int m = 0; m < N; m++)
-                {
-                    double sumaRe1 = 0;
-                    double sumaIm1 = 0;
-                    double sumaRe2 = 0;
-                    double sumaIm2 = 0;
-                    for (int n = 0; n < N / 2; n++)
-                    {
-                        double cos = Math.Cos((2.0 * Math.PI * m * n) / (N / 2));
-                        double sin = (-Math.Sin((2.0 * Math.PI * m * n) / (N / 2)));
-                        sumaRe1 += Points.ElementAt(2 * n).Y * cos;
-                        sumaIm1 += Points.ElementAt(2 * n).Y * sin;
-                        sumaRe2 += Points.ElementAt(2 * n + 1).Y * cos;
-                        sumaIm2 += Points.ElementAt(2 * n + 1).Y * sin;
-                    }
-                    Re.Add(new DataPoint(m, (sumaRe1 + Math.Cos((2.0 * Math.PI * m) / N) * sumaRe2)));
-                    Im.Add(new DataPoint(m, (sumaIm1 - Math.Cos((2.0 * Math.PI * m) / N) * sumaIm2)));
-                }
-        }
+        //    if (N % 2 == 0)
+        //        for (int m = 0; m < N; m++)
+        //        {
+        //            double sumaRe1 = 0;
+        //            double sumaIm1 = 0;
+        //            double sumaRe2 = 0;
+        //            double sumaIm2 = 0;
+        //            for (int n = 0; n < N / 2; n++)
+        //            {
+        //                double cos = Math.Cos((2.0 * Math.PI * m * n) / (N / 2));
+        //                double sin = (-Math.Sin((2.0 * Math.PI * m * n) / (N / 2)));
+        //                sumaRe1 += Points.ElementAt(2 * n).Y * cos;
+        //                sumaIm1 += Points.ElementAt(2 * n).Y * sin;
+        //                sumaRe2 += Points.ElementAt(2 * n + 1).Y * cos;
+        //                sumaIm2 += Points.ElementAt(2 * n + 1).Y * sin;
+        //            }
+        //            Re.Add(new DataPoint(m, (sumaRe1 + Math.Cos((2.0 * Math.PI * m) / N) * sumaRe2)));
+        //            Im.Add(new DataPoint(m, (sumaIm1 - Math.Cos((2.0 * Math.PI * m) / N) * sumaIm2)));
+        //        }
+        //}
 
-        void Separate(Complex[] X, int N)
+
+        void Separate(Complex[] X, int N, int n)
         {
             Complex[] temp = new Complex[N / 2];
             for (int i = 0; i < N / 2; i++)
-                temp[i] = X[i * 2 + 1];
+                temp[i] = X[(i) * 2 + 1 +n];
 
             for (int i = 0; i < N / 2; i++)
-                X[i] = X[i * 2];
+                X[(i) +n] = X[(i) * 2 +n];
 
             for (int i = 0; i < N / 2; i++)
-                X[i + N / 2] = temp[i];
+                X[(i) + N / 2 +n] = temp[i];
+
         }
 
-        void Fft2(Complex[] X, int N)
+        void Fft2(Complex[] X, int N, int n, int cos)
         {
             if (N < 2)
             {
             }
             else
             {
-                Separate(X, N);
-                Fft2(X, N / 2);
-                Fft2(X.Skip(N / 2).ToArray(), N / 2);
-                                          
-                for (int k = 0; k < N / 2; k++)
+                if(N!=2) Separate(X, N, n);
+                Fft2(X, N / 2, n, 0);
+                Fft2(X, N/2, N / 2, n);
+
+                int k = 0 + n + cos;
+                do
                 {
                     Complex e = X[k];
                     Complex o = X[k + N / 2];
-                                                
-                    Complex w = new Complex(Math.Cos(2.0 * Math.PI * k / N), -Math.Sin(2.0 * Math.PI * k / N));
+
+                    Complex w = new Complex(Math.Cos(2.0 * Math.PI * (k-n) / N), -Math.Sin(2.0 * Math.PI * (k-n) / N));
                     X[k] = e + w * o;
                     X[k + N / 2] = e - w * o;
-                }
+
+                    k++;
+                } while (k < N / 2) ;
             }
         }
 
-        //public void FFT()
-        //{
-        //    int N = Points.Count();
-        //    if(N > 0 && ((N & (N - 1)) == 0))
-        //    {
-        //        Complex[] X = new Complex[N];
-        //        for(int i=0; i<N; i++)
-        //        {
-        //            X[i] = new Complex(Points.ElementAt(i).Y, 0);
-        //        }
+        public void FFT()
+        {
+            int N = Points.Count();
+            if (N > 0 && ((N & (N - 1)) == 0))
+            {
+                Complex[] X = new Complex[N];
+                for (int i = 0; i < N; i++)
+                {
+                    X[i] = new Complex(Points.ElementAt(i).Y, 0);
+                }
 
-        //        Fft2(X, N);
+                Fft2(X, N, 0, 0);
 
-        //        for(int i = 0; i < N; i++)
-        //        {
-        //            Re.Add(new DataPoint(i, X[i].Real));
-        //            Im.Add(new DataPoint(i, X[i].Imaginary));
-        //        }
-        //    }
-        //}
+                for (int i = 0; i < N; i++)
+                {
+                    Re.Add(new DataPoint(i, X[i].Real));
+                    Im.Add(new DataPoint(i, X[i].Imaginary));
+                }
+            }
+        }
 
         public void DCTII()
         {
