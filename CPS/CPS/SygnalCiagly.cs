@@ -805,65 +805,170 @@ namespace CPS
         //}
 
 
-        void Separate(Complex[] X, int N, int n)
-        {
-            Complex[] temp = new Complex[N / 2];
-            for (int i = 0; i < N / 2; i++)
-                temp[i] = X[(i) * 2 + 1 +n];
+        //void Separate(Complex[] X, int N, int n)
+        //{
+        //    Complex[] temp = new Complex[N / 2];
+        //    for (int i = 0; i < N / 2; i++)
+        //        temp[i] = X[(i) * 2 + 1 +n];
 
-            for (int i = 0; i < N / 2; i++)
-                X[(i) +n] = X[(i) * 2 +n];
+        //    for (int i = 0; i < N / 2; i++)
+        //        X[(i) +n] = X[(i) * 2 +n];
 
-            for (int i = 0; i < N / 2; i++)
-                X[(i) + N / 2 +n] = temp[i];
+        //    for (int i = 0; i < N / 2; i++)
+        //        X[(i) + N / 2 +n] = temp[i];
 
-        }
+        //}
 
-        void Fft2(Complex[] X, int N, int n, int cos)
-        {
-            if (N < 2)
-            {
-            }
-            else
-            {
-                if(N!=2) Separate(X, N, n);
-                Fft2(X, N / 2, n, 0);
-                Fft2(X, N/2, N / 2, n);
+        //void Fft2(Complex[] X, int N, int n, int cos)
+        //{
+        //    if (N < 2)
+        //    {
+        //    }
+        //    else
+        //    {
+        //        if(N!=2) Separate(X, N, n);
+        //        Fft2(X, N / 2, n, 0);
+        //        Fft2(X, N/2, N / 2, n);
 
-                int k = 0 + n + cos;
-                do
-                {
-                    Complex e = X[k];
-                    Complex o = X[k + N / 2];
+        //        int k = 0 + n*2;
+        //        do
+        //        {
+        //            Complex e = X[k];
+        //            Complex o = X[k + N / 2];
 
-                    Complex w = new Complex(Math.Cos(2.0 * Math.PI * (k-n) / N), -Math.Sin(2.0 * Math.PI * (k-n) / N));
-                    X[k] = e + w * o;
-                    X[k + N / 2] = e - w * o;
+        //            Complex w = new Complex(Math.Cos(2.0 * Math.PI * (k-n) / N), -Math.Sin(2.0 * Math.PI * (k-n) / N));
+        //            X[k] = e + w * o;
+        //            X[k + N / 2] = e - w * o;
 
-                    k++;
-                } while (k < N / 2) ;
-            }
-        }
+        //            k++;
+        //        } while (k < N / 2 + n) ;
+        //    }
+        //}
+
+        //public void FFT()
+        //{
+        //    int N = Points.Count();
+        //    if (N > 0 && ((N & (N - 1)) == 0))
+        //    {
+        //        Complex[] X = new Complex[N];
+        //        for (int i = 0; i < N; i++)
+        //        {
+        //            X[i] = new Complex(Points.ElementAt(i).Y, 0);
+        //        }
+
+        //        Fft2(X, N, 0, 0);
+
+        //        for (int i = 0; i < N; i++)
+        //        {
+        //            Re.Add(new DataPoint(i, X[i].Real));
+        //            Im.Add(new DataPoint(i, X[i].Imaginary));
+        //        }
+        //    }
+        //}
 
         public void FFT()
         {
             int N = Points.Count();
             if (N > 0 && ((N & (N - 1)) == 0))
             {
-                Complex[] X = new Complex[N];
+                Double[] X = new Double[N];
                 for (int i = 0; i < N; i++)
                 {
-                    X[i] = new Complex(Points.ElementAt(i).Y, 0);
+                    X[i] = Points.ElementAt(i).Y;
                 }
 
-                Fft2(X, N, 0, 0);
+                Double[] syg = new Double[N];
+                syg = ZmienKolejnosc(X);
+
+                var SYGNAL = new List<Complex>();
+                for (int i = 0; i < N; i++)
+                {
+                    SYGNAL.Add(new Complex(syg[i], 0));
+                }
+
+                for (int i = 2; i <= N; i = i * 2)
+                {
+                    SYGNAL = Fft2(SYGNAL, i);
+                }
 
                 for (int i = 0; i < N; i++)
                 {
-                    Re.Add(new DataPoint(i, X[i].Real));
-                    Im.Add(new DataPoint(i, X[i].Imaginary));
+                    Re.Add(new DataPoint(i, SYGNAL[i].Real));
+                    Im.Add(new DataPoint(i, SYGNAL[i].Imaginary));
                 }
             }
+
+        }
+
+        public List<Complex> CountFactors(int N)
+        {
+            List<Complex> factors = new List<Complex>();
+            for(int k = 0; k<N/2; k++)
+            {
+                factors.Add(new Complex(Math.Cos(2.0 * Math.PI * k / N), -Math.Sin(2.0 * Math.PI * k / N)));
+            }
+            for (int k = 0; k < N / 2; k++)
+            {
+                factors.Add(factors[k] * (-1.0));
+            }
+            return factors;
+        }
+
+        public Complex Motylek(Complex x1, Complex x2, Complex factor, double sign = 1.0)
+        {
+            return x1 + x2 * factor * sign;
+        }
+
+        public List<Complex> Fft2(List<Complex> input, int N)
+        {
+            var divided = new List<Complex>();
+            var factors = CountFactors(N);
+            for (int i = 0; i < input.Count / N; i++)
+            {
+                for (int j = 0; j < N / 2; j++)
+                {
+                    var value = Motylek(input[N * i + j], input[N * i + j + N / 2], factors[j]);
+                    divided.Add(value);
+                }
+                for (int j = 0; j < N / 2; j++)
+                {
+                    var value = Motylek(input[N * i + j], input[N * i + j + N / 2], factors[j], -1.0);
+                    divided.Add(value);
+                } 
+}
+            return divided;
+        }
+
+        public double[] ZmienKolejnosc(double[] sygnal)
+        {
+            double[][] wynik = new double[2][];
+            if (sygnal.Length / 2 >= 2)
+            {
+                double[][] zmiana = new double[2][];
+                for (int i = 0; i < zmiana.Length; i++)
+                {
+                    zmiana[i] = new double[sygnal.Length / 2];
+                }
+                for (int j = 0; j < sygnal.Length; j++)
+                {
+                    if (j % 2 == 0)
+                    {
+                        zmiana[0][j / 2] = sygnal[j];
+                    } else
+                    {
+                        zmiana[1][(j - 1) / 2] = sygnal[j];
+                    }
+                }
+                wynik[0] = ZmienKolejnosc(zmiana[0]);
+                wynik[1] = ZmienKolejnosc(zmiana[1]);
+            } else
+            {
+                return sygnal;
+            }
+            double[] koniec = new double[wynik[0].Length + wynik[1].Length];
+            Array.Copy(wynik[0], koniec, wynik[0].Length);
+            Array.Copy(wynik[1], 0, koniec, wynik[0].Length, wynik[1].Length);
+            return koniec;
         }
 
         public void DCTII()
@@ -906,7 +1011,7 @@ namespace CPS
                     double sumaRe = 0;
                     for (int n = 0; n < N; n++)
                     {
-                        sumaRe += Points.ElementAt(n).Y * Math.Cos((Math.PI * m * 2.0 * n) / N);
+                        sumaRe += nowaKolejnosc.ElementAt(n) * Math.Cos((Math.PI * m * 2.0 * n) / N);
                     }
                     Re.Add(new DataPoint(m, cm*Math.Cos((Math.PI * m) / (2*N)) *sumaRe));
                 }
