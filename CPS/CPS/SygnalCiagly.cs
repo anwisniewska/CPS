@@ -900,43 +900,43 @@ namespace CPS
 
         }
 
-        public List<Complex> CountFactors(int N)
+        public List<Complex> W(int N)
         {
-            List<Complex> factors = new List<Complex>();
+            List<Complex> w = new List<Complex>();
             for(int k = 0; k<N/2; k++)
             {
-                factors.Add(new Complex(Math.Cos(2.0 * Math.PI * k / N), -Math.Sin(2.0 * Math.PI * k / N)));
+                w.Add(new Complex(Math.Cos(2.0 * Math.PI * k / N), -Math.Sin(2.0 * Math.PI * k / N)));
             }
             for (int k = 0; k < N / 2; k++)
             {
-                factors.Add(factors[k] * (-1.0));
+                w.Add(w[k] * (-1.0));
             }
-            return factors;
+            return w;
         }
 
-        public Complex Motylek(Complex x1, Complex x2, Complex factor, double sign = 1.0)
+        public Complex Motylek(Complex x1, Complex x2, Complex w, double znak = 1.0)
         {
-            return x1 + x2 * factor * sign;
+            return x1 + x2 * w * znak;
         }
 
-        public List<Complex> Fft2(List<Complex> input, int N)
+        public List<Complex> Fft2(List<Complex> sygnal, int N)
         {
-            var divided = new List<Complex>();
-            var factors = CountFactors(N);
-            for (int i = 0; i < input.Count / N; i++)
+            var d = new List<Complex>();
+            var w = W(N);
+            for (int i = 0; i < sygnal.Count / N; i++)
             {
                 for (int j = 0; j < N / 2; j++)
                 {
-                    var value = Motylek(input[N * i + j], input[N * i + j + N / 2], factors[j]);
-                    divided.Add(value);
+                    var value = Motylek(sygnal[N * i + j], sygnal[N * i + j + N / 2], w[j]);
+                    d.Add(value);
                 }
                 for (int j = 0; j < N / 2; j++)
                 {
-                    var value = Motylek(input[N * i + j], input[N * i + j + N / 2], factors[j], -1.0);
-                    divided.Add(value);
+                    var value = Motylek(sygnal[N * i + j], sygnal[N * i + j + N / 2], w[j], -1.0);
+                    d.Add(value);
                 } 
 }
-            return divided;
+            return d;
         }
 
         public double[] ZmienKolejnosc(double[] sygnal)
