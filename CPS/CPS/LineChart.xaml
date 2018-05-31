@@ -188,7 +188,7 @@
                             </TransformGroup>
                         </TextBlock.RenderTransform><Run Text="Część "/><Run Text="urojona"/></TextBlock>
                     <TextBlock HorizontalAlignment="Left" Margin="27,440,0,0" TextWrapping="Wrap" Text="czas obliczeń [ms]:" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="76.8,440,0,0" TextWrapping="Wrap" Text="{Binding _CzasFourier}" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="109.8,440,0,0" TextWrapping="Wrap" Text="{Binding _CzasFourier}" VerticalAlignment="Top" Width="95"/>
                 </Grid>
             </TabItem>
         </TabControl>

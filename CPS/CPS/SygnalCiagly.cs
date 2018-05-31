@@ -766,7 +766,20 @@ namespace CPS
         public void DFT()
         {
             //double N = Math.Pow(2, _d);
-            double N = Points.Count();
+            int N = Points.Count();
+            if (!((N & (N - 1)) == 0))
+            {
+                int res = 0;
+                for (int i = N; i >= 1; i--)
+                {
+                    if ((i & (i - 1)) == 0)
+                    {
+                        res = i;
+                        break;
+                    }
+                }
+                N = res;
+            }
             zegarek.Start();
             for (int m = 0; m < N; m++)
             {
@@ -874,6 +887,19 @@ namespace CPS
         public void FFT()
         {
             int N = Points.Count();
+            if (!((N & (N - 1)) == 0))
+            {
+                int res = 0;
+                for (int i = N; i >= 1; i--)
+                {
+                    if ((i & (i - 1)) == 0)
+                    {
+                        res = i;
+                        break;
+                    }
+                }
+                N = res;
+            }
             if (N > 0 && ((N & (N - 1)) == 0))
             {
                 Double[] X = new Double[N];
@@ -980,8 +1006,22 @@ namespace CPS
 
         public void DCTII()
         {
+            
+            int N = Points.Count();
+            if (!((N & (N - 1)) == 0))
+            {
+                int res = 0;
+                for (int i = N; i >= 1; i--)
+                {
+                    if ((i & (i - 1)) == 0)
+                    {
+                        res = i;
+                        break;
+                    }
+                }
+                N = res;
+            }
             zegarek.Start();
-            double N = Points.Count();
             double cm = Math.Sqrt(2 / N);
 
             for (int m = 0; m < N; m++)
@@ -999,8 +1039,22 @@ namespace CPS
 
         public void FCTII()
         {
+            
+            int N = Points.Count();
+            if (!((N & (N - 1)) == 0))
+            {
+                int res = 0;
+                for (int i = N; i >= 1; i--)
+                {
+                    if ((i & (i - 1)) == 0)
+                    {
+                        res = i;
+                        break;
+                    }
+                }
+                N = res;
+            }
             zegarek.Start();
-            double N = Points.Count();
             if (N % 2 == 0)
             {
                 ICollection<Double> nowaKolejnosc = new Collection<Double>();
