@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CPS"
         mc:Ignorable="d"
-        Title="Wykres" Height="473.8" Width="984.8">
+        Title="Wykres" Height="550.61" Width="984.8">
     <Window.DataContext>
         <local:LineChartViewModel/>
     </Window.DataContext>
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="55*"/>
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" Margin="-290,604,0,-220.6" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
-        <TabControl SelectedIndex="2" HorizontalAlignment="Left" Height="420" Margin="10,10,0,0" VerticalAlignment="Top" Width="955" Grid.ColumnSpan="3">
+        <TabControl SelectedIndex="2" HorizontalAlignment="Left" Height="497" Margin="10,10,0,0" VerticalAlignment="Top" Width="955" Grid.ColumnSpan="3">
             <TabItem Header="Sygnał ciągły" HorizontalAlignment="Left" Margin="59,0,-58.6,-0.2" Width="102" RenderTransformOrigin="3.059,0.632">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,-1.2">
                     <Grid.ColumnDefinitions>
@@ -47,7 +47,7 @@
                             </TransformGroup>
                         </TextBlock.RenderTransform>
                     </TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Margin="288,335,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="305,443,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,246,0,0" TextWrapping="Wrap" Text="błąd średniokwadratowy" VerticalAlignment="Top" Grid.Column="1"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,268,0,0" TextWrapping="Wrap" Text="stosunek sygnał-szum" VerticalAlignment="Top" Grid.Column="1"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1"><Run Text="szczytowy "/><LineBreak/><Run Text="stosunek sygnał"/><Run Text="-"/><Run Text="szum"/></TextBlock>
@@ -79,7 +79,7 @@
                             </TransformGroup>
                         </TextBlock.RenderTransform>
                     </TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Margin="177,335,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top" Grid.Column="2"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="177.4,442,0,0" TextWrapping="Wrap" Text="czas" VerticalAlignment="Top" Grid.Column="2"/>
                     <TextBlock HorizontalAlignment="Left" Margin="622,22,0,0" TextWrapping="Wrap" Text="wartość średnia" VerticalAlignment="Top" Grid.Column="2"/>
                     <TextBlock HorizontalAlignment="Left" Margin="622,45,0,0" TextWrapping="Wrap" Text="wartość bezwzględna" VerticalAlignment="Top" Grid.Column="2"/>
                     <TextBlock HorizontalAlignment="Left" Margin="622,66,0,0" TextWrapping="Wrap" Text="wartość skuteczna" VerticalAlignment="Top" Grid.Column="2"/>
@@ -122,7 +122,7 @@
                     </oxy:Plot>
                 </Grid>
             </TabItem>
-            <TabItem Header="Sygnał filtrowany" Height="21" Margin="0,0,-6.6,-0.2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="107">
+            <TabItem Header="Sygnał filtrowany" Height="21" Margin="6.6,0,-6.4,-0.2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="107">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="7*"/>
@@ -139,13 +139,13 @@
                         <ColumnDefinition Width="7*"/>
                         <ColumnDefinition Width="236*"/>
                     </Grid.ColumnDefinitions>
-                    <oxy:Plot Margin="0,10,178.6,259.2" Grid.ColumnSpan="2">
+                    <oxy:Plot Margin="0,10,178.6,318" Grid.ColumnSpan="2">
                         <oxy:LineSeries ItemsSource="{Binding Points}" Color="Black" />
                     </oxy:Plot>
-                    <oxy:Plot Margin="0,137,178.6,132.2" Grid.ColumnSpan="2">
+                    <oxy:Plot Margin="0,161,178.6,161" Grid.ColumnSpan="2">
                         <oxy:LineSeries ItemsSource="{Binding Opozniony}" Color="Black" />
                     </oxy:Plot>
-                    <oxy:Plot Margin="0,264,178.6,5.2" Grid.ColumnSpan="2">
+                    <oxy:Plot Margin="0,314,178.6,5" Grid.ColumnSpan="2">
                         <oxy:LineSeries ItemsSource="{Binding Radar}" Color="Black" />
                     </oxy:Plot>
                     <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="765.8,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="opóźnien"/><Run Text="ie"/><LineBreak/><Run Text="w próbkach"/></TextBlock>
@@ -157,15 +157,15 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Fourier" Height="21" Margin="0,0,-7.8,-0.2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="55">
-                <Grid Background="#FFE5E5E5">
+                <Grid Background="#FFE5E5E5" Margin="0,0,-0.4,-64.8" Height="456" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="7*"/>
                         <ColumnDefinition Width="236*"/>
                     </Grid.ColumnDefinitions>
-                    <oxy:Plot Margin="9.8,10,13.6,197.2" Grid.Column="1" Background="White">
+                    <oxy:Plot Margin="9.8,10,13.4,237" Grid.Column="1" Background="White">
                         <oxy:LineSeries ItemsSource="{Binding Re}" Color="Transparent" MarkerFill="Black" MarkerType="Circle"/>
                     </oxy:Plot>
-                    <oxy:Plot Margin="9.8,199,13.6,10.2" Grid.Column="1" Background="White">
+                    <oxy:Plot Margin="9.8,233,13.4,31" Grid.Column="1" Background="White">
                         <oxy:LineSeries ItemsSource="{Binding Im}" Color="Transparent" MarkerFill="Black" MarkerType="Circle"/>
                     </oxy:Plot>
                     <TextBlock HorizontalAlignment="Left" Margin="-31,96,0,0" TextWrapping="Wrap" Text="Część rzeczywista" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
@@ -178,7 +178,7 @@
                             </TransformGroup>
                         </TextBlock.RenderTransform>
                     </TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Margin="-20,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                    <TextBlock HorizontalAlignment="Left" Margin="-19,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
                         <TextBlock.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -187,6 +187,8 @@
                                 <TranslateTransform/>
                             </TransformGroup>
                         </TextBlock.RenderTransform><Run Text="Część "/><Run Text="urojona"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="27,440,0,0" TextWrapping="Wrap" Text="czas obliczeń [ms]:" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="76.8,440,0,0" TextWrapping="Wrap" Text="{Binding _CzasFourier}" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>

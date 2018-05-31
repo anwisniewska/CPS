@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using OxyPlot;
+using System.Diagnostics;
 
 namespace CPS
 {
@@ -70,6 +71,8 @@ namespace CPS
         public double _Odleglosc { get; set; }
         public double _CzasOpoznienia { get; set; }
 
+        public Stopwatch zegarek;
+
 
         public SygnalCiagly(double A, double t1, double d, double T, double kw, double f, double ns, int his, int N, int K, int M, int op)
         {
@@ -85,6 +88,7 @@ namespace CPS
             this._K = K;
             this._N = N;
             this._Opoznienie = op;
+            zegarek = new Stopwatch();
 
             // co by okres sie dziwnie nie konczyl
             if (_T != 0)
@@ -763,7 +767,7 @@ namespace CPS
         {
             //double N = Math.Pow(2, _d);
             double N = Points.Count();
-
+            zegarek.Start();
             for (int m = 0; m < N; m++)
             {
                 double sumaRe = 0;
@@ -776,6 +780,7 @@ namespace CPS
                 Re.Add(new DataPoint(m, sumaRe));
                 Im.Add(new DataPoint(m, sumaIm));
             }
+            zegarek.Stop();
         }
 
         //public void FFT()
@@ -877,6 +882,7 @@ namespace CPS
                     X[i] = Points.ElementAt(i).Y;
                 }
 
+                zegarek.Start();
                 Double[] syg = new Double[N];
                 syg = ZmienKolejnosc(X);
 
@@ -896,6 +902,7 @@ namespace CPS
                     Re.Add(new DataPoint(i, SYGNAL[i].Real));
                     Im.Add(new DataPoint(i, SYGNAL[i].Imaginary));
                 }
+                zegarek.Stop();
             }
 
         }
@@ -973,6 +980,7 @@ namespace CPS
 
         public void DCTII()
         {
+            zegarek.Start();
             double N = Points.Count();
             double cm = Math.Sqrt(2 / N);
 
@@ -986,10 +994,12 @@ namespace CPS
                 }
                 Re.Add(new DataPoint(m, cm*sumaRe));
             }
+            zegarek.Stop();
         }
 
         public void FCTII()
         {
+            zegarek.Start();
             double N = Points.Count();
             if (N % 2 == 0)
             {
@@ -1016,6 +1026,7 @@ namespace CPS
                     Re.Add(new DataPoint(m, cm*Math.Cos((Math.PI * m) / (2*N)) *sumaRe));
                 }
             }
+            zegarek.Stop();
 
         }
 
@@ -1046,7 +1057,8 @@ namespace CPS
             vm._d = _d;
             vm._kw = _kw;
             vm._f = _f;
- 
+            vm._CzasFourier = zegarek.ElapsedMilliseconds;
+
             vm._Srednia = Math.Round(_Srednia, 2);
             vm._SredniaBez = Math.Round(_SredniaBez, 2);
             vm._MocSrednia = Math.Round(_MocSrednia, 2);
