@@ -830,36 +830,36 @@ namespace CPS
         //        temp[i] = X[(i) * 2 + 1 +n];
 
         //    for (int i = 0; i < N / 2; i++)
-        //        X[(i) +n] = X[(i) * 2 +n];
+        //        X[(i) + n] = X[(i) * 2 + n];
 
         //    for (int i = 0; i < N / 2; i++)
         //        X[(i) + N / 2 +n] = temp[i];
 
         //}
 
-        //void Fft2(Complex[] X, int N, int n, int cos)
+        //void Fft2(Complex[] X, int N, int n)
         //{
         //    if (N < 2)
         //    {
         //    }
         //    else
         //    {
-        //        if(N!=2) Separate(X, N, n);
-        //        Fft2(X, N / 2, n, 0);
-        //        Fft2(X, N/2, N / 2, n);
+        //        Separate(X, N, n);
+        //        Fft2(X, N / 2, n);
+        //        Fft2(X, N / 2, N / 2);
 
-        //        int k = 0 + n*2;
+        //        int k = n;
         //        do
         //        {
         //            Complex e = X[k];
         //            Complex o = X[k + N / 2];
 
-        //            Complex w = new Complex(Math.Cos(2.0 * Math.PI * (k-n) / N), -Math.Sin(2.0 * Math.PI * (k-n) / N));
+        //            Complex w = new Complex(Math.Cos(2.0 * Math.PI * (k - n) / N), -Math.Sin(2.0 * Math.PI * (k - n) / N));
         //            X[k] = e + w * o;
         //            X[k + N / 2] = e - w * o;
 
         //            k++;
-        //        } while (k < N / 2 + n) ;
+        //        } while (k < N / 2 + n);
         //    }
         //}
 
@@ -874,7 +874,7 @@ namespace CPS
         //            X[i] = new Complex(Points.ElementAt(i).Y, 0);
         //        }
 
-        //        Fft2(X, N, 0, 0);
+        //        Fft2(X, N, 0);
 
         //        for (int i = 0; i < N; i++)
         //        {
@@ -936,7 +936,7 @@ namespace CPS
         public List<Complex> W(int N)
         {
             List<Complex> w = new List<Complex>();
-            for(int k = 0; k<N/2; k++)
+            for (int k = 0; k < N / 2; k++)
             {
                 w.Add(new Complex(Math.Cos(2.0 * Math.PI * k / N), -Math.Sin(2.0 * Math.PI * k / N)));
             }
@@ -967,8 +967,8 @@ namespace CPS
                 {
                     var value = Motylek(sygnal[N * i + j], sygnal[N * i + j + N / 2], w[j], -1.0);
                     d.Add(value);
-                } 
-}
+                }
+            }
             return d;
         }
 
@@ -987,14 +987,16 @@ namespace CPS
                     if (j % 2 == 0)
                     {
                         zmiana[0][j / 2] = sygnal[j];
-                    } else
+                    }
+                    else
                     {
                         zmiana[1][(j - 1) / 2] = sygnal[j];
                     }
                 }
                 wynik[0] = ZmienKolejnosc(zmiana[0]);
                 wynik[1] = ZmienKolejnosc(zmiana[1]);
-            } else
+            }
+            else
             {
                 return sygnal;
             }
@@ -1088,10 +1090,20 @@ namespace CPS
         {
             Filtracja(okno, typFiltru);
             if (_Opoznienie > 0) Radaruj();
-            if(trans == "DFT") DFT();
+            IList<OxyPlot.DataPoint> PointsCopy = new List<OxyPlot.DataPoint>();
+            if (_K != 0)
+            {
+                PointsCopy = Points;
+                Points = SygFiltrowany;
+            }
+            if (trans == "DFT") DFT();
             if (trans == "FFT") FFT();
             if (trans == "DCTII") DCTII();
             if (trans == "FCTII") FCTII();
+            if(_K !=0)
+            {
+                Points = PointsCopy;
+            }
             LineChartViewModel vm = new LineChartViewModel();
             vm.Title = title;
             vm.Points = Points;
