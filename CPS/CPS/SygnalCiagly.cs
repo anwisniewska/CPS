@@ -1024,11 +1024,11 @@ namespace CPS
                 N = res;
             }
             zegarek.Start();
-            double cm = Math.Sqrt(2 / N);
+            double cm = Math.Sqrt(2.0 / N);
 
             for (int m = 0; m < N; m++)
             {
-                if(m == 0) cm = Math.Sqrt(1 / N);
+                if(m == 0) cm = Math.Sqrt(1.0 / N);
                 double sumaRe = 0;
                 for (int n = 0; n < N; n++)
                 {
@@ -1069,11 +1069,11 @@ namespace CPS
                     nowaKolejnosc.Add(Points.ElementAt(2 * i+1).Y);
                 }
 
-                double cm = Math.Sqrt(2 / N);
+                double cm = Math.Sqrt(2.0 / N);
 
                 for (int m = 0; m < N; m++)
                 {
-                    if (m == 0) cm = Math.Sqrt(1 / N);
+                    if (m == 0) cm = Math.Sqrt(1.0 / N);
                     double sumaRe = 0;
                     for (int n = 0; n < N; n++)
                     {
