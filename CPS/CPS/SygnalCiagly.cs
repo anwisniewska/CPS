@@ -940,10 +940,6 @@ namespace CPS
             {
                 w.Add(new Complex(Math.Cos(2.0 * Math.PI * k / N), -Math.Sin(2.0 * Math.PI * k / N)));
             }
-            for (int k = 0; k < N / 2; k++)
-            {
-                w.Add(w[k] * (-1.0));
-            }
             return w;
         }
 
@@ -1071,15 +1067,30 @@ namespace CPS
 
                 double cm = Math.Sqrt(2.0 / N);
 
+                Double[] X = new Double[N];
+                for (int i = 0; i < N; i++)
+                {
+                    X[i] = Points.ElementAt(i).Y;
+                }
+
+                Double[] syg = new Double[N];
+                syg = ZmienKolejnosc(X);
+
+                var SYGNAL = new List<Complex>();
+                for (int i = 0; i < N; i++)
+                {
+                    SYGNAL.Add(new Complex(syg[i], 0));
+                }
+
+                for (int i = 2; i <= N; i = i * 2)
+                {
+                    SYGNAL = Fft2(SYGNAL, i);
+                }
+
                 for (int m = 0; m < N; m++)
                 {
                     if (m == 0) cm = Math.Sqrt(1.0 / N);
-                    double sumaRe = 0;
-                    for (int n = 0; n < N; n++)
-                    {
-                        sumaRe += nowaKolejnosc.ElementAt(n) * Math.Cos((Math.PI * m * 2.0 * n) / N);
-                    }
-                    Re.Add(new DataPoint(m, cm*Math.Cos((Math.PI * m) / (2*N)) *sumaRe));
+                    Re.Add(new DataPoint(m, cm*Math.Cos((Math.PI * m) / (2*N)) *SYGNAL[m].Real));
                 }
             }
             zegarek.Stop();
