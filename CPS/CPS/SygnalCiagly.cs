@@ -1123,7 +1123,7 @@ namespace CPS
             vm._d = _d;
             vm._kw = _kw;
             vm._f = _f;
-            vm._CzasFourier = zegarek.ElapsedMilliseconds;
+            vm._CzasFourier = ((double)zegarek.ElapsedTicks / (double)Stopwatch.Frequency) *1000.0;
 
             vm._Srednia = Math.Round(_Srednia, 2);
             vm._SredniaBez = Math.Round(_SredniaBez, 2);
