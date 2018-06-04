@@ -12,10 +12,10 @@
 
 \setlength{\textheight}{21cm}
 
-\title{{\bf Zadanie nr 3 - Splot, filtracja i korelacja sygnałów}\linebreak
+\title{{\bf Zadanie nr 4 - Przekształcenie Fouriera, Walsha-Hadamarda, kosinusowe i falkowe, szybkie algorytmy}\linebreak
 Cyfrowe Przetwarzanie Sygnałów}
 \author{Aneta Wiśniewska, 204029 \and Hanna Paluszkiewicz, 203962}
-\date{14.05.2018}
+\date{04.06.2018}
 
 \begin{document}
 \clearpage\maketitle
@@ -24,135 +24,191 @@ Cyfrowe Przetwarzanie Sygnałów}
 \setcounter{page}{1}
 \section{Cel zadania}
 
-Celem ćwiczenia jest zapoznanie się w praktyce z procesami splotu, filtracji i korelacji sygnałów.
+Celem ćwiczenia jest zapoznanie się w praktyce z  operacjami transformacji sygnałów dyskretnych przy użyciu przykładowych metod. 
 
 \section{Wstęp teoretyczny}
 
 \subsection{Teoria}
 
-
+W tej pracy zostały wybrane: górny wykres prezentujący częsć rzeczywistą amplitudy w funkcji częstotliwosci, a wykres dolny częsć urojoną. Została zaimplementowana dyskretna transformacja Fouriera, czyli algorytm z definicji oraz szybka transformacja Fouriera z decymacją w dziedzinie czasu (DIT FFT). Została zastosowana transformacja kosinusowa typu drugiego (DCT II) oraz szybka transformacja kosinusowa (FCT II).
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{alligator}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%SPLOT%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%DFT%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\item [Splot] to jedno z najważniejszych działań podczas filtracji sygnałów dyskretnych. Jest operacją przetwarzania dwóch sygnałów, w wyniku której otrzymujemy pojedyńczy sygnał dyskretny.  W ogólnym przypadku splot jest zdefiniowany wzorem:
+\item [Dyskretna transformacja Fouriera] to przekształcenie macierzowe w postaci wzoru:
 \\
 \begin{figure}[h!]
  \centering
- \includegraphics[width=5.3cm]{splotWO.PNG}
+ \includegraphics[width=5.3cm]{DFTmacierzowa.PNG}
  \vspace{-0.3cm}
  \label{Widok_aplikacjis}
 \end{figure}
-W praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonych równomiernie w dowolnych miejscach osi czasu. Zwykle przyjmuje się konwencję indeksacyjną, gdzie oba sygnały zaczynają się  na osi czasu od próbki zero. Poza granicami przedziału oba sygnały są zerowe. 
-\\Wzór dla tej konwencji przyjmuje postać: 
+Odwrotne przekształcenie jest opisane wzorem:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=5.3cm]{splotWS.PNG}
+ \includegraphics[width=5.3cm]{DFTmacierzowaOd.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%FILTRACJA%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+x(n) - to wektor próbek sygnału, gdzie kolejne próbki są oddalone od  siebie o czas delta t = 1/fpr (1/częstotliwosć próbkowania).
+X(m) -  to wektor-wynik transformacji sygnału x(n). Każda kolejna wartosć opisuje udział składowej częstotliwosci m*f0 w sygnale próbkowanym.
+f0 opisuje wzór:
+ \\
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=5.3cm]{f0.PNG}
+ \vspace{-0.3cm}
+ \label{Widok_aplikacjis}
+\end{figure}
+Istnieje także zapis zastosowaniem jądra transformacji prostej, które przyjmuje postać:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=5.3cm]{jadroW.PNG}
+ \vspace{-0.3cm}
+ \label{Splot_indeks}
+\end{figure}
+Wtedy zapisujemy:
+\newpage
+transformacja prosta:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=5.3cm]{Xm.PNG}
+ \vspace{-0.3cm}
+ \label{Splot_indeks}
+\end{figure}
+\\ transformacja odwrotna:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=5.3cm]{xn.PNG}
+ \vspace{-0.3cm}
+ \label{Splot_indeks}
+\end{figure}
+dla:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=5.3cm]{m,n.PNG}
+ \vspace{-0.3cm}
+ \label{Splot_indeks}
+\end{figure}
 
-\item [Filtracja sygnałów]  - należy do podstawowych operacji CPS. W ramach filtracji widmo sygnału ulega modyfikacji. Zostały odfiltrowane składowe częci sygnału o częstotliwosciach należących do pasma zaporowego. Reszta widma leżąca w pamie przepustowym, nie uległa zmianie lub podlega niewielkiemu tłumieniu. 
-\\Filtry ze względu na umiejscowienie pasma przepustowego i zaporowego dzielimy na:
-\subitem Filtry dolnoprzepustowe - ich pasma przepustowe są okrelone przedziałem częstotliwosci od 0 do f0 (f0 - częstotliwosć odcięcia filtru) 
-\subitem Filtry górnoprzepustowe - ich pasma przepustowe są okrelone przedziałem częstotliwosci od f0 do fp/2 (fp - częstotliwosć próbkowania sygnału) 
-\subitem Filtry srodkowoprzepustowe - ich pasma przepustowe są okrelone przedziałem częstotliwosci od fd do fp/4 
+Postać macierzowa wzoru przyjmuje postać:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=5.3cm]{PMAcierzowa.PNG}
+ \vspace{-0.3cm}
+ \label{Splot_indeks}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%FFT%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubitem f0 = fp/K gdzie f0 to częstotliwosć odcięcia
-\subsubitem fp to częstotliwosć 
-
-W zadaniu są stosowane filtry SOI - o skończonej odpowiedzi impulsowej. Zaletą tych filtrów jest łatwosć implementacji (w oparciu o splot) i projektowania postaci filtru. 
-\\Przy obliczaniu próbki sygnału wyjsciowego (y(n)) jest brane pod uwagę M przeszłych próbek sygnału wejsciowego (x(n)). Wartosci y(n) obliczamy jako sumy ważone x(n) z uwzględnieniem współczynników filtru h(n). 
-\\Opisuje to wzór:
+\item [Szybka transformacja Fouriera]  - Jest ulepszonym algorytmem DFT z mniejszym kosztem obliczeniowym. Klasyczna Dyskretna transformata Fouriera wymaga N*N mnożeń liczb zespolonych, natomiast FFT N log2 N
+\subitem Decymacja w dziedzinie czasu - podział próbek wejściowych, zależnych od czasu, na próbki parzyste i nieparzyste z zapisem do oddziezlbych wektorów.
+\\Równanie transformacji, gdy rozdzielimy próbki parzyste i nieparzyste do osobnych wektorów, zapisujemy :
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=8.3cm]{filtrS.PNG}
+ \includegraphics[width=8.3cm]{Decy.PNG}
+ \vspace{-0.3cm}
+ \label{filtrS}
+\end{figure}
+\subsubitem f0 = fp/K gdzie f0 to częstotliwosć odcięcia
+\subsubitem fp to częstotliwosć 
+
+Po wyciągnięciu WN-m przed sumę, równanie przyjmuje postać:
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=8.3cm]{DecyW.PNG}
  \vspace{-0.3cm}
  \label{filtrS}
 \end{figure}
 
-Gdzie:
-\subitem M - rząd filtru 
-\subitem h(k) - odpowiedź impulsowa
+Jedna suma dotyczy próbek parzystych, a drugie nieparzystych.
 
-Jeżeli ciąg próbek sygnału wejsciowego będzie ciągiem wartosci zerowych,  filtr SOI będzie generował na wyjsciu skończony ciąg niezerowych wartosci.
-
-Powyższy wzór jest stosowany dla filtru dolnoprzepustowego. Na jego podstawie można obliczyć także działanie innych filtrów. W tym celu stosuje się wzory:
-\subsubitem dla filtru srodkowoprzepustowego:
+Ponieważ zachodzi równosć:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=3.3cm]{sr.PNG}
+ \includegraphics[width=8.3cm]{rownosc.PNG}
+ \vspace{-0.3cm}
+ \label{filtrS}
+\end{figure}
+to poprzedni wzór możemy zapisać jako:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=8.3cm]{FFTr.PNG}
+ \vspace{-0.3cm}
+ \label{filtrS}
+\end{figure}
+
+Sumowane wyrażenia są analogiczne do  postaci wejciowej ale dotyczą tylko połowy próbek. Współczynnik m ma wartosć od 0 do N-1.
+Mamy:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=3.3cm]{mamy.PNG}
  \vspace{-0.3cm}
  \label{sp}
 \end{figure}
+co oanqcza, że drugą połową wektora jest powtórzenie pierwszej połowy. Pozwala to na wykonanie N/2 sumowań zamiast N. Stosując te same operacje dla N - nieparzystych. Teraz są mnożone maciezrzy to N/2xN/2 zamiast NxN. Trzeba jeszcze pomnożyć N razy przy składaniu wektorów, ale koszt nadal jest dużo mniejszy.
 
+%%%%%%%%%%%%%%%%%%%%%%%%TRANSFORMACJA KOSINUSOWA%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\subsubitem dla filtru górnoprzepustowego:
+\item [Transformacja kosinusowa] - wykorzystanie funkcji cosinus o różnych fazach i okresach. DCT II opisuje wzór:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=3cm]{gor.PNG}
- \vspace{-0.3cm}
- \label{gp}
-\end{figure}
-
-
-Do projektowania filtrów SOI została zastosowana metoda okna.
-
-
-W praktyce często stosuje się okna:
-\subitem Hamminga
-\newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=6.3cm]{Hm.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-
-\subitem Hanninga
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=6.3cm]{Hn.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-
-\subitem Blackmana
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=7.3cm]{B.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%KORELACJA%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\item [Korelacja] - jest ważną częscią przetwarzania sygnałów. Jest stosowana, gdy trzeba porównać sygnał z innym, zwłaszcza z przesuniętą na osi czasu swoją kopią.
-Polega na przetwarzaniu dwóch sygnałów dyskretnych, w czego wyniku otrzymujemy pojedynczy sygnał dyskretny.
-\\Korelacja w ogólnym przypadku jest opisywana wzorem:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=4.3cm]{kor.PNG}
+ \includegraphics[width=4.3cm]{DCT2.PNG}
  \vspace{-0.3cm}
  \label{kr}
 \end{figure}
-\\Podobnie jak w operacji splotu w praktyce stosuje się sygnały o skończonych ilosciach próbek rozmieszczonych równomiernie w dowolnych miejscach osi czasu i zakres zmiennosci próbek dla każdego n zakresy sumowań zmieniają się zgodnie zumiejscowieniem na osi czasu i liczbami próbek każdego z dyskretnych sygnałów wejsciowych h oraz x. Zwykle przyjmuje się konwencję indeksacyjną, gdzie oba sygnały zaczynają się  na osi czasu od próbki zero. Poza granicami przedziału oba sygnały są zerowe. 
-\\Wzór dla tej konwencji przyjmuje postać: 
+\\ a przekształcenie odwrotne przyjmuje postać: 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{korW.PNG}
+ \includegraphics[width=4.3cm]{DCT2O.PNG}
  \vspace{-0.3cm}
  \label{kw}
 \end{figure}
 
+Sygnał y(n) to sygnał x(n) o zmienionej kolejności próbek, gdzie w pierwszej połowie znajdują się próbki parzyste, a w drugiej próbki nieparzyste w odwróconej kolejnosci.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%SZYBKA TRANSFORMACJA KOSINUSOWA%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item [Szybka transformacja kosinusowa] - zastosowanie szybkich algorytmów dyskretnej transformacji Fouriera, stosowanych przy przekształceniu
+równania DCT do postaci pozwalającej wyodrębnić z niego człon stanowiący DFT. 
+\\ Gdy mamy sygnał dyskretny opisany jako funkcja można zdefiniować
+sygnał y(n) wzorami:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=4.3cm]{yn.PNG}
+ \vspace{-0.3cm}
+ \label{kr}
+\end{figure}
+\\ a przekształcenie odwrotne przyjmuje postać: 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=4.3cm]{DCT2O.PNG}
+ \vspace{-0.3cm}
+ \label{kw}
+\end{figure}
+
+Transformatę sygnału x(n) można obliczyćprzy pomocy wzoru:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=4.3cm]{xmF.PNG}
+ \vspace{-0.3cm}
+ \label{kw}
+\end{figure}
+Przy czym przekształcenie odwrotne opisuje rówananie:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=4.3cm]{xmFO.PNG}
+ \vspace{-0.3cm}
+ \label{kw}
+\end{figure}
+
+Sygnał x(n) odtwarzamy przy pomocy zmiany kolejności próbek w sygnale y(n).
 
 \end{labeling}
 
@@ -206,11 +262,11 @@ Poniżej znajdują się wszystkie przeprowadzone eksperymenty - możliwe do uzys
 
 \subsection{Eksperyment nr 1}
 
-Eksperyment nr 1 -  Splot\\
+Eksperyment nr 1 -  DFT\\
 
 
 \subsubsection{Założenia}
-Operacja splotu jest przeprowadzana dla dwóch dowolnych sygnałów dyskretnych o wczeniej podanych (niekonieczcnie jednakowych) ilosciach próbek. W tym celu jest wykorzystany wzór \ref{Splot_indeks}.
+Program wykona obliczenia niezbędne do obliczenia dyskretnej transformaty Fouriera \ref{Splot_indeks}.
 
 \subsubsection{Przebieg}
 Do generacji synału zostały podane parametry:
@@ -218,219 +274,149 @@ Do generacji synału zostały podane parametry:
 
 \begin{labeling}{szj}
 \item [Sygnał 1:] 
-\subitem [Amplituda (A):] 1
-\subitem [Czas trwania (t1):] 4 s
-\subitem [Częstotliwość próbkowania (d): ] 10 Hz
-\subitem [Okres podstawowy :] 2 s
-
+\subitem [ n:] 3
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{sin.PNG}
+ \includegraphics[width=12.3cm]{s13.PNG}
  \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego}
+ \caption{Wykres funkcji}
  \label{sin}
 \end{figure}
 
 \item [Sygnał 2:] 
-\subitem [Amplituda (A):] 1
-\subitem [Czas trwania (t1):] 4 s
-\subitem [Częstotliwość próbkowania (d): ] 10 Hz
+\subitem [ n:] 6
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s16.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres funkcji}
+ \label{sin}
+\end{figure}
+
+\item [Sygnał 3:] 
+\subitem [ n:] 8
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s18.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres funkcji}
+ \label{sin}
+\end{figure}
+
 
 \end{labeling}
 
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{szum.PNG}
- \vspace{-0.3cm}
- \caption{Wykres szumu gausowskiego}
- \label{szum}
-\end{figure}
- \newpage
 \subsubsection{Rezultat}
 
-Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
+Rezultaty przedstawiają zamieszczone poniżej zrzut ekranu z programu. Czas wykonania oraz wykres dyskretnej transformaty Fouriera.
+\newpage
+ Sygnał 1:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{splot.PNG}
+ \includegraphics[width=12.3cm]{s13F.PNG}
  \vspace{-0.3cm}
- \caption{Wykres splotu sygnałów 1 i 2}
+ \caption{Wykres DFT dla sygnału 1}
  \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
+Sygnał 2:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s16F.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres DFT dla sygnału 2}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
+\end{figure}
+
+\newpage
+Sygnał 3:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s18F.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres DFT dla sygnału 3}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. EKSPERYMENT NR2 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Eksperyment nr 2}
-Eksperyment nr 2  - Filtracja z filtrem dolnoprzepustowym
-
+Eksperyment nr 2  - FFT
 \subsubsection{Założenia}
-Filtr dolnoprzepustowy opisuje wzór, na podstawie odwrotnego przekształcenia Fouriera:
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=6.3cm]{four.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-
-gdzie:
-\subitem n - liczba całkowita,
-\subitem częstotliwosć odcięcia filtru - f0 =  fp/K
-
-Zakładamy, że filtr jest idealny -  w pasmie przepustowym nie zmienia się widmo sygnału wejsciowego -  transmitancja jest równa  1. W pasmie zaporowym skłądowe czętotliwosciowe zostaną kompletnie wytłumione (transmitancja równa 0).
-
-Ze względu na nieskońconą liczbę współczynników h(n) nie stosuje się tego wzoru w praktyce.
-
-Wzór na odpowiedź impulsową filtru o M współczynników z przesunięciem (w celu uzyskania nieujemnych indeksów):
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=6.3cm]{f.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-
-gdzie:
-\subitem n = 0,1, ... , M-1
-\subitem częstotliwosć odcięcia filtru - f0 =  fp/K
+Program wykona obliczenia niezbędne do obliczenia dyskretnej transformaty Fouriera \ref{Splot_indeks}.
 
 \subsubsection{Przebieg}
-Do generacji synału prostokątnego zostały podane parametry:
+Do generacji synału zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-\item [Amplituda (A):] 1
-\item [Czas trwania (t1):] 100 s
-\item [Częstotliwość próbkowania (d): ] 1 Hz
-\item [Okres podstawowy :] 100 s
-\item [Współczynnik wypełnienia:] 0,5
+
+\item [Sygnał 1:] 
+\subitem [ n:] 3
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s13.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres funkcji}
+ \label{sin}
+\end{figure}
+
+\newpage
+\item [Sygnał 2:] 
+\subitem [ n:] 6
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s16.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres funkcji}
+ \label{sin}
+\end{figure}
+
+\item [Sygnał 3:] 
+\subitem [ n:] 8
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s18.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres funkcji}
+ \label{sin}
+\end{figure}
+
+
 \end{labeling}
 
-
-1:
-\begin{labeling}{szj}
-\item [K:] 10
-\item [M:] 20 
-\end{labeling}
-
-2: (drugi przykład filtru dolnoprzepustowego i okna prostokątnego)
-
-\begin{labeling}{szj}
-\item [K:] 10
-\item [M:] 100 
-\end{labeling}
-
-3: (trzeci przykład filtru dolnoprzepustowego i okna prostokątnego)
-
-\begin{labeling}{szj}
-\item [K:] 100
-\item [M:] 20 
-\end{labeling}
 \subsubsection{Rezultat}
 
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. 
-
-Okno prostokątne
-\\1:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostFDOP.PNG}
- \vspace{-0.3cm}
- \caption{Filtracja dolnoprzepustowa z oknem prostokątnym}
- \label{Wykres dla wyników eksperymentu drugiego}
-\end{figure}
+Rezultaty przedstawiają zamieszczone poniżej zrzut ekranu z programu. Czas wykonania oraz wykres dyskretnej transformaty Fouriera.
 \newpage
-Rys. \ref{Wykres dla wynikw eksperymentu pierwszego h} przedstawia histogram sygnału z opisanymi powyżej parametrami. 
+ Sygnał 1:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostSFDP.PNG}
+ \includegraphics[width=12.3cm]{s13FFT.PNG}
  \vspace{-0.3cm}
- \caption{Sygnał filtracji dolnoprzepustowej z oknem prostokątnym}
- \label{Histogram dla wyników eksperymentu drugiego}
-\end{figure}
-2:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{filtrMk.PNG}
- \vspace{-0.3cm}
- \caption{Filtracja dolnoprzepustowa z oknem prostokątnym}
- \label{Wykres dla wyników eksperymentu drugiego}
-\end{figure}
-\newpage
-
-3:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{dK.PNG}
- \vspace{-0.3cm}
- \caption{Filtracja dolnoprzepustowa z oknem prostokątnym}
- \label{pdg}
-\end{figure}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{filtrMkS.PNG}
- \vspace{-0.3cm}
- \caption{Sygnał filtracja dolnoprzepustowej z oknem prostokątnym}
- \label{filtrMks}
+ \caption{Wykres FFT dla sygnału 1}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
-Okno Hamminga
+Sygnał 2:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostFDOHm.PNG}
+ \includegraphics[width=12.3cm]{s16FFT.PNG}
  \vspace{-0.3cm}
- \caption{Filtracja dolnoprzepustowa z oknem Hamminga}
- \label{fdohm}
-\end{figure}
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostSFDHm.PNG}
- \vspace{-0.3cm}
- \caption{Sygnał filtracja dolnoprzepustowej z oknem Hamminga}
- \label{hm}
+ \caption{Wykres FFT dla sygnału 2}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
 \newpage
-Okno Hanninga
+Sygnał 3:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostFDOHn.PNG}
+ \includegraphics[width=12.3cm]{s18FFT.PNG}
  \vspace{-0.3cm}
- \caption{Filtracja dolnoprzepustowa z oknem Hanninga}
- \label{Wykres dla wyników eksperymentu drugiego}
-\end{figure}
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostSFDHn.PNG}
- \vspace{-0.3cm}
- \caption{Sygnał filtracji dolnoprzepustowej z oknem Hanninga}
- \label{hn}
-\end{figure}
-
-\newpage
-Okno Blackmana
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostFDOB.PNG}
- \vspace{-0.3cm}
- \caption{Filtracja dolnoprzepustowa z oknem Blackmana}
- \label{bm}
-\end{figure}
-\newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostSFDB.PNG}
- \vspace{-0.3cm}
- \caption{Sygnał filtracji dolnoprzepustowej z oknem Blackmana}
- \label{sb}
+ \caption{Wykres FFT dla sygnału 3}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -439,118 +425,81 @@ Okno Blackmana
 
 \subsection{Eksperyment nr 3}
 
-Eksperyment nr 3  - Filtracja z filtrem srodkowoprzepustowym
+Eksperyment nr 3  -transformacja kosinusowa typu drugiego 
 \subsubsection{Założenia}
-Z wykorzystaniem twierdzenia o modulacji przekształcamy odpowiedź impulsową filtru dolnoprzepustowego do odpowiedzi filtru srodkowoprzepustowego:
-współczynniki h(n) są mnożone przez sygnał sinusoidalny  o częstotliwosci f = fp/4
-
-Wtedy fd = fp/4-f0 i fg = fp/4 + f0.
+Program wykonuje transformację kosinusową typu drugiego
 
 \subsubsection{Przebieg}
-Do generacji synału prostokątnego zostały podane parametry:
+Do generacji synału zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-\item [Amplituda (A):] 1
-\item [Czas trwania (t1):] 100 s
-\item [Częstotliwość próbkowania (d): ] 1 Hz
-\item [Okres podstawowy :] 100 s
-\item [Współczynnik wypełnienia:] 0,5
-\end{labeling}
 
-Wykres sygnału przedstawia poniższy obrazek:
+\item [Sygnał 1:] 
+\subitem [ n:] 3
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prost.PNG}
+ \includegraphics[width=12.3cm]{s13.PNG}
  \vspace{-0.3cm}
- \label{gw}
+ \caption{Wykres funkcji}
+ \label{sin}
 \end{figure}
 
-Parametry filtracji:
-\addtokomafont{labelinglabel}{\sffamily}
+\newpage
+\item [Sygnał 2:] 
+\subitem [ n:] 6
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s16.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres funkcji}
+ \label{sin}
+\end{figure}
 
-\begin{labeling}{szj}
-\item K:] 10
-\item [M:] 20 s
+\item [Sygnał 3:] 
+\subitem [ n:] 8
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s18.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres funkcji}
+ \label{sin}
+\end{figure}
+
+
 \end{labeling}
 
 \subsubsection{Rezultat}
 
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. 
-
-Okno prostokątne
+Rezultaty przedstawiają zamieszczone poniżej zrzut ekranu z programu. Czas wykonania oraz wykres transformaciji kosinusowej typu drugiego
+\newpage
+ Sygnał 1:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostFSOP.PNG}
+ \includegraphics[width=12.3cm]{s13DCT2.PNG}
  \vspace{-0.3cm}
- \caption{Filtracja srodkowoprzepustowa z oknem prostokątnym}
- \label{Wykres dla wyników eksperymentu drugiego}
+ \caption{Wykres DCT II dla sygnału 1}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
+Sygnał 2:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostSFSP.PNG}
+ \includegraphics[width=12.3cm]{s16DCT2.PNG}
  \vspace{-0.3cm}
- \caption{Sygnał filtracji srodkowoprzepustowej z oknem prostokątnym}
- \label{sfsp}
+ \caption{Wykres DCT II dla sygnału 2}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
 
 \newpage
-Okno Hamminga
+Sygnał 3:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostFSOHm.PNG}
+ \includegraphics[width=12.3cm]{s18DCT2.PNG}
  \vspace{-0.3cm}
- \caption{Filtracja srodkowoprzepustowa z oknem Hamminga}
- \label{fsohm}
+ \caption{Wykres DCT II dla sygnału 3}
+ \label{Wykres dla wynikw eksperymentu pierwszego}
 \end{figure}
-
-\newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostSFSHm.PNG}
- \vspace{-0.3cm}
- \caption{Sygnał filtracji srodkowoprzepustowej z oknem Hamminga}
- \label{sfshm}
-\end{figure}
-
-Okno Hanninga
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostFSOHn.PNG}
- \vspace{-0.3cm}
- \caption{Filtracja srodkowoprzepustowa z oknem prostokątnym}
- \label{Wykres dla wyników eksperymentu drugiego}
-\end{figure}
-
-\newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostSFSHn.PNG}
- \vspace{-0.3cm}
- \caption{Sygnał filtracji srodkowoprzepustowej z oknem Hamminga}
- \label{sfshn}
-\end{figure}
-
-Okno Blackmana
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostFSOB.PNG}
- \vspace{-0.3cm}
- \caption{Filtracja srodkowoprzepustowa z oknem prostokątnym}
- \label{fsob}
-\end{figure}
-
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostSFSB.PNG}
- \vspace{-0.3cm}
- \caption{Sygnał filtracji srodkowoprzepustowej z oknem Blackmana}
- \label{ob}
-\end{figure}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. EKSPERYMENT NR 4 
@@ -558,112 +507,80 @@ Okno Blackmana
 
 \subsection{Eksperyment nr 4}
 
-Eksperyment nr 4  - Filtracja z filtrem górnoprzepustowym
+Eksperyment nr 4  - Szybka transformacja kosinusowa
 \subsubsection{Założenia}
-Z wykorzystaniem twierdzenia o modulacji przekształcamy odpowiedź impulsową filtru dolnoprzepustowego do odpowiedzi filtru górnoprzepustowego:
-współczynniki h(n) są mnożone przez sygnał sinusoidalny  o częstotliwosci f = fp/2. Wtedy f0 = fp/2-f0 (f0 -  nowa częstotliwosć odcięcia).
+Program wykonuje transformację kosinusową typu drugiego
 
 \subsubsection{Przebieg}
-Do generacji synału prostokątnego zostały podane parametry:
+Do generacji synału zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-\item [Amplituda (A):] 1
-\item [Czas trwania (t1):] 100 s
-\item [Częstotliwość próbkowania (d): ] 1 Hz
-\item [Okres podstawowy :] 100 s
-\item [Współczynnik wypełnienia:] 0,5
-\end{labeling}
 
-Wykres sygnału przedstawia poniższy obrazek:
+\item [Sygnał 1:] 
+\subitem [ n:] 3
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prost.PNG}
+ \includegraphics[width=12.3cm]{s13.PNG}
  \vspace{-0.3cm}
- \label{gw}
+ \caption{Wykres funkcji}
+ \label{sin}
 \end{figure}
 
-Parametry filtracji:
-\addtokomafont{labelinglabel}{\sffamily}
+\newpage
+\item [Sygnał 2:] 
+\subitem [ n:] 6
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s16.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres funkcji}
+ \label{sin}
+\end{figure}
+\newpage
+\item [Sygnał 3:] 
+\subitem [ n:] 8
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=12.3cm]{s18.PNG}
+ \vspace{-0.3cm}
+ \caption{Wykres funkcji}
+ \label{sin}
+\end{figure}
 
-\begin{labeling}{szj}
-\item K:] 10
-\item [M:] 20 s
+
 \end{labeling}
 
 \subsubsection{Rezultat}
 
-Rezultaty przedstawiają zamieszczone poniżej zrzuty ekranu z programu. 
-Okno prostokątne
+Rezultaty przedstawiają zamieszczone poniżej zrzut ekranu z programu. Czas wykonania oraz wykres transformaciji kosinusowej typu drugiego
+\newpage
+ Sygnał 1:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostFGOP.PNG}
+ \includegraphics[width=12.3cm]{s13FCT2.PNG}
  \vspace{-0.3cm}
- \caption{Filtracja górnoprzepustowa z oknem prostokątnym}
- \label{gfh}
+ \caption{Wykres FCT II dla sygnału 1}
+ \label{Wykres dla wyników eksperymentu pierwszego}
 \end{figure}
- 
+
+Sygnał 2:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostSFGP.PNG}
+ \includegraphics[width=12.3cm]{s16FCT2.PNG}
  \vspace{-0.3cm}
- \caption{Sygnał filtracji górnoprzepustowej z oknem prostokątnym}
- \label{hg}
+ \caption{Wykres FCT II dla sygnału 2}
+ \label{Wykres dla wyników eksperymentu pierwszego}
 \end{figure}
 
 \newpage
-Okno Hamminga
+Sygnał 3:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=12.3cm]{prostFGOHm.PNG}
+ \includegraphics[width=12.3cm]{s18FCT2.PNG}
  \vspace{-0.3cm}
- \caption{Filtracja górnoprzepustowa z oknem Hamminga}
- \label{dtf}
-\end{figure}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostSFGHm.PNG}
- \vspace{-0.3cm}
- \caption{Sygnał filtracji górnoprzepustowej z oknem Hamminga}
- \label{esrd}
-\end{figure}
-
-Okno Hanninga
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostFGOHn.PNG}
- \vspace{-0.3cm}
- \caption{Filtracja górnoprzepustowa z oknem Hanninga}
- \label{seaw}
-\end{figure}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostSFGHn.PNG}
- \vspace{-0.3cm}
- \caption{Sygnał filtracji górnoprzepustowej z oknem Hanninga}
- \label{qwe}
-\end{figure}
-
-Okno Blackmana
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostFGOB.PNG}
- \vspace{-0.3cm}
- \caption{Filtracja górnoprzepustowa z oknem Blackmana}
- \label{werty}
-\end{figure}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{prostSFGB.PNG}
- \vspace{-0.3cm}
- \caption{Sygnał filtracji górnoprzepustowa z oknem Blackmana}
- \label{joi}
+ \caption{Wykres FCT II dla sygnału 3}
+ \label{Wykres dla wyników eksperymentu pierwszego}
 \end{figure}
 
 
@@ -671,161 +588,13 @@ Okno Blackmana
 % PODROZDZIA PT. EKSPERYMENT NR 5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Eksperyment nr 5}
-
-Eksperyment nr 5 - Korelacja\\
-
-\subsubsection{Założenia}
-Eksperyment jest przeprowadzany na dwa sposoby: implementację bezporednią i implementację z użyciem splotu.
-\\W pierwszysm przypadku stosujemy do operacji korelacji wzór bezposredni   \ref{kw}. W drugim do obliczenia korelacji jest wykorzystywany wzór na splot \ref{Splot_indeks}.
-
-\subsubsection{Przebieg}
-Do generacji synału zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Sygnał 1:]
-\subitem [Amplituda (A):] 1
-\subitem [Czas trwania (t1):] 5 s
-\subitem [Częstotliwość próbkowania (d): ] 10 Hz
-\subitem [Okres podstawowy :] 2 s
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{sin.PNG}
- \vspace{-0.3cm}
- \caption{Wykres sygnału sinusoidalnego}
- \label{sin}
-\end{figure}
-
-\item [Sygnał 2:]
-\subitem [Amplituda (A):] 1
-\subitem [Czas trwania (t1):] 5 s
-\subitem [Częstotliwość próbkowania (d): ] 10 Hz
-
-\end{labeling}
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{szum.PNG}
- \vspace{-0.3cm}
- \caption{Wykres szumu gausowskiego}
- \label{szum}
-\end{figure}
- \newpage
-\subsubsection{Rezultat}
-\newpage
-Korelacja bezposrednia:
-\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu.  Został zastosowany wzór\ref{kw}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{korB.PNG}
- \vspace{-0.3cm}
- \caption{Wykres korelacji bezporedniej}
- \label{wk}
-\end{figure}
-
-Korelacja z wykorzystaniem splotu:
-\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu.  Został zastosowany wzór\ref{Splot_indeks}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{korS.PNG}
- \vspace{-0.3cm}
- \caption{Wykres korelacji z wykorzystaniem splotu}
- \label{redtrfytguyhiuj}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PODROZDZIA PT. EKSPERYMENT NR 6
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 6}
-
-Eksperyment nr 6 - Radar\\
-
-\subsubsection{Założenia}
-Analiza korelacyjna (porównywanie sygnałów) jest stosowana do pomiaru odległosci sygnałów przesuniętych w czasie od celu. Stosuje się do tego radar. Wysyła on sygnał sondujący, który w okrelonych przypadkach (gdy sygnał jest odpowiednio zmodulowany) może być sygnałem okresowym.
-Sygnał po odbiciu się od celu wraca do nadajnika.
-\\Pomiar odległosci dokonuje się na bazie pomiaru opóźnienia przy użyciu analizy korelacyjnej sygnału wysłanego i powracającego.
-Gdy częstotliwosć próbkowania obu sygnałów jest jednakowa i odpowiednio duża, można w wyznaczonych odstępach dokonywać analizy korelacyjnej, która jest spróbkowaana i zbuforowana, dwóch sygnałów -  sondującego i zwrotnego. Osiąga się to dzięki obliczeniu wzajemnej korelacji pary odpowaiadających sobie sygnałów, w celu uaktualnienia odczytu odległosci od celu. 
-
-Korelacja przyjmuje największą wartosć, gdy nakładane na siebie sygnały pokrywają się w jak największym stopniu. Wzór \ref{kw} umożliwia nałożenie obydwu
-sygnałów dla każdego odstępu czasowego próbkowania, z odpowiednim przesunięciem sygnałów sondującego i zwrotnego względem siebie. Także pozwala nam na obliczenie pojedyńczej wartosci korelacji dla każdego z odstępów. Możemy znaleźć maksimum funkcji korelacji. 
- 
-
-\subsubsection{Przebieg}
-Została zaimplementowana symulacja działania korelacyjnego czujnika odległosci.
-
-Do generacji synału prostokątnego zostały podane parametry:
-\addtokomafont{labelinglabel}{\sffamily}
-
-\begin{labeling}{szj}
-\item [Amplituda (A):] 1
-\item [Czas trwania (t1):] 100 s
-\item [Częstotliwość próbkowania (d): ] 1 Hz
-\item [Okres podstawowy :] 25 s
-\end{labeling}
-
-Wykres sygnału przedstawia poniższy obrazek:
-\newpage
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{sin1.PNG}
- \vspace{-0.3cm}
- \label{gw}
-\end{figure}
-\subsubsection{Rezultat}
-
-Opóźnienie = 5:
-\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{sin1R5.PNG}
- \vspace{-0.3cm}
- \caption{Radar sygnaűłu sinusoidalnego z opóźnieniem 5}
- \label{R5}
-\end{figure}
-
-
-Opóźnienie = 20:
-\\Rezultat przedstawia zamieszczony poniżej zrzut ekranu z programu. Wartości liczbowe oraz wykres funkcji amplitudy od czasu przedstawia \ref{Wykres dla wynikw eksperymentu pierwszego}.
-\begin{figure}[h!]
- \centering
- \includegraphics[width=12.3cm]{sin1R20.PNG}
- \vspace{-0.3cm}
- \caption{Radar sygnału sinusoidalnego z opóźnieniem 20}
- \label{r20}
-\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. WNIOSKI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Wnioski}
-\subsection{Splot}
-Splot dwóch funkcji w dziedzinie czasu jest równoważny pomnożeniu ich widm w dziedzinie częstotliwości. Można też wyrazić go przez korelacje - trzeba sygnał x odwrocić. Długosć splotu równa się sumie dlugosci sygnałów splotowanych -1.
-W wyniku operacji splotu sygnały zostały nałożone na siebie i w wyniku zastosowania odpowiednich wzorów sygnał wyjsciowy ma cechy obu sygnalów.
-\subsection{Filtracja}
-W filtrze dolnoprzepustowym okna wygladzaj filtr a zatem filtrowany sygnał i wyjsciowy są zbliżone (sa niewielkie roznice).
-Parametr K wplywa na częstotliwosć odcięcia. Przy większym M, czyli rzędzie, filtr jest dłuższy oraz pojawia się na nim wiecej zmian wartosci (zafalowań).
-\\ Z filtrami srodkowoprzepustowymi sytuacja z oknami wygląda podobnie jak w filtrze dolnoprzepustowym.
-
-
-Różne typow filtrów odcinają czestotliwosci w innych pasmach. W przeciwienstwie do filtru dolnoprzepustowego, filtr srodkowoprzepustowy często zmienia swoje wartosci, a  w filtrze górnoprzepustowym co druga próbka jest ujemna. W filtrze dolnoprzepustowym wykres filtru jest gładki.
-Nie możemy wiele powiedzieć o filtrach, ze względu na brak informacji  o widmie częstotliwosciowym.
-Stosując okna zmniejszamy zafalowania charakterystyki. 
-Z analizy pokazanych wykresów można stwierdzić, że okna Hanninga, Hamminga i Blackmana w dużym stopniu redukują nieliniowosć transmitancji w pamie przepustowym. Dodatkowa istotnie polepszają tłumienie składowych w pamie zaporowym w odniesieniu do okna prostokątnego.
-
-
-\subsection{Korelacja}
-Korelację można wykonać splotem i tez trzeba sygnał x odwrocić.
-Z eksperymentów wynika, że korelacja bezporednia i z wykorzystaniem splotu dają bardzo zbliżone efekty.
-
-
-\subsection{Radar}
-Z eksperymentów wynika, że jesli zalożymy taką samą częstotliwosć próbkowania, to wieksze opóźnienie równa się większej odleglosci. Poniewaz są t0 sygnały okresowe, to przyjmując okres = np 25 opóznienie równe 5 oraz 30 bedą dawaly takie same wyniki.
-Ponieważ przyjęłysmy jako predkosć predkosć swiatla to odleglosci wychodzą bardzo duże.
-Trzeba pamietać, że czestotliwosć próbkowania nie zawsze będzie wynosić 1Hz czyli 1 próbke na sekunde - przy obliczeniu odstepu czasowego zawsze trzeba otrzymywać wynik w sekundach i podzielić 1/czestotliwosć.
+Pary algorytmów DFT i FFT oraz DCT II i FCT II dają te same wyniki. Różnią się kosztem obliczeniowym i czasem wykonania. W naszym programie zgodnie z założeniami FFT okazało się szybsze niż DFT, jednak FCT II wbrew przewidywaniom potrzebuje dłuższego czasu wykonania niż DCT II. Algorytm nadal ma mniejszy koszt obliczeniowy ale kwestie programistyczne zadecydowały, że jego osiągi są niższe niż można by się spodziewać.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. ZALACZNIKI
