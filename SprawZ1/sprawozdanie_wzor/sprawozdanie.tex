@@ -41,14 +41,14 @@ W tej pracy zostały wybrane: górny wykres prezentujący częsć rzeczywistą a
 \\
 \begin{figure}[h!]
  \centering
- \includegraphics[width=5.3cm]{DFTmacierzowa.PNG}
+ \includegraphics[width=6.3cm]{dft.PNG}
  \vspace{-0.3cm}
  \label{Widok_aplikacjis}
 \end{figure}
 Odwrotne przekształcenie jest opisane wzorem:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=5.3cm]{DFTmacierzowaOd.PNG}
+ \includegraphics[width=6.3cm]{dftO.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
@@ -59,14 +59,14 @@ f0 opisuje wzór:
  \\
 \begin{figure}[h!]
  \centering
- \includegraphics[width=5.3cm]{f0.PNG}
+ \includegraphics[width=4.3cm]{f0.PNG}
  \vspace{-0.3cm}
  \label{Widok_aplikacjis}
 \end{figure}
 Istnieje także zapis zastosowaniem jądra transformacji prostej, które przyjmuje postać:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=5.3cm]{jadroW.PNG}
+ \includegraphics[width=2.3cm]{jadroW.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
@@ -75,21 +75,21 @@ Wtedy zapisujemy:
 transformacja prosta:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=5.3cm]{Xm.PNG}
+ \includegraphics[width=4.8cm]{Xm.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
 \\ transformacja odwrotna:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=5.3cm]{xn.PNG}
+ \includegraphics[width=4.3cm]{xn.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
 dla:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=5.3cm]{m,n.PNG}
+ \includegraphics[width=3.3cm]{m,n.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
@@ -97,7 +97,7 @@ dla:
 Postać macierzowa wzoru przyjmuje postać:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=5.3cm]{PMAcierzowa.PNG}
+ \includegraphics[width=12.3cm]{PMAcierzowa.PNG}
  \vspace{-0.3cm}
  \label{Splot_indeks}
 \end{figure}
@@ -109,7 +109,7 @@ Postać macierzowa wzoru przyjmuje postać:
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=8.3cm]{Decy.PNG}
+ \includegraphics[width=9.3cm]{Decy.PNG}
  \vspace{-0.3cm}
  \label{filtrS}
 \end{figure}
@@ -120,7 +120,7 @@ Po wyciągnięciu WN-m przed sumę, równanie przyjmuje postać:
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=8.3cm]{DecyW.PNG}
+ \includegraphics[width=9.3cm]{DecyW.PNG}
  \vspace{-0.3cm}
  \label{filtrS}
 \end{figure}
@@ -130,14 +130,14 @@ Jedna suma dotyczy próbek parzystych, a drugie nieparzystych.
 Ponieważ zachodzi równosć:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=8.3cm]{rownosc.PNG}
+ \includegraphics[width=9.3cm]{rownosc.PNG}
  \vspace{-0.3cm}
  \label{filtrS}
 \end{figure}
 to poprzedni wzór możemy zapisać jako:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=8.3cm]{FFTr.PNG}
+ \includegraphics[width=9.3cm]{FFTr.PNG}
  \vspace{-0.3cm}
  \label{filtrS}
 \end{figure}
@@ -146,25 +146,34 @@ Sumowane wyrażenia są analogiczne do  postaci wejciowej ale dotyczą tylko po�
 Mamy:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=3.3cm]{mamy.PNG}
+ \includegraphics[width=12.3cm]{mamy.PNG}
  \vspace{-0.3cm}
  \label{sp}
 \end{figure}
 co oanqcza, że drugą połową wektora jest powtórzenie pierwszej połowy. Pozwala to na wykonanie N/2 sumowań zamiast N. Stosując te same operacje dla N - nieparzystych. Teraz są mnożone maciezrzy to N/2xN/2 zamiast NxN. Trzeba jeszcze pomnożyć N razy przy składaniu wektorów, ale koszt nadal jest dużo mniejszy.
+\\ Jako metodę obliczania FFT można zastosować algorytm motylkowy:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{motylek.PNG}
+ \vspace{-0.3cm}
+ \label{sp}
+\end{figure}
+W motylku wartość X(m+N/2) mnoży się przez odpowiedni współczynnik WN-m odczytany z wektora. Wyniki z prawej strony są uzyskiwane jako suma wartości ze strony lewej (X(m)) oraz jako różnica tych wartości (X(m+N/2)). Znak minus wynika z faktu, że w drugiej połowie wektora współczynników są wartości przeciwne do tych z pierwszej.  
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%TRANSFORMACJA KOSINUSOWA%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \item [Transformacja kosinusowa] - wykorzystanie funkcji cosinus o różnych fazach i okresach. DCT II opisuje wzór:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{DCT2.PNG}
+ \includegraphics[width=9.3cm]{DCT2.PNG}
  \vspace{-0.3cm}
  \label{kr}
 \end{figure}
 \\ a przekształcenie odwrotne przyjmuje postać: 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{DCT2O.PNG}
+ \includegraphics[width=10.3cm]{DCT2O.PNG}
  \vspace{-0.3cm}
  \label{kw}
 \end{figure}
@@ -181,14 +190,15 @@ równania DCT do postaci pozwalającej wyodrębnić z niego człon stanowiący D
 sygnał y(n) wzorami:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{yn.PNG}
+ \includegraphics[width=8.3cm]{yn.PNG}
  \vspace{-0.3cm}
  \label{kr}
 \end{figure}
 \\ a przekształcenie odwrotne przyjmuje postać: 
+\newpage
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{DCT2O.PNG}
+ \includegraphics[width=9.3cm]{DCT2O.PNG}
  \vspace{-0.3cm}
  \label{kw}
 \end{figure}
@@ -196,14 +206,14 @@ sygnał y(n) wzorami:
 Transformatę sygnału x(n) można obliczyćprzy pomocy wzoru:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{xmF.PNG}
+ \includegraphics[width=6.3cm]{xmF.PNG}
  \vspace{-0.3cm}
  \label{kw}
 \end{figure}
 Przy czym przekształcenie odwrotne opisuje rówananie:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=4.3cm]{xmFO.PNG}
+ \includegraphics[width=6.3cm]{xmFO.PNG}
  \vspace{-0.3cm}
  \label{kw}
 \end{figure}
@@ -218,7 +228,7 @@ Sygnał x(n) odtwarzamy przy pomocy zmiany kolejności próbek w sygnale y(n).
 Aplikacja do generacji szumów zawiera interfejs graficzny, który służy do obsługi przez użytkownika. Wygląd został przedstawiony na poniższym rysunku.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{ui1.PNG}
+ \includegraphics[width=6.3cm]{ui1.PNG}
  \vspace{-0.3cm}
  \caption{Widok główny aplikacji}
  \label{Widok_aplikacjis}
@@ -309,7 +319,7 @@ Do generacji synału zostały podane parametry:
 \subsubsection{Rezultat}
 
 Rezultaty przedstawiają zamieszczone poniżej zrzut ekranu z programu. Czas wykonania oraz wykres dyskretnej transformaty Fouriera.
-\newpage
+
  Sygnał 1:
 \begin{figure}[h!]
  \centering
@@ -434,7 +444,7 @@ Do generacji synału zostały podane parametry:
 \addtokomafont{labelinglabel}{\sffamily}
 
 \begin{labeling}{szj}
-
+\newpage
 \item [Sygnał 1:] 
 \subitem [ n:] 3
 \begin{figure}[h!]
@@ -445,7 +455,6 @@ Do generacji synału zostały podane parametry:
  \label{sin}
 \end{figure}
 
-\newpage
 \item [Sygnał 2:] 
 \subitem [ n:] 6
 \begin{figure}[h!]
@@ -527,7 +536,7 @@ Do generacji synału zostały podane parametry:
  \label{sin}
 \end{figure}
 
-\newpage
+
 \item [Sygnał 2:] 
 \subitem [ n:] 6
 \begin{figure}[h!]
@@ -554,7 +563,7 @@ Do generacji synału zostały podane parametry:
 \subsubsection{Rezultat}
 
 Rezultaty przedstawiają zamieszczone poniżej zrzut ekranu z programu. Czas wykonania oraz wykres transformaciji kosinusowej typu drugiego
-\newpage
+
  Sygnał 1:
 \begin{figure}[h!]
  \centering
@@ -587,6 +596,37 @@ Sygnał 3:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. EKSPERYMENT NR 5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Podsumowanie}
+W poniższych tabelach zostały zebrane czasy wykonania i metody dla każego z naszych sygnałów.
+Sygnał 1:
+\begin{tabular}{c r @{,} l}
+Metoda &
+\multicolumn{2}{c}{Czas}\\ \hline
+$DFT$ & 0&56825 \\
+$FFT$ & 0&00656 \\
+$DCT II$ & 0&47444 \\
+$FCT II$ & 0&00656 \\
+\end{tabular}
+
+Sygnał 2:
+\begin{tabular}{c r @{,} l}
+Metoda &
+\multicolumn{2}{c}{Czas}\\ \hline
+$DFT$ & 0&056852 \\
+$FFT$ & 0&045219 \\
+$DCT II$ & 0&26220 \\
+$FCT II$ & 0&26293 \\
+\end{tabular}
+
+Sygnał 3:
+\begin{tabular}{c r @{,} l}
+Metoda &
+\multicolumn{2}{c}{Czas}\\ \hline
+$DFT$ & 0&31398 \\
+$FFT$ & 0&26199 \\
+$DCT II$ & 4&445921 \\
+$FCT II$ & 4&37570 \\
+\end{tabular}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -594,14 +634,14 @@ Sygnał 3:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Wnioski}
-Pary algorytmów DFT i FFT oraz DCT II i FCT II dają te same wyniki. Różnią się kosztem obliczeniowym i czasem wykonania. W naszym programie zgodnie z założeniami FFT okazało się szybsze niż DFT, jednak FCT II wbrew przewidywaniom potrzebuje dłuższego czasu wykonania niż DCT II. Algorytm nadal ma mniejszy koszt obliczeniowy ale kwestie programistyczne zadecydowały, że jego osiągi są niższe niż można by się spodziewać.
+Pary algorytmów DFT i FFT oraz DCT II i FCT II dają te same wyniki. Różnią się kosztem obliczeniowym i czasem wykonania. W naszym programie zgodnie z założeniami FFT okazało się szybsze niż DFT, jednak FCT II wbrew przewidywaniom potrzebuje dłuższego czasu wykonania niż DCT II. Algorytm nadal ma mniejszy koszt obliczeniowy ale kwestie programistyczne zadecydowały, że jego osiągi są niższe niż można by się spodziewać. Prawdopodobnie jest to spowodowane użyciem w algorytmie mało wydajnego DFT, co za tym idzie o więcej mnożeń.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. ZALACZNIKI
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{0}
  \bibitem{l2short} FTIMS Politechnika Łódzka.
-    \textsl{Zadanie 3 Splot, filtracja i korelacja}, Wikamp.
+    \textsl{Zadanie nr 4 - Przekształcenie Fouriera, Walsha-Hadamarda, kosinusowe i falkowe, szybkie algorytmy}, Wikamp.
 \end{thebibliography}
 
 \end{document}
