@@ -604,8 +604,8 @@ Metoda &
 \multicolumn{2}{c}{Czas}\\ \hline
 $DFT$ & 0&56825 \\
 $FFT$ & 0&00656 \\
-$DCT II$ & 0&47444 \\
-$FCT II$ & 0&00656 \\
+$DCT II$ & 0&00514 \\
+$FCT II$ & 0&00911 \\
 \end{tabular}
 
 Sygnał 2:
@@ -614,8 +614,8 @@ Metoda &
 \multicolumn{2}{c}{Czas}\\ \hline
 $DFT$ & 0&056852 \\
 $FFT$ & 0&045219 \\
-$DCT II$ & 0&26220 \\
-$FCT II$ & 0&26293 \\
+$DCT II$ & 0&33659 \\
+$FCT II$ & 0&05872 \\
 \end{tabular}
 
 Sygnał 3:
@@ -624,8 +624,8 @@ Metoda &
 \multicolumn{2}{c}{Czas}\\ \hline
 $DFT$ & 0&31398 \\
 $FFT$ & 0&26199 \\
-$DCT II$ & 4&445921 \\
-$FCT II$ & 4&37570 \\
+$DCT II$ & 5&41027 \\
+$FCT II$ & 0&21078 \\
 \end{tabular}
 
 
@@ -634,7 +634,7 @@ $FCT II$ & 4&37570 \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Wnioski}
-Pary algorytmów DFT i FFT oraz DCT II i FCT II dają te same wyniki. Różnią się kosztem obliczeniowym i czasem wykonania. W naszym programie zgodnie z założeniami FFT okazało się szybsze niż DFT, jednak FCT II wbrew przewidywaniom potrzebuje dłuższego czasu wykonania niż DCT II. Algorytm nadal ma mniejszy koszt obliczeniowy ale kwestie programistyczne zadecydowały, że jego osiągi są niższe niż można by się spodziewać. Prawdopodobnie jest to spowodowane użyciem w algorytmie mało wydajnego DFT, co za tym idzie o więcej mnożeń.
+Pary algorytmów DFT i FFT oraz DCT II i FCT II dają te same wyniki. Różnią się kosztem obliczeniowym i czasem wykonania. W naszym programie zgodnie z założeniami FFT okazało się szybsze niż DFT, oraz FCT II, w którym został użyty algorytm FFT ma lepsze wyniki niz DCT II.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PODROZDZIA PT. ZALACZNIKI
